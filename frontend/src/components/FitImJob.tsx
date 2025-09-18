@@ -125,7 +125,7 @@ const FitImJob = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-slate-900">Soziale Kompetenz</h3>
-                                        <p className="text-slate-600 text-sm">Hohe Führungsqualität</p>
+                                        <p className="text-slate-600 text-sm">Wertschätzung und Vertrauen</p>
                                     </div>
                                 </div>
 

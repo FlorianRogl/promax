@@ -7,18 +7,8 @@ import iso from '../assets/iso.png';
 import iq from '../assets/iqZert.png';
 import {Helmet} from "@vuer-ai/react-helmet-async";
 import CheckIcon from "./CheckIcon.tsx";
-import { Beaker, FileText, Zap, ChevronRight } from 'lucide-react';
+import {ChevronRight, Mail, Linkedin } from 'lucide-react';
 
-// Types
-interface Project {
-    id: number;
-    title: string;
-    category: string;
-    image: string;
-    excerpt: string;
-    tags: string[];
-    icon: React.ReactNode;
-}
 
 interface TeamMember {
     name: string;
@@ -40,37 +30,6 @@ interface Resource {
 const Unternehmen = () => {
     const navigate = useNavigate();
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
-
-    // Projects data - matching the real projects
-    const projects: Project[] = [
-        {
-            id: 1,
-            title: "Säurefeste Auskleidungen mit Abriebfestigkeitseigenschaften",
-            category: "Chemische Industrie",
-            image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            excerpt: "Entwicklung einer technisch und wirtschaftlich optimalen Lösung für einen 80 m³ Pufferbehälter mit chemisch aggressiven Abwässern bei Temperaturen bis 85°C.",
-            icon: <Beaker className="w-5 h-5" />,
-            tags: ["Säureschutz", "Betonbau", "Chemische Industrie"]
-        },
-        {
-            id: 2,
-            title: "3D-Visualisiert Konstruieren & Planen mit Inventor",
-            category: "Engineering & CAD",
-            image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            excerpt: "Erweiterte 3D-Konstruktionen und Berechnungen mit Inventor für Papier-/Zellstoff-, Kunststoff-, Automobil-, Fördertechnik und Pharmazie-Bereiche.",
-            icon: <FileText className="w-5 h-5" />,
-            tags: ["3D-CAD", "Inventor", "Engineering"]
-        },
-        {
-            id: 3,
-            title: "3D-Planungen im Anlagenbau\n\n",
-            category: "Anlagenbau",
-            image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            excerpt: "Leistungsfähige 3D-Visualisierung mit AVEVA VANTAGE PDMS und AUTODESK ACAD PLANT 3D für komplexe Anlagenplanungen.",
-            icon: <Zap className="w-5 h-5" />,
-            tags: ["AVEVA PDMS", "AutoCAD Plant 3D", "3D-Visualisierung"]
-        }
-    ];
 
     // Team members
     const teamMembers: TeamMember[] = [
@@ -94,18 +53,6 @@ const Unternehmen = () => {
 
     // Resources
     const resources: Resource[] = [
-        {
-            title: "Unternehmenspräsentation",
-            type: "PDF",
-            size: "2.4 MB",
-            icon: (
-                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-            ),
-            color: 'blue'
-        },
         {
             title: "ISO 9001:2015 Zertifikat",
             type: "PDF",
@@ -207,6 +154,7 @@ const Unternehmen = () => {
                 <meta name="twitter:description" content="PROMAX bietet seit 1999 exzellentes Projektmanagement im Industrieanlagenbau." />
                 <meta name="twitter:image" content="https://www.promax.at/og-image.jpg" />
             </Helmet>
+
             <div className="min-h-screen bg-white overflow-x-hidden">
                 {/* Hero Section with Parallax */}
                 <section
@@ -222,27 +170,9 @@ const Unternehmen = () => {
                     <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
                         <div className="animate-fade-in-up">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
-                                Engineering Excellence.
+                                Knowhow und Leidenschaft für Ihre Projekte.
                                 <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">Since 1999.</span>
                             </h1>
-                            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
-                                Ihr Partner für komplexe Industrieprojekte in Papier, Zellstoff, Pharma und Chemie
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button
-                                    onClick={() => navigate('/leistungen')}
-                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
-                                >
-                                    Unsere Expertise
-                                </button>
-                                <button
-                                    onClick={() => document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-[#1e3767] transition-all duration-300 font-medium text-base sm:text-lg"
-                                >
-                                    Projekte ansehen
-                                </button>
-                            </div>
                         </div>
                     </div>
 
@@ -300,14 +230,9 @@ const Unternehmen = () => {
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
-                                    Seit 1999 steht PROMAX für exzellentes Projektmanagement im Industrieanlagenbau.
-                                    Mit unserem 35-köpfigen Expertenteam realisieren wir komplexe Projekte in den
-                                    Bereichen Papier, Zellstoff, Pharma und Chemie.
-                                </p>
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                                    Unser ganzheitlicher Ansatz umfasst Projektierung, Planung, Site Services und
-                                    Organisationsberatung – alles aus einer Hand, mit höchster Qualität und
-                                    Zuverlässigkeit.
+                                    PROMAX steht seit 1999 für professionelle Projektumsetzung im Industrieanlagenbau.
+                                    Mit unserem 35-köpfigen Team aus erfahrenen Experten begleiten wir komplexe Projekte
+                                    in den unterschiedlichsten Branchen – von der Planung bis zur Inbetriebnahme.
                                 </p>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -341,64 +266,8 @@ const Unternehmen = () => {
                     </div>
                 </section>
 
-                {/* Projects Showcase Section */}
-                <section id="projects-section" className="py-12 sm:py-16 lg:py-24 bg-gray-50">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-gray-900 mb-3 sm:mb-4">
-                                Unsere <span className="text-[#1e3767] font-semibold">Referenzprojekte</span>
-                            </h2>
-                            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-                                Einblicke in erfolgreich realisierte Industrieprojekte
-                            </p>
-                        </div>
-
-                        <div className="grid lg:grid-cols-3 gap-8">
-                            {projects.map((project, index) => (
-                                <div
-                                    key={project.id}
-                                    className={`group cursor-pointer transition-all duration-700 ${
-                                        visibleSections.has('projects-section')
-                                            ? 'translate-y-0 opacity-100'
-                                            : 'translate-y-8 opacity-0'
-                                    }`}
-                                    style={{ transitionDelay: `${index * 150}ms` }}
-                                    onClick={() => navigate(`/projektberichte?project=${project.id}`)}
-                                >
-                                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full flex flex-col">
-                                        <div className="relative overflow-hidden">
-                                            <img
-                                                src={project.image}
-                                                alt={project.title}
-                                                className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                                            />
-                                            <div className="absolute top-4 left-4">
-                                            </div>
-                                        </div>
-
-                                        <div className="p-6 flex flex-col flex-grow">
-                                            <div className="text-sm text-[#1e3767] font-medium mb-2">{project.category}</div>
-                                            <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#1e3767] transition-colors leading-tight min-h-[3.5rem] flex items-start">
-                                                <span className="line-clamp-2">{project.title}</span>
-                                            </h3>
-                                            <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                                                <span className="line-clamp-3">{project.excerpt}</span>
-                                            </p>
-
-                                            <div className="flex items-center text-[#1e3767] font-medium mt-auto">
-                                                <span>Projekt ansehen</span>
-                                                <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Team Section */}
-                <section id="team-section" className="py-16 sm:py-20 lg:py-24 bg-white">
+                {/* Team Section - Updated with horizontal layout */}
+                <section id="team-section" className="py-16 sm:py-20 lg:py-24 bg-gray-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="text-center mb-12 sm:mb-16">
                             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
@@ -410,45 +279,67 @@ const Unternehmen = () => {
                             </p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto">
+                        <div className="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
                             {teamMembers.map((member, index) => (
                                 <div
                                     key={member.name}
-                                    className={`bg-white rounded-lg p-6 sm:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
-                                        visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+                                    className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+                                        visibleSections.has('team-section')
+                                            ? 'translate-y-0 opacity-100'
+                                            : 'translate-y-8 opacity-0'
                                     }`}
-                                    style={{animationDelay: `${index * 200}ms`}}
+                                    style={{ transitionDelay: `${index * 200}ms` }}
                                 >
-                                    <div className="text-center">
-                                        <div className="w-32 h-40 sm:w-48 sm:h-60 mx-auto mb-4 sm:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    {/* Profile Image */}
+                                    <div className="p-8 pb-4">
+                                        <div className="w-48 h-56 mx-auto rounded-xl overflow-hidden">
                                             <img
                                                 src={member.image}
                                                 alt={member.name}
-                                                className="w-full h-full object-cover object-top"
+                                                className="w-full h-full object-cover"
                                             />
                                         </div>
-                                        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">{member.name}</h3>
-                                        <p className="text-[#d97539] font-medium mb-4">{member.role}</p>
-                                        <p className="text-sm sm:text-base text-gray-600 mb-2">{member.description}</p>
-                                        <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">{member.email}</p>
+                                    </div>
 
+                                    {/* Content */}
+                                    <div className="px-8 pb-8 text-center">
+                                        {/* Name */}
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                                            {member.name}
+                                        </h3>
+
+                                        {/* Role */}
+                                        <p className="text-[#d97539] font-semibold text-lg mb-4">
+                                            {member.role}
+                                        </p>
+
+                                        {/* Description */}
+                                        <p className="text-gray-600 text-base mb-4 leading-relaxed">
+                                            {member.description}
+                                        </p>
+
+                                        {/* Email */}
+                                        <p className="text-gray-700 text-base mb-6 font-medium">
+                                            {member.email}
+                                        </p>
+
+                                        {/* Contact Buttons */}
                                         <div className="flex justify-center space-x-4">
                                             <a
                                                 href={`mailto:${member.email}`}
-                                                className="text-gray-400 hover:text-[#1e3767] transition-colors"
+                                                className="flex items-center justify-center w-12 h-12 bg-gray-100 hover:bg-[#1e3767] rounded-xl transition-colors duration-300 group"
+                                                title="E-Mail senden"
                                             >
-                                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                                </svg>
+                                                <Mail className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors duration-300" />
                                             </a>
+
                                             {member.linkedin && (
                                                 <a
                                                     href={member.linkedin}
-                                                    className="text-gray-400 hover:text-[#1e3767] transition-colors"
+                                                    className="flex items-center justify-center w-12 h-12 bg-gray-100 hover:bg-[#0077B5] rounded-xl transition-colors duration-300 group"
+                                                    title="LinkedIn Profil"
                                                 >
-                                                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                                    </svg>
+                                                    <Linkedin className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors duration-300" />
                                                 </a>
                                             )}
                                         </div>
@@ -459,103 +350,90 @@ const Unternehmen = () => {
                     </div>
                 </section>
 
-                {/* Services Section */}
-                <section id="services" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-200 to-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-12 sm:mb-16">
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
-                                Unsere{' '}
-                                <span className="text-[#1e3767] font-semibold">Leistungen</span>
-                            </h2>
-                            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-                                Ganzheitliche Lösungen für Ihre Industrieprojekte
-                            </p>
-                        </div>
-
-                        <div className="grid sm:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto">
-                            <div className="text-center group">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 bg-gradient-to-br from-[#1e3767] to-[#2a4a7f] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Technische Planung & Engineering</h3>
-                                <p className="text-sm sm:text-base text-gray-600">Umfassende technische Konzeption und detaillierte Ingenieursplanung für komplexe Industrieprojekte</p>
-                            </div>
-
-                            <div className="text-center group">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 bg-gradient-to-br from-[#d97539] to-[#e89050] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Projektmanagement & Koordination</h3>
-                                <p className="text-sm sm:text-base text-gray-600">Professionelle Projektsteuerung und Koordination aller Beteiligten für termingerechte Umsetzung</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Fit im Job Section */}
-                <section id="fitimjob-section" className="py-16 sm:py-20 lg:py-24 bg-white">
+                {/* Unternehmenskultur Section */}
+                <section id="unternehmenskultur-section" className="py-16 sm:py-20 lg:py-24 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                            {/* Image - Hidden on mobile as requested */}
-                            <div className="hidden lg:block relative animate-fade-in-left">
+                            {/* Image */}
+                            <div className="relative animate-fade-in-left">
                                 <div className="absolute -inset-4 bg-gradient-to-r from-[#d97539] to-[#1e3767] rounded-lg opacity-10 blur-lg"></div>
                                 <img
-                                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                    alt="Fit im Job"
+                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="PROMAX Unternehmenskultur - Teamarbeit und Zusammenhalt"
                                     className="relative rounded-lg shadow-2xl w-full h-[400px] object-cover"
                                 />
                             </div>
 
                             <div className="animate-fade-in-right">
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
-                                    Fit im{' '}
-                                    <span className="text-[#1e3767] font-semibold">Job</span>
-                                </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                                    Die Gesundheit und das Wohlbefinden unserer Mitarbeiter stehen bei PROMAX im
-                                    Mittelpunkt. Durch gezielte Maßnahmen zur Gesundheitsförderung schaffen wir ein
-                                    Arbeitsumfeld, das produktiv, gesund und motivierend ist.
-                                </p>
+                                <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">
+                                        Unsere Unternehmenskultur
+                                    </h3>
 
-                                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#d97539]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xl sm:text-2xl">🍎</span>
+                                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
+                                        Bei PROMAX Project Management GesmbH verbinden wir <strong>Teamgeist, offene Kommunikation und Vertrauen</strong> mit gezielter <strong>Gesundheitsförderung</strong>. Flache Hierarchien, ein kooperatives Arbeitsumfeld und Programme für das körperliche und geistige Wohlbefinden unserer Mitarbeiter schaffen Raum für <strong>Innovation, Motivation und nachhaltigen Erfolg</strong>.
+                                    </p>
+
+                                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
+                                        So entsteht eine Unternehmenskultur, die <strong>soziale Kompetenz, Wertschätzung und partnerschaftliche Zusammenarbeit</strong> in den Mittelpunkt stellt – für unsere Teams, Kunden und Partner.
+                                    </p>
+
+                                    <div className="space-y-4 mb-8">
+                                        <div className="flex items-center space-x-4 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                            <div className="w-3 h-3 bg-blue-400 rounded-full flex-shrink-0"></div>
+                                            <span className="text-sm sm:text-base text-gray-700 font-medium">Flache Hierarchien & offene Kommunikation</span>
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">Täglich frischer Obstteller</span>
+
+                                        <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                                            <div className="w-3 h-3 bg-green-400 rounded-full flex-shrink-0"></div>
+                                            <span className="text-sm sm:text-base text-gray-700 font-medium">Kooperatives Arbeitsumfeld</span>
+                                        </div>
+
+                                        <div className="flex items-center space-x-4 p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+                                            <div className="w-3 h-3 bg-orange-400 rounded-full flex-shrink-0"></div>
+                                            <span className="text-sm sm:text-base text-gray-700 font-medium">Gesundheits- & Wellnessprogramme</span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#d97539]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xl sm:text-2xl">🍽️</span>
-                                        </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">Essensbons für warme Mittagessen</span>
-                                    </div>
-                                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#d97539]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xl sm:text-2xl">💪</span>
-                                        </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">Kostenloser Fitnessraum</span>
+
+                                    <div className="flex justify-center space-x-4">
+                                        <button
+                                            onClick={() => navigate('/FitImJob')}
+                                            className="inline-flex items-center px-6 py-3 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium shadow-lg hover:shadow-xl text-sm sm:text-base"
+                                        >
+                                            Mehr über Fit im Job
+                                            <ChevronRight className="w-4 h-4 ml-2" />
+                                        </button>
+
+                                        <button
+                                            onClick={() => navigate('/Karriere')}
+                                            className="inline-flex items-center px-6 py-3 bg-white text-[#1e3767] border-2 border-[#1e3767] rounded-full hover:bg-[#1e3767] hover:text-white transform hover:scale-105 transition-all duration-300 font-medium shadow-lg hover:shadow-xl text-sm sm:text-base"
+                                        >
+                                            Jobs & Karriere
+                                            <ChevronRight className="w-4 h-4 ml-2" />
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div className="flex flex-col sm:flex-row gap-4">
-                                    <button
-                                        onClick={() => navigate('/FitImJob')}
-                                        className="px-6 sm:px-8 py-3 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium shadow-lg hover:shadow-xl text-sm sm:text-base"
-                                    >
-                                        Mehr über Fit im Job erfahren
-                                    </button>
-                                    <button
-                                        onClick={() => navigate('/Karriere')}
-                                        className="px-6 sm:px-8 py-3 bg-transparent border-2 border-[#1e3767] text-[#1e3767] rounded-full hover:bg-[#1e3767] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base"
-                                    >
-                                        Jobs & Karriere
-                                    </button>
+                        {/* Additional Info Box */}
+                        <div className="mt-12 lg:mt-16">
+                            <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 sm:p-8">
+                                <div className="grid md:grid-cols-2 gap-8 items-center">
+                                    <div>
+                                        <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
+                                            Innovation durch Wertschätzung
+                                        </h4>
+                                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                            Unsere Unternehmenskultur schafft ein Umfeld, in dem sich jeder Mitarbeiter wertgeschätzt fühlt und sein volles Potenzial entfalten kann. Dies bildet die Grundlage für innovative Lösungen und langfristige Partnerschaften.
+                                        </p>
+                                    </div>
+                                    <div className="text-center md:text-right">
+                                        <div className="inline-flex flex-col space-y-2">
+                                            <span className="text-2xl sm:text-3xl font-bold text-[#1e3767]">25+</span>
+                                            <span className="text-xs sm:text-sm text-gray-600 font-medium">Jahre Vertrauen</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -640,16 +518,16 @@ const Unternehmen = () => {
                 <section id="resources" className="py-16 sm:py-20 lg:py-24 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="text-center mb-12 sm:mb-16">
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 text-center">
                                 Resource{' '}
                                 <span className="text-[#1e3767] font-semibold">Center</span>
                             </h2>
-                            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto text-center">
                                 Wichtige Dokumente und Informationen zum Download
                             </p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
                             {resources.map((resource, index) => (
                                 <div
                                     key={resource.title}
@@ -664,9 +542,9 @@ const Unternehmen = () => {
                                         } rounded-lg flex items-center justify-center`}>
                                             {resource.icon}
                                         </div>
-                                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{resource.title}</h3>
-                                        <p className="text-gray-600 text-xs sm:text-sm">{resource.type} • {resource.size}</p>
-                                        <div className={`flex items-center ${
+                                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">{resource.title}</h3>
+                                        <p className="text-gray-600 text-xs sm:text-sm text-center">{resource.type} • {resource.size}</p>
+                                        <div className={`flex items-center justify-center ${
                                             resource.color === 'blue' ? 'text-[#1e3767]' : 'text-[#d97539]'
                                         } font-medium pt-2 text-sm sm:text-base`}>
                                             <span>Download</span>
@@ -702,93 +580,93 @@ const Unternehmen = () => {
                             >
                                 Projekt besprechen
                             </button>
+                        </div>
                     </div>
-            </div>
-        </section>
+                </section>
 
-{/* Add required styles */}
-    <style>{`
-                @keyframes fade-in-up {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                @keyframes fade-in-right {
-                    from {
-                        opacity: 0;
-                        transform: translateX(-30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-                
-                @keyframes fade-in-left {
-                    from {
-                        opacity: 0;
-                        transform: translateX(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-                
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.8s ease-out forwards;
-                }
-                
-                .animate-fade-in-right {
-                    animation: fade-in-right 0.8s ease-out forwards;
-                }
-                
-                .animate-fade-in-left {
-                    animation: fade-in-left 0.8s ease-out forwards;
-                }
-                
-                .bg-pattern {
-                    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-                }
-                
-                .line-clamp-2 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-                
-                /* Mobile touch optimizations */
-                @media (max-width: 640px) {
-                    .hover\\:scale-105:hover {
-                        transform: none;
+                {/* Add required styles */}
+                <style>{`
+                    @keyframes fade-in-up {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
                     }
                     
-                    .hover\\:-translate-y-1:hover {
-                        transform: none;
+                    @keyframes fade-in-right {
+                        from {
+                            opacity: 0;
+                            transform: translateX(-30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
                     }
                     
-                    .hover\\:-translate-y-2:hover {
-                        transform: none;
+                    @keyframes fade-in-left {
+                        from {
+                            opacity: 0;
+                            transform: translateX(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
                     }
-                }
-                
-                /* Improve text legibility on mobile */
-                @media (max-width: 640px) {
-                    body {
-                        -webkit-text-size-adjust: 100%;
+                    
+                    .animate-fade-in-up {
+                        animation: fade-in-up 0.8s ease-out forwards;
                     }
-                }
-            `}</style>
-</div>
-</>
-);
+                    
+                    .animate-fade-in-right {
+                        animation: fade-in-right 0.8s ease-out forwards;
+                    }
+                    
+                    .animate-fade-in-left {
+                        animation: fade-in-left 0.8s ease-out forwards;
+                    }
+                    
+                    .bg-pattern {
+                        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                    }
+                    
+                    .line-clamp-2 {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                    
+                    /* Mobile touch optimizations */
+                    @media (max-width: 640px) {
+                        .hover\\:scale-105:hover {
+                            transform: none;
+                        }
+                        
+                        .hover\\:-translate-y-1:hover {
+                            transform: none;
+                        }
+                        
+                        .hover\\:-translate-y-2:hover {
+                            transform: none;
+                        }
+                    }
+                    
+                    /* Improve text legibility on mobile */
+                    @media (max-width: 640px) {
+                        body {
+                            -webkit-text-size-adjust: 100%;
+                        }
+                    }
+                `}</style>
+            </div>
+        </>
+    );
 };
 
 export default Unternehmen;
