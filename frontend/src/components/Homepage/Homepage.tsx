@@ -1,11 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { Beaker, Zap, Pill, FileText, Utensils, Factory, Atom, Grid3x3 } from 'lucide-react';
-import VideoSection from "./VideoSection.tsx";
 import VideoSection2 from "./VideoSection2.tsx";
-import VideoSection3 from "./VideoSection3.tsx";
 
 const Homepage = () => {
-    const [currentVideoSection, setCurrentVideoSection] = useState(0);
     const [yearsCount, setYearsCount] = useState(0);
     const yearRef = useRef(null);
     const [hasAnimated, setHasAnimated] = useState(false);
@@ -54,74 +51,8 @@ const Homepage = () => {
 
     return (
         <div className="min-h-screen overflow-x-hidden">
-            {currentVideoSection === 0 && <VideoSection />}
-            {currentVideoSection === 1 && <VideoSection2 />}
-            {currentVideoSection === 2 && <VideoSection3 />}
-
-            {/* Video Switch Button */}
-            <div className="flex justify-center py-6 bg-gray-100">
-                <button
-                    onClick={() => setCurrentVideoSection((prev) => (prev + 1) % 3)}
-                    className="bg-promax-orange text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg"
-                >
-                    Video {currentVideoSection + 1} → Video {((currentVideoSection + 1) % 3) + 1}
-                </button>
-            </div>
-
-            {/* Services Section */}
-            <section className="py-20 bg-gray-50 relative">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-4 text-promax-blue">Unsere Leistungen</h2>
-                        <div className="w-24 h-1 bg-promax-orange mx-auto"></div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        {/* Ingenieurplanung Card */}
-                        <div className="p-10 text-white bg-promax-blue transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                            <div className="mb-6">
-                                <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Ingenieurplanung</h3>
-                            <p className="text-lg leading-relaxed mb-6">
-                                Umfassende Planung und Konzeptentwicklung für Ihre Industrieanlagen mit modernsten Methoden und Tools.
-                            </p>
-                            <ul className="space-y-2">
-                                {['Anlagenkonzeption & Design', '3D-Modellierung & Simulation', 'Verfahrenstechnik'].map((item) => (
-                                    <li key={item} className="flex items-center">
-                                        <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange"></span>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Operative Projektunterstützung Card */}
-                        <div className="p-10 text-white bg-promax-orange transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                            <div className="mb-6">
-                                <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Operative Projektunterstützung</h3>
-                            <p className="text-lg leading-relaxed mb-6">
-                                Professionelle Projektbegleitung von der Konzeption bis zur erfolgreichen Inbetriebnahme.
-                            </p>
-                            <ul className="space-y-2">
-                                {['Projektsteuerung & -leitung', 'Qualiätssicherung', 'Inbetriebnahme'].map((item) => (
-                                    <li key={item} className="flex items-center">
-                                        <span className="w-2 h-2 bg-white rounded-full mr-3"></span>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* Only VideoSection2 */}
+            <VideoSection2 />
 
             {/* Services Section */}
             <section className="py-20 bg-gray-50 relative">
@@ -151,8 +82,24 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold">Ingenieurplanung</h3>
-                                <p className="text-sm mt-2 opacity-90"></p>
+                                <h3 className="text-2xl font-bold mb-4">Ingenieurplanung</h3>
+                                <p className="text-sm mb-4 opacity-90 leading-relaxed">
+                                    Umfassende Planung und Konzeptentwicklung für Ihre Industrieanlagen mit modernsten Methoden und Tools.
+                                </p>
+                                <ul className="text-left space-y-2 text-sm">
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange flex-shrink-0"></span>
+                                        Anlagenkonzeption & Design
+                                    </li>
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange flex-shrink-0"></span>
+                                        3D-Modellierung & Berechnung
+                                    </li>
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange flex-shrink-0"></span>
+                                        Laserscantechnologie
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
@@ -176,9 +123,24 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold">Operative</h3>
-                                <h3 className="text-2xl font-bold">Projektunterstützung</h3>
-                                <p className="text-sm mt-2 opacity-90"></p>
+                                <h3 className="text-2xl font-bold mb-4">Operative Projektunterstützung</h3>
+                                <p className="text-sm mb-4 opacity-90 leading-relaxed">
+                                    Individuelle Projektunterstützung von der Planung bis zur praktischen Umsetzung.
+                                </p>
+                                <ul className="text-left space-y-2 text-sm">
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 rounded-full mr-3 bg-white flex-shrink-0"></span>
+                                        Projektabwicklung
+                                    </li>
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 rounded-full mr-3 bg-white flex-shrink-0"></span>
+                                        Ausschreibung und Beschaffung
+                                    </li>
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 rounded-full mr-3 bg-white flex-shrink-0"></span>
+                                        Fachbauüberwachung
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -203,8 +165,8 @@ const Homepage = () => {
                         {industries.map((industry) => {
                             const Icon = industry.icon;
                             return (
-                                <div key={industry.name} className="text-center group cursor-pointer">
-                                    <div className="w-32 h-32 mx-auto mb-4 bg-white shadow-lg rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-2xl group-hover:scale-110">
+                                <div key={industry.name} className="text-center">
+                                    <div className="w-32 h-32 mx-auto mb-4 bg-white shadow-lg rounded-lg flex items-center justify-center">
                                         <Icon className="w-16 h-16 text-promax-blue" />
                                     </div>
                                     <h3 className="text-xl font-semibold text-promax-blue">{industry.name}</h3>

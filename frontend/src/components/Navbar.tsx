@@ -4,7 +4,6 @@ import styles from '../css/Navbar.module.css';
 
 import navLogo from '../assets/Final_V1-a.png'
 
-
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [hasInitiallyLoaded, setHasInitiallyLoaded] = useState(false);
@@ -23,7 +22,7 @@ const Navbar = () => {
         if (!hasInitiallyLoaded) {
             setHasInitiallyLoaded(true);
         }
-    }, []); // Nur beim ersten Mount ausführen
+    }, []);
 
     // Schließe Mobile Menu beim Route-Wechsel
     useEffect(() => {
@@ -64,14 +63,22 @@ const Navbar = () => {
         closeMobileMenu();
     };
 
+    // Handle keyboard navigation for mobile menu
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Escape' && isMobileMenuOpen) {
+            closeMobileMenu();
+        }
+    };
+
     return (
-        <nav className={`${styles.navbar} ${hasInitiallyLoaded ? styles.navbarReload : ''}`}>
+        <nav className={`${styles.navbar} ${hasInitiallyLoaded ? styles.navbarReload : ''}`} role="navigation" aria-label="Hauptnavigation">
             <div className={styles.container}>
                 {/* Logo/Brand - Links positioniert */}
                 <Link
                     to="/"
                     className={`${styles.brand} ${hasInitiallyLoaded ? styles.brandReload : ''}`}
                     onClick={(e) => handleNavClick(e)}
+                    aria-label="PROMAX - Zur Startseite"
                 >
                     <img
                         src={navLogo}
@@ -80,19 +87,22 @@ const Navbar = () => {
                     />
                 </Link>
 
-                {/* Navigation Wrapper - Zentral-Rechts positioniert */}
+                {/* Navigation Wrapper - Zentral positioniert */}
                 <div className={`${styles.navWrapper} ${isMobileMenuOpen ? styles.navWrapperOpen : ''}`}>
-                    <ul className={`${styles.navList} ${hasInitiallyLoaded ? styles.navListReload : ''}`}>
+                    <ul className={`${styles.navList} ${hasInitiallyLoaded ? styles.navListReload : ''}`} role="menubar">
                         {navItems.map((item, index) => (
                             <li
                                 key={item.name}
                                 className={`${styles.navItem} ${hasInitiallyLoaded ? styles.navItemReload : ''}`}
                                 style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                                role="none"
                             >
                                 <Link
                                     to={item.path}
                                     className={`${styles.navLink} ${location.pathname === item.path ? styles.active : ''}`}
                                     onClick={(e) => handleNavClick(e)}
+                                    role="menuitem"
+                                    aria-current={location.pathname === item.path ? 'page' : undefined}
                                 >
                                     {item.name}
                                 </Link>
@@ -101,17 +111,23 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <button
-                    className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.mobileMenuBtnOpen : ''} ${hasInitiallyLoaded ? styles.mobileMenuReload : ''}`}
-                    onClick={toggleMobileMenu}
-                    aria-label="Toggle mobile menu"
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    <span className={styles.hamburger}></span>
-                    <span className={styles.hamburger}></span>
-                    <span className={styles.hamburger}></span>
-                </button>
+                {/* Accessibility Controls - Rechts positioniert */}
+                <div className={styles.navControls}>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.mobileMenuBtnOpen : ''} ${hasInitiallyLoaded ? styles.mobileMenuReload : ''}`}
+                        onClick={toggleMobileMenu}
+                        onKeyDown={handleKeyDown}
+                        aria-label={isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
+                        aria-expanded={isMobileMenuOpen}
+                        aria-controls="mobile-navigation"
+                    >
+                        <span className={styles.hamburger} aria-hidden="true"></span>
+                        <span className={styles.hamburger} aria-hidden="true"></span>
+                        <span className={styles.hamburger} aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu Overlay */}
@@ -119,7 +135,9 @@ const Navbar = () => {
                 <div
                     className={styles.mobileOverlay}
                     onClick={closeMobileMenu}
+                    onKeyDown={handleKeyDown}
                     aria-hidden="true"
+                    tabIndex={-1}
                 ></div>
             )}
         </nav>

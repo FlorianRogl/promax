@@ -1,22 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../css/Footer.module.css';
 import {
     MapPin,
     Phone,
     Mail,
-    Clock,
-    Facebook,
-    Twitter,
-    Linkedin,
-    Instagram,
     ArrowUp
 } from 'lucide-react';
 
 const Footer = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [showScrollTop, setShowScrollTop] = useState(false);
-    const footerRef = useRef(null);
+    const footerRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -48,158 +43,165 @@ const Footer = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const footerLinks = {
-        navigation: {
-            title: 'Navigation',
-            links: [
-                { name: 'Startseite', path: '/' },
-                { name: 'Das Unternehmen', path: '/unternehmen' },
-                { name: 'Branchen', path: '/branchen' },
-                { name: 'Leistungen', path: '/leistungen' },
-                { name: 'Karriere', path: '/karriere' },
-                { name: 'Kontakt', path: '/kontakt' }
-            ]
-        },
-        legal: {
-            title: 'Rechtliches',
-            links: [
-                { name: 'Impressum', path: '/Rechtliches#impressum' },
-                { name: 'Datenschutz', path: '/Rechtliches#datenschutz' },
-                { name: 'AGB', path: '/Rechtliches#agb' }
-            ]
-        }
-    };
-
     const contactInfo = [
         { icon: MapPin, text: 'Parkring 18/F, 8074 Raaba-Grambach' },
         { icon: Phone, text: '+43 (0) 316 / 241 393' },
-        { icon: Mail, text: 'office@promax.at' },
-        { icon: Clock, text: 'Mo-Fr: 8:00-18:00 Uhr' }
+        { icon: Mail, text: 'office@promax.at' }
     ];
 
-    const socialLinks = [
-        { icon: Facebook, url: '#', name: 'Facebook' },
-        { icon: Twitter, url: '#', name: 'Twitter' },
-        { icon: Linkedin, url: '#', name: 'LinkedIn' },
-        { icon: Instagram, url: '#', name: 'Instagram' }
+    const legalLinks = [
+        { name: 'Impressum', path: '/Rechtliches#impressum' },
+        { name: 'Datenschutz', path: '/Rechtliches#datenschutz' },
+        { name: 'AGB', path: '/Rechtliches#agb' }
     ];
+
+    const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        (e.target as HTMLAnchorElement).style.color = '#d97539';
+    };
+
+    const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        (e.target as HTMLAnchorElement).style.color = '#e5e5e5';
+    };
+
+    const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const target = e.target as HTMLButtonElement;
+        target.style.transform = 'scale(1.1)';
+        target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.4)';
+    };
+
+    const handleButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const target = e.target as HTMLButtonElement;
+        target.style.transform = 'scale(1)';
+        target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+    };
 
     return (
         <>
             <footer
                 ref={footerRef}
                 className={`${styles.footer} ${isVisible ? styles.footerVisible : ''}`}
+                style={{ backgroundColor: '#1e3767', padding: '40px 0' }}
             >
                 {/* Orange Gradient Line */}
-                <div className={styles.footerGradientLine}></div>
+                <div style={{
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #d97539 0%, #f4a261 100%)',
+                    marginBottom: '30px'
+                }}></div>
 
                 {/* Main Footer Content */}
-                <div className={styles.footerContainer}>
-                    {/* Company Info Section */}
-                    <div className={`${styles.footerSection} ${styles.companySection} ${isVisible ? styles.animateUp : ''}`}>
-                        <div className={styles.companyLogo}>
-                            <h3 className={styles.logoText}>PROMAX</h3>
-                            <p className={styles.companyTagline}>Project Management GesmbH</p>
-                        </div>
-                        <p className={styles.companyDescription}>
-                            Seit über 15 Jahren unterstützen wir Unternehmen dabei, ihre Projekte
-                            erfolgreich zu planen und umzusetzen. Vertrauen Sie auf
-                            unsere Expertise im Projektmanagement und Industrieanlagenbau.
-                        </p>
-
-                        {/* Contact Info */}
-                        <div className={styles.contactInfo}>
-                            <h4 className={styles.contactTitle}>Kontaktieren Sie uns</h4>
+                <div style={{
+                    maxWidth: '1200px',
+                    margin: '0 auto',
+                    padding: '0 20px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: '60px'
+                }}>
+                    {/* Contact Section */}
+                    <div className={`${isVisible ? styles.animateUp : ''}`}>
+                        <h4 style={{
+                            color: 'white',
+                            fontSize: '18px',
+                            marginBottom: '20px',
+                            fontWeight: '600'
+                        }}>
+                            Kontaktieren Sie uns
+                        </h4>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                             {contactInfo.map((item, index) => (
                                 <div
                                     key={index}
-                                    className={`${styles.contactItem} ${isVisible ? styles.animateFadeIn : ''}`}
-                                    style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        color: '#e5e5e5',
+                                        fontSize: '14px'
+                                    }}
+                                    className={`${isVisible ? styles.animateFadeIn : ''}`}
                                 >
-                                    <item.icon size={16} />
+                                    <item.icon size={16} color="#d97539" />
                                     <span>{item.text}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* Navigation Links */}
-                    <div
-                        className={`${styles.footerSection} ${styles.linksSection} ${isVisible ? styles.animateUp : ''}`}
-                        style={{ animationDelay: '0.3s' }}
-                    >
-                        <h4 className={styles.sectionTitle}>{footerLinks.navigation.title}</h4>
-                        <ul className={styles.linksList}>
-                            {footerLinks.navigation.links.map((link, linkIndex) => (
-                                <li
-                                    key={linkIndex}
-                                    className={`${styles.linkItem} ${isVisible ? styles.animateFadeIn : ''}`}
-                                    style={{ animationDelay: `${0.5 + linkIndex * 0.05}s` }}
-                                >
-                                    <Link to={link.path} className={styles.footerLink}>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
                     {/* Legal Links */}
-                    <div
-                        className={`${styles.footerSection} ${styles.linksSection} ${isVisible ? styles.animateUp : ''}`}
-                        style={{ animationDelay: '0.4s' }}
-                    >
-                        <h4 className={styles.sectionTitle}>{footerLinks.legal.title}</h4>
-                        <ul className={styles.linksList}>
-                            {footerLinks.legal.links.map((link, linkIndex) => (
-                                <li
+                    <div className={`${isVisible ? styles.animateUp : ''}`}>
+                        <h4 style={{
+                            color: 'white',
+                            fontSize: '18px',
+                            marginBottom: '20px',
+                            fontWeight: '600'
+                        }}>
+                            Rechtliches
+                        </h4>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {legalLinks.map((link, linkIndex) => (
+                                <Link
                                     key={linkIndex}
-                                    className={`${styles.linkItem} ${isVisible ? styles.animateFadeIn : ''}`}
-                                    style={{ animationDelay: `${0.6 + linkIndex * 0.05}s` }}
+                                    to={link.path}
+                                    style={{
+                                        color: '#e5e5e5',
+                                        textDecoration: 'none',
+                                        fontSize: '14px',
+                                        transition: 'color 0.3s ease'
+                                    }}
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                    className={`${isVisible ? styles.animateFadeIn : ''}`}
                                 >
-                                    <Link to={link.path} className={styles.footerLink}>
-                                        {link.name}
-                                    </Link>
-                                </li>
+                                    {link.name}
+                                </Link>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 </div>
 
-                {/* Social Media & Bottom Bar */}
-                <div className={`${styles.footerBottom} ${isVisible ? styles.animateUp : ''}`} style={{ animationDelay: '0.8s' }}>
-                    <div className={styles.footerBottomContainer}>
-                        <div className={styles.socialSection}>
-                            <span className={styles.socialTitle}>Folgen Sie uns:</span>
-                            <div className={styles.socialLinks}>
-                                {socialLinks.map((social, index) => (
-                                    <a
-                                        key={index}
-                                        href={social.url}
-                                        className={`${styles.socialLink} ${isVisible ? styles.animateBounce : ''}`}
-                                        style={{ animationDelay: `${1.0 + index * 0.1}s` }}
-                                        aria-label={social.name}
-                                    >
-                                        <social.icon size={20} />
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className={styles.copyright}>
-                            <p>&copy; 2025 PROMAX Project Management GesmbH. Alle Rechte vorbehalten.</p>
-                        </div>
-
-                        <div className={styles.qualityBadges}>
-                        </div>
-                    </div>
+                {/* Copyright */}
+                <div style={{
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
+                    marginTop: '30px',
+                    paddingTop: '20px',
+                    textAlign: 'center'
+                }} className={`${isVisible ? styles.animateUp : ''}`}>
+                    <p style={{
+                        color: '#b0b0b0',
+                        fontSize: '13px',
+                        margin: 0
+                    }}>
+                        &copy; 2025 PROMAX Project Management GesmbH. Alle Rechte vorbehalten.
+                    </p>
                 </div>
 
                 {/* Scroll to Top Button */}
                 {showScrollTop && (
                     <button
-                        className={`${styles.scrollTopBtn} ${styles.animateBounceIn}`}
+                        style={{
+                            position: 'fixed',
+                            bottom: '30px',
+                            right: '30px',
+                            backgroundColor: '#d97539',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '50%',
+                            width: '50px',
+                            height: '50px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                            zIndex: 1000
+                        }}
                         onClick={scrollToTop}
+                        onMouseEnter={handleButtonMouseEnter}
+                        onMouseLeave={handleButtonMouseLeave}
+                        className={`${styles.animateBounceIn}`}
                         aria-label="Nach oben scrollen"
                     >
                         <ArrowUp size={20} />
