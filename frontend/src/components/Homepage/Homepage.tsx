@@ -183,9 +183,6 @@ const Homepage = () => {
                     <h2 className="text-4xl font-bold text-white mb-6">
                         Ihr Partner für anspruchsvollen Industrieanlagenbau
                     </h2>
-                    <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-                        Mit jahrzehntelanger Branchenkenntnis und Leidenschaft für Ihre Projekte
-                    </p>
                     <button className="bg-promax-orange text-white px-8 py-4 text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-2xl">
                         Projekt anfragen
                     </button>
