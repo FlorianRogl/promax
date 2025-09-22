@@ -361,41 +361,6 @@ const Karriere: React.FC = () => {
                 </div>
             </section>
 
-            {/* Wen wir suchen Section */}
-            <section ref={setSectionRef('seeking')} className="max-w-6xl mx-auto px-6 py-20">
-                <div className={`text-center transition-all duration-1000 transform ${visibleSections.has('seeking') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, marginBottom: '2rem', color: '#1e3767', lineHeight: 1.2 }}>
-                        Wen wir suchen
-                    </h2>
-
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, marginBottom: '2rem', color: '#64748b', fontWeight: 400, maxWidth: '48rem', margin: '0 auto 2rem auto' }}>
-                        Wir sind immer auf der Suche nach engagierten Persönlichkeiten, die Technik lieben, mitdenken und Verantwortung übernehmen möchten – z. B. in folgenden Bereichen:
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div className="bg-white border rounded-lg p-6 text-center flex items-center justify-center" style={{ borderColor: '#d1d8dc', minHeight: '120px' }}>
-                            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', margin: 0 }}>
-                                Planung und Projektierung von Industrieanlagen
-                            </h3>
-                        </div>
-                        <div className="bg-white border rounded-lg p-6 text-center flex items-center justify-center" style={{ borderColor: '#d1d8dc', minHeight: '120px' }}>
-                            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', margin: 0 }}>
-                                Maschinenbau
-                            </h3>
-                        </div>
-                        <div className="bg-white border rounded-lg p-6 text-center flex items-center justify-center" style={{ borderColor: '#d1d8dc', minHeight: '120px' }}>
-                            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', margin: 0 }}>
-                                Projektmanagement
-                            </h3>
-                        </div>
-                    </div>
-
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, color: '#64748b', fontWeight: 400, maxWidth: '36rem', margin: '0 auto' }}>
-                        Ob Berufseinsteiger*in, Junior - oder Senior Engineers – bei uns finden Sie den passenden Einstieg.
-                    </p>
-                </div>
-            </section>
-
             {/* Jobs Section - Angular Design */}
             <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-6 py-20">
                 <div className={`transition-all duration-1000 transform ${visibleSections.has('jobs') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

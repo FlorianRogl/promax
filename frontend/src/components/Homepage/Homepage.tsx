@@ -157,7 +157,7 @@ const Homepage = () => {
                         <h2 className="text-4xl font-bold mb-4 text-promax-blue">Unsere Branchen</h2>
                         <div className="w-24 h-1 mx-auto mb-6 bg-promax-orange"></div>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            Mit <span ref={yearRef} className="font-bold text-promax-blue">{yearsCount}</span> jahrzehntelanger Expertise bedienen wir anspruchsvolle Industrien und setzen hÃ¶chste Standards in Qualität und Sicherheit.
+                            Mit <span ref={yearRef} className="font-bold text-promax-blue">{yearsCount}</span> jahrzehntelanger Expertise bedienen wir anspruchsvolle Industrien und setzen höchste Standards in Qualität und Sicherheit.
                         </p>
                     </div>
 

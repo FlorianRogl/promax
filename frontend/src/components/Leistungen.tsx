@@ -1,520 +1,162 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 
-// TypeScript Interfaces
-interface Service {
-    id: number;
-    number: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    detailedDescription: string;
-    image: string;
-    features: string[];
-    highlights: string[];
-    icon: string;
-    technologies?: string[];
-    standards?: string[];
-}
-
-interface VisibilityState {
-    [key: string]: boolean;
-}
-
-const NewLeistungen: React.FC = () => {
-    const [isVisible, setIsVisible] = useState<VisibilityState>({});
-    const [selectedService, setSelectedService] = useState<Service | null>(null);
-    const location = useLocation();
-
-    useEffect(() => {
-        // Set initial visibility
-        setIsVisible({
-            services: true,
-            'service-1': true,
-            'service-2': true
-        });
-
-        // Auto-scroll functionality
-        if (location.hash) {
-            const targetId = location.hash.substring(1);
-            setTimeout(() => {
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }, 100);
-        }
-    }, [location]);
-
-    const services: Service[] = [
-        {
-            id: 1,
-            number: "01",
-            title: "Technische Planung & Engineering",
-            subtitle: "Von der Projektierung bis zur detaillierten 3D-Anlagenplanung",
-            description: "PROMAX vereint jahrzehntelange Expertise in der technischen Planung von Industrieanlagen der Branchen Papier, Zellstoff, Pharma, Chemie sowie Energie- und Umwelttechnik.",
-            detailedDescription: "PROMAX vereint jahrzehntelange Expertise in der technischen Planung von Industrieanlagen der Branchen Papier, Zellstoff, Pharma, Chemie sowie Energie- und Umwelttechnik. Unsere Planungsphilosophie basiert auf der effizienten Überführung der Verfahrenstechnik in die Anlagenplanung mit angemessener Berücksichtigung besonderer Kundenanforderungen für Betrieb, Wartung und Instandhaltung. Wir entwickeln fundierte Basisplanungen als solide Grundlage für Ihre Investitionsentscheidungen und erstellen realistische Terminpläne sowie belastbare Projektbudgets. Unsere 3D-Planungstechnologie ermöglicht automatische Kollisionsprüfung und gewerkeübergreifende Koordination bereits in der Planungsphase.",
-            image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&h=600&fit=crop&auto=format",
-            features: [
-                "Basic Engineering und konzeptionelle Anlagenentwicklung",
-                "3D-Anlagenplanung mit PDMS, E3D und AutoCAD Plant 3D",
-                "Detaillierte Rohrleitungsplanung mit Isometrien",
-                "Machbarkeitsstudien und Wirtschaftlichkeitsanalysen"
-            ],
-            highlights: [
-                "Jahrzehntelange Expertise in technischer Planung",
-                "Effiziente Überführung der Verfahrenstechnik in die Anlagenplanung",
-                "Fundierte Basisplanungen für Investitionsentscheidungen",
-                "3D-Planungstechnologie mit automatischer Kollisionsprüfung"
-            ],
-            icon: "engineering",
-            technologies: ["PDMS", "E3D", "AutoCAD Plant 3D", "SmartPlant Review", "Navisworks", "CAESAR II", "BENTLEY AutoPLANT"],
-            standards: ["ISO 9001:2015", "VDI-Richtlinien", "DIN-Normen", "ASME Standards", "API Standards", "PED-Richtlinie"]
-        },
-        {
-            id: 2,
-            number: "02",
-            title: "Projektmanagement & Koordination",
-            subtitle: "Professionelle Projektführung für erfolgreiche Anlagenrealisierung",
-            description: "In der Realisierungsphase von Industrieanlagenprojekten kommt es wesentlich darauf an, vordefinierte Zielsetzungen hinsichtlich Qualität, Termine und Kosten zu erfüllen oder im positiven Sinne zu übertreffen.",
-            detailedDescription: "In der Realisierungsphase von Industrieanlagenprojekten kommt es wesentlich darauf an, vordefinierte Zielsetzungen hinsichtlich Qualität, Termine und Kosten zu erfüllen oder im positiven Sinne zu übertreffen. PROMAX begegnet dieser Herausforderung mit einem Team erfahrener Projektmanager, die seit 1999 komplexe Industrieanlagenprojekte in den Branchen Papier, Zellstoff, Pharma, Chemie sowie Energie- und Umwelttechnik erfolgreich abwickeln. Dabei bieten wir sowohl komplettes Projektmanagement als auch modulare Teilleistungen, je nach Projektgröße und Kundenanforderungen. Mit ISO 9001:2015 Zertifizierung sorgen wir für höchste Qualitätsstandards und termingerechte Projektumsetzung.",
-            image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&auto=format",
-            features: [
-                "Komplettes Projektmanagement oder modulare Teilleistungen",
-                "Aufbau- und Ablauforganisation nach PMI-Standards",
-                "Projektteam-Koordination und Stakeholder-Management",
-                "Risikomanagement und Change Management"
-            ],
-            highlights: [
-                "Erfahrene Projektmanager seit 1999",
-                "Komplettes Projektmanagement oder modulare Teilleistungen",
-                "ISO 9001:2015 Zertifizierung für höchste Qualitätsstandards",
-                "PMI-Standards für professionelle Projektführung"
-            ],
-            icon: "project-management",
-            technologies: ["MS Project", "Primavera P6", "SAP PS", "Jira", "Confluence", "MS Teams", "Sharepoint"],
-            standards: ["PMI", "IPMA", "ISO 9001:2015", "ISO 21500", "PRINCE2", "Agile PM", "Scrum"]
-        },
-        {
-            id: 3,
-            number: "03",
-            title: "VR-Technologie & Virtual Reality",
-            subtitle: "Immersive Planungserlebnisse mit modernsten VR-Brillen",
-            description: "Revolutionäre VR-Brillen-Technologie für immersive 3D-Anlagenbegehungen, virtuelle Schulungen und interaktive Planungsvisualisierung in der Industrie 4.0.",
-            detailedDescription: "PROMAX nutzt hochmoderne VR-Brillen wie Oculus Quest, HTC Vive Pro und Microsoft HoloLens, um Industrieanlagen bereits in der Planungsphase vollständig erlebbar zu machen. Unsere VR-Brillen ermöglichen es Ingenieuren, Planern und Betreibern, virtuell durch zukünftige Produktionsstätten zu wandeln, als wären sie bereits gebaut. Mit hand-trackenden Controllern können Nutzer Ventile betätigen, Wartungsarbeiten simulieren und Optimierungen direkt in der virtuellen Umgebung durchführen. Die VR-Brillen bieten eine 360-Grad-Rundumsicht mit realistischen Maßstäben und physikalischen Eigenschaften. Durch die immersive VR-Erfahrung werden Planungsfehler frühzeitig erkannt, Entscheidungswege verkürzt und kostspielige Änderungen in der Bauphase vermieden. Unsere VR-Umgebungen sind nahtlos in die CAD-Planungsprozesse integriert.",
-            image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=800&h=600&fit=crop&auto=format",
-            features: [
-                "Immersive VR-Begehungen mit High-End VR-Brillen (Oculus, HTC Vive)",
-                "Hand-Tracking und Controller-basierte Interaktion in virtuellen Anlagen",
-                "Realistische 1:1 Maßstäbe mit physikalischen Materialeigenschaften",
-                "Virtuelle Wartungsschulungen und Sicherheitstrainings in VR",
-                "Kollaborative Multi-User VR-Sessions für Projektteams",
-                "Echtzeit-Anpassungen und Optimierungen in der VR-Umgebung"
-            ],
-            highlights: [
-                "Modernste VR-Brillen-Technologie für industrielle Anwendungen",
-                "Frühzeitige Fehlererkennung durch immersive VR-Visualisierung",
-                "Kostenreduktion durch virtuelle Planungsvalidierung",
-                "Revolutionäre Planungsmethodik mit VR-Integration"
-            ],
-            icon: "vr-headset",
-            technologies: ["Oculus Quest Pro", "HTC Vive Pro 2", "Microsoft HoloLens", "Unity 3D Engine", "Unreal Engine 5", "VR-Tracking-Systeme", "Haptic Feedback Controller", "Mixed Reality Plattformen"],
-            standards: ["VR-Sicherheitsstandards", "Ergonomie-Richtlinien VR", "Industrial VR Standards", "OpenXR Initiative", "WebVR Standards", "ISO 9241-210 VR", "IEEE VR Guidelines"]
-        },
-        {
-            id: 4,
-            number: "04",
-            title: "3D-Laserscanning Technologie",
-            subtitle: "Präzise Vermessung mit hochmodernen Laserscannern",
-            description: "State-of-the-Art 3D-Laserscanning mit Millimeter-Genauigkeit für exakte Bestandsaufnahmen, digitale Zwillinge und präzise Reverse-Engineering-Projekte.",
-            detailedDescription: "PROMAX setzt die neuesten 3D-Laserscanner von Leica, FARO und Trimble ein, um komplexe Industrieanlagen mit Sub-Millimeter-Genauigkeit zu erfassen. Unsere High-End-Laserscanner erstellen präzise Punktwolken mit Millionen von Messpunkten, die als Grundlage für digitale Zwillinge und CAD-Modelle dienen. Terrestrische Laserscanner erfassen stationär große Anlagenbereiche, während mobile Scanner wie der NavVis VLX kontinuierliche Erfassung ermöglichen. Drohnen-basierte Laserscanner erreichen schwer zugängliche Bereiche wie Dächer und hohe Strukturen. Die gescannten Punktwolken werden mit spezieller Software zu detaillierten 3D-Modellen verarbeitet, die millimetergenau bestehende Anlagen abbilden. Diese digitalen Zwillinge ermöglichen präzise Planungen für Umbauten, Erweiterungen und Modernisierungen ohne Kollisionsrisiken.",
-            image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&h=600&fit=crop&auto=format",
-            features: [
-                "Hochpräzise terrestrische 3D-Laserscanner (Leica, FARO, Trimble)",
-                "Mobile Laserscanning-Systeme für kontinuierliche Erfassung",
-                "Drohnen-basierte Laserscanner für schwer erreichbare Bereiche",
-                "Sub-Millimeter-Genauigkeit mit Millionen von Messpunkten",
-                "Automatische Punktwolken-zu-CAD Konvertierung",
-                "Digitale Zwillinge für präzise Planungsgrundlagen"
-            ],
-            highlights: [
-                "Millimetergenaue Vermessung mit modernsten Laserscannern",
-                "Zeiteffiziente Erfassung kompletter Industrieanlagen",
-                "Digitale Zwillinge für kollisionsfreie Planung",
-                "Nahtlose Integration in CAD-Planungsprozesse"
-            ],
-            icon: "laser-scanner",
-            technologies: ["Leica ScanStation P50", "FARO Focus Premium", "Trimble TX8", "NavVis VLX Mobile Scanner", "PointSense Plant Software", "CloudCompare", "Autodesk ReCap Pro", "Cyclone 3DR"],
-            standards: ["ISO 17123 Vermessung", "VDI 2634 Laserscanning", "ASTM E2938 Standards", "Kalibrierrichtlinien", "Punktwolken-Genauigkeitsstandards", "CAD-Konvertierungsstandards", "Vermessungstechnik-Normen"]
-        }
-    ];
-
+const Leistungen: React.FC = () => {
     return (
-        <>
-            <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
-                {/* Pop-up Modal */}
-                {selectedService && (
-                    <div className="fixed inset-0 z-[1100] flex items-start justify-center pt-4 sm:pt-8 lg:pt-[110px] p-3 sm:p-4 md:p-6 lg:p-8">
-                        {/* Backdrop */}
-                        <div
-                            className="absolute inset-0 bg-[#1e3767] bg-opacity-75 backdrop-blur-sm transition-opacity duration-300"
-                            onClick={() => setSelectedService(null)}
-                        ></div>
+        <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
 
-                        {/* Modal Content */}
-                        <div className="relative bg-white rounded-xl sm:rounded-2xl max-w-xs sm:max-w-lg md:max-w-3xl lg:max-w-5xl w-full max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] lg:max-h-[calc(100vh-130px)] overflow-y-auto shadow-xl transform transition-all duration-500 animate-in fade-in zoom-in-95">
-                            {/* Close Button */}
-                            <button
-                                onClick={() => setSelectedService(null)}
-                                className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-white hover:bg-[#d1d8dc] rounded-full flex items-center justify-center transition-colors shadow-md border border-[#9ba8b3]"
-                            >
-                                <span className="text-[#1e3767] text-lg sm:text-xl">×</span>
-                            </button>
+            {/* Hero Section with Parallax */}
+            <section
+                id="hero-section"
+                className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.8), rgba(30, 55, 103, 0.8)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+                    backgroundAttachment: 'fixed'
+                }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
 
-                            {/* Modal Header */}
-                            <div className="relative h-40 sm:h-48 md:h-64 lg:h-80 overflow-hidden rounded-t-xl sm:rounded-t-2xl">
-                                <img
-                                    src={selectedService.image}
-                                    alt={`${selectedService.title} - PROMAX Industrial Engineering`}
-                                    className="w-full h-full object-cover"
-                                    loading="lazy"
-                                    width="800"
-                                    height="320"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#1e3767]/90 via-[#1e3767]/40 to-transparent"></div>
-                                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 text-white pr-8 sm:pr-12">
-                                    <h3 className="font-weight: 300; font-size: clamp(1.125rem, 3vw, 2.5rem); margin-bottom: 0.25rem; line-height: 1.2; letter-spacing: -0.02em;">
-                                        {selectedService.title}
-                                    </h3>
-                                    <p className="font-weight: 400; font-size: clamp(0.875rem, 2vw, 1.25rem); color: #d1d8dc; line-height: 1.6;">
-                                        {selectedService.subtitle}
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Modal Body */}
-                            <div className="p-4 sm:p-6 md:p-8 lg:p-10">
-                                {/* Beschreibung */}
-                                <div className="mb-6 sm:mb-8">
-                                    <h4 style={{ fontWeight: 300, fontSize: 'clamp(1.125rem, 3vw, 1.5rem)', color: '#1e3767', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '2px solid #9ba8b3' }}>
-                                        Über diese Leistung
-                                    </h4>
-                                    <p style={{ color: '#1e3767', lineHeight: 1.7, fontWeight: 400, fontSize: 'clamp(0.875rem, 2vw, 1.1rem)' }}>
-                                        {selectedService.detailedDescription}
-                                    </p>
-                                </div>
-
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
-                                    {/* Kernleistungen */}
-                                    <div className="bg-[#d1d8dc] rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8">
-                                        <h4 style={{ fontWeight: 400, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#1e3767', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '2px solid #9ba8b3' }}>
-                                            Kernleistungen
-                                        </h4>
-                                        <ul className="space-y-2 sm:space-y-3">
-                                            {selectedService.features.map((feature, index) => (
-                                                <li key={index} className="flex items-start">
-                                                    <span className="w-2 h-2 bg-[#1e3767] rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-2"></span>
-                                                    <span style={{ color: '#1e3767', fontSize: 'clamp(0.75rem, 2vw, 1rem)', lineHeight: 1.6, fontWeight: 400 }}>{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Vorteile */}
-                                    <div className="bg-[#d97539]/10 rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8">
-                                        <h4 style={{ fontWeight: 400, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#1e3767', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '2px solid #d97539' }}>
-                                            Ihre Vorteile
-                                        </h4>
-                                        <ul className="space-y-2 sm:space-y-3">
-                                            {selectedService.highlights.map((highlight, index) => (
-                                                <li key={index} className="flex items-start">
-                                                    <span className="w-2 h-2 bg-[#d97539] rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-2"></span>
-                                                    <span style={{ color: '#1e3767', fontSize: 'clamp(0.75rem, 2vw, 1rem)', lineHeight: 1.6, fontWeight: 400 }}>{highlight}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                {/* Technologien & Standards */}
-                                {(selectedService.technologies || selectedService.standards) && (
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-                                        {/* Technologien */}
-                                        {selectedService.technologies && (
-                                            <div className="bg-white border border-[#9ba8b3] rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8">
-                                                <h4 style={{ fontWeight: 400, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#1e3767', marginBottom: '1rem' }}>
-                                                    Technologien & Tools
-                                                </h4>
-                                                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                                                    {selectedService.technologies.map((tech, index) => (
-                                                        <span key={index} style={{ padding: '0.25rem 0.75rem', backgroundColor: '#d1d8dc', color: '#1e3767', borderRadius: '0.5rem', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', fontWeight: 400 }}>
-                                                            {tech}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        {/* Standards */}
-                                        {selectedService.standards && (
-                                            <div className="bg-white border border-[#d97539] rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8">
-                                                <h4 style={{ fontWeight: 400, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#1e3767', marginBottom: '1rem' }}>
-                                                    Standards & Normen
-                                                </h4>
-                                                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                                                    {selectedService.standards.map((standard, index) => (
-                                                        <span key={index} style={{ padding: '0.25rem 0.75rem', backgroundColor: 'rgba(217, 117, 57, 0.1)', color: '#d97539', borderRadius: '0.5rem', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', fontWeight: 400 }}>
-                                                            {standard}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {/* Header Section */}
-                <div className="bg-[#1e3767] text-white py-8 sm:py-12 md:py-16" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                        <h1 style={{ fontSize: 'clamp(2rem, 5vw, 4.5rem)', fontWeight: 300, color: 'white', marginBottom: 'clamp(0.75rem, 2vw, 1.5rem)', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                            Engineering Excellence.
-                            <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">Leistungen.</span>
+                <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                    <div className="animate-fade-in-up">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-6">
+                            Leistungen
                         </h1>
-                        <div className="w-16 sm:w-20 h-1 bg-[#d97539] mb-4 sm:mb-6 md:mb-8"></div>
-                        <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#9ba8b3', maxWidth: '48rem', lineHeight: 1.7, fontWeight: 300 }}>
-                            Von der ersten Projektidee bis zur erfolgreichen Inbetriebnahme - umfassende Lösungen für komplexe Industrieanlagenprojekte.
+                        <div className="w-20 h-1 bg-[#d97539] mx-auto mb-6"></div>
+                        <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#d97539] leading-relaxed">
+                            Umfassende Lösungen für komplexe Industrieanlagenprojekte
                         </p>
                     </div>
                 </div>
 
-                {/* Hero Section */}
-                <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden">
-                    {/* Background Image */}
-                    <img
-                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=600&fit=crop&crop=center&auto=format"
-                        alt="Professional Engineering Team Collaboration"
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                    />
+                {/* Scroll indicator */}
+                <div className="hidden sm:block absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                </div>
+            </section>
 
-                    {/* Dark Overlay */}
-                    <div className="absolute inset-0 bg-black/40"></div>
+            {/* Main Services Section */}
+            <section className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
 
-                    {/* Content */}
-                    <div className="relative z-10 h-full flex items-center">
-                        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-white">
-                            <div className="max-w-2xl">
-                                <h2 style={{ fontSize: 'clamp(1.25rem, 4vw, 2.5rem)', fontWeight: 300, marginBottom: 'clamp(0.75rem, 2vw, 1rem)', lineHeight: 1.3 }}>
-                                    Expertise und Innovation für Ihre
-                                </h2>
-                                <h3 style={{ fontSize: 'clamp(1.5rem, 5vw, 3rem)', fontWeight: 600, color: '#d97539', marginBottom: 'clamp(1rem, 3vw, 1.5rem)', lineHeight: 1.2 }}>
-                                    Industrieanlagen-Märkte
-                                </h3>
-                                <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', lineHeight: 1.7, opacity: 0.9, fontWeight: 300 }}>
-                                    Spezialisierte Planungsleistungen und Projektmanagement mit über 20 Jahren Erfahrung
-                                </p>
+                    {/* Ingenieurplanung */}
+                    <div className="mb-24">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            {/* Content */}
+                            <div>
+                                <div className="flex items-center mb-8">
+                                    <div className="w-16 h-16 bg-[#1e3767] rounded-xl flex items-center justify-center mr-6">
+                                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h2 className="text-4xl font-light text-[#1e3767] mb-2">Ingenieurplanung</h2>
+                                        <div className="w-16 h-1 bg-[#d97539]"></div>
+                                    </div>
+                                </div>
+
+                                {/* Anlagenkonzeption und Design */}
+                                <div className="mb-8">
+                                    <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Anlagenkonzeption und Design</h3>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                        Investitionsentscheidungen bedürfen umsetzbarer Basisplanungen, realistischer Terminpläne und belastbarer Projektbudgets. Nicht zuletzt deshalb ist die, dem Realisierungsprojekt vorgelagerte Projektierung ein wichtiger Faktor für die richtigen Weichenstellungen am Weg zum Projekterfolg.
+                                    </p>
+                                </div>
+
+                                {/* 3D-Modellierung und Berechnung */}
+                                <div className="mb-8">
+                                    <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">3D-Modellierung und Berechnung</h3>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                        Schwerpunkte unserer Planungsaktivitäten bilden das Basic Engineering der klassischen Anlagenplanung (Layout, Schemata, Leitpläne für Bau, Stahlbau und Rohrleitungstechnik) sowie das komplette Detail-Engineering für die Rohrleitungstechnik und die Berechnungen.
+                                    </p>
+                                </div>
+
+                                {/* LaserScan-Technologie */}
+                                <div>
+                                    <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">LaserScan-Technologie</h3>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                        Wir bedienen uns aktueller Planungstools im 3D-Bereich und der Laservermessungstechnik.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Image */}
+                            <div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&h=600&fit=crop&auto=format"
+                                    alt="Ingenieurplanung - 3D Modellierung und technische Planung"
+                                    className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Separator */}
+                    <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-24"></div>
+
+                    {/* Operative Projektunterstützung */}
+                    <div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            {/* Image */}
+                            <div className="lg:order-1">
+                                <img
+                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&auto=format"
+                                    alt="Operative Projektunterstützung - Projektmanagement und Koordination"
+                                    className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                                    loading="lazy"
+                                />
+                            </div>
+
+                            {/* Content */}
+                            <div className="lg:order-2">
+                                <div className="flex items-center mb-8">
+                                    <div className="w-16 h-16 bg-[#d97539] rounded-xl flex items-center justify-center mr-6">
+                                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h2 className="text-4xl font-light text-[#1e3767] mb-2">Operative Projektunterstützung</h2>
+                                        <div className="w-16 h-1 bg-[#d97539]"></div>
+                                    </div>
+                                </div>
+
+                                {/* Projektabwicklung */}
+                                <div className="mb-8">
+                                    <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Projektabwicklung</h3>
+                                    <p className="text-gray-600 text-lg leading-relaxed mb-4">
+                                        In der Realisierungsphase von Projekten kommt es wesentlich darauf an, vordefinierte Zielsetzungen hinsichtlich Qualität-Termine-Kosten - etwa aus Verträgen - zu erfüllen oder im positiven Sinne zu übertreffen.
+                                    </p>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                        Wir begegnen dieser Herausforderung mit professionellen Projektingenieuren, die operativ in den Bereichen Projektmanagement und technischer Projektabwicklung unterstützen.
+                                    </p>
+                                </div>
+
+                                {/* Ausschreibung und Beschaffung */}
+                                <div className="mb-8">
+                                    <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Ausschreibung und Beschaffung</h3>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                        Wir übernehmen die professionelle Planung und Durchführung von Ausschreibungen von Materialien, Dienstleistungen und Anlagen. Dazu gehören die Definition von Anforderungen, die Betreuung von Lieferanten, die Prüfung und Bewertung von Angeboten sowie die Verhandlung von Konditionen.
+                                    </p>
+                                </div>
+
+                                {/* Fachbauüberwachung */}
+                                <div>
+                                    <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Fachbauüberwachung</h3>
+                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                        Vor dem Hintergrund der ganzheitlichen Projektbetrachtung und einer der Planung entsprechenden Umsetzung vor Ort bieten wir insbesondere für Equipments und Rohrleitungstechnik, Leistungen der Ausführungsüberwachung. Alle der in diesem Bereich eingesetzten Mitarbeiter verfügen über umfangreiche Projekt- und Baustellenerfahrung und führen ein SCC-Zertifikat.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* Services Section */}
-                <section className="py-8 sm:py-12 md:py-16 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                        {/* Intro Section */}
-                        <div className={`mb-8 sm:mb-12 transition-all duration-1000 ${
-                            isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}
-                             data-section="services">
-                            <div className="max-w-4xl mx-auto text-center">
-                                <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)', fontWeight: 300, color: '#1e3763', marginBottom: 'clamp(0.75rem, 2vw, 1.5rem)', lineHeight: 1.3 }}>
-                                    Wir sind Ihr Partner für{' '}
-                                    <span style={{ color: '#1e3767', fontWeight: 600 }}>technische Exzellenz</span>
-                                </h2>
-                                <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#9ba8b3', lineHeight: 1.7, fontWeight: 400, padding: '0 1rem' }}>
-                                    Mit über 20 Jahren Erfahrung in der Industrieplanung entwickeln wir
-                                    maßgeschneiderte Lösungen für komplexe technische Herausforderungen.
-                                    Von der ersten Idee bis zur erfolgreichen Umsetzung – wir begleiten
-                                    Sie durch alle Projektphasen mit bewährten Methoden und innovativen Ansätzen.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Detailed Services Section */}
-                <section className="py-8 sm:py-12 md:py-16 bg-[#d1d8dc]/30">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-                            <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)', fontWeight: 300, color: '#1e3767', marginBottom: 'clamp(0.75rem, 2vw, 1rem)', lineHeight: 1.3 }}>
-                                Unsere{' '}
-                                <span style={{ color: '#1e3767', fontWeight: 600 }}>Technologie-Details</span>
-                            </h2>
-                            <div className="w-16 sm:w-20 h-1 bg-[#d97539] mx-auto"></div>
-                        </div>
-
-                        <div className="space-y-8 sm:space-y-12 md:space-y-16">
-                            {services.slice(0, 2).map((service, index) => (
-                                <div
-                                    key={service.id}
-                                    id={`service-${service.id}`}
-                                    className={`${index < 1 ? 'border-b border-[#9ba8b3] pb-8 sm:pb-12' : ''} scroll-mt-20`}
-                                    data-section={`service-${service.id}`}
-                                >
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-                                        {/* Content Side */}
-                                        <div className={`${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'} transition-all duration-1000 ${
-                                            isVisible[`service-${service.id}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                                        }`}>
-                                            <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6 mb-4 sm:mb-6">
-                                                <span style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 300, color: '#d1d8dc' }} className="flex-shrink-0">
-                                                    {service.number}
-                                                </span>
-                                                <div className="min-w-0">
-                                                    <div className="w-12 sm:w-16 h-1 bg-[#d97539] mb-2 sm:mb-3"></div>
-                                                    <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#64748b', marginBottom: 'clamp(0.75rem, 2vw, 1rem)', fontWeight: 400, lineHeight: 1.6 }}>
-                                                        {service.subtitle}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <p style={{ color: '#64748b', lineHeight: 1.7, marginBottom: 'clamp(1rem, 3vw, 1.5rem)', fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', fontWeight: 400 }}>
-                                                {service.detailedDescription}
-                                            </p>
-
-                                            <div className="grid grid-cols-1 gap-4 sm:gap-6">
-                                                {/* Kernleistungen */}
-                                                <div>
-                                                    <h4 style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)', fontWeight: 600, color: '#1e3767', marginBottom: 'clamp(0.5rem, 1.5vw, 0.75rem)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                                        Kernleistungen
-                                                    </h4>
-                                                    <ul className="space-y-1.5 sm:space-y-2">
-                                                        {service.features.slice(0, 4).map((feature, featureIndex) => (
-                                                            <li key={featureIndex} className="flex items-start" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)', color: '#64748b' }}>
-                                                                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#d97539] rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-2"></span>
-                                                                <span style={{ lineHeight: 1.6, fontWeight: 400 }}>{feature}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Image Side */}
-                                        <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} transition-all duration-1000 delay-300 ${
-                                            isVisible[`service-${service.id}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                                        }`}>
-                                            <div className="relative">
-                                                <img
-                                                    src={service.image}
-                                                    alt={`${service.title} - PROMAX Industrial Engineering`}
-                                                    className="w-full h-48 sm:h-64 md:h-80 lg:h-[400px] xl:h-[450px] object-cover rounded-lg shadow-lg"
-                                                    loading="lazy"
-                                                    width="800"
-                                                    height="450"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Bottom Cards Section */}
-                <section className="py-8 sm:py-12 md:py-16 lg:py-24 bg-gray-50">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                            {/* VR Technology Card */}
-                            <div
-                                className="relative h-64 sm:h-80 md:h-96 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer group shadow-xl transition-all duration-500 hover:scale-[1.02] sm:hover:scale-[1.03] hover:shadow-2xl"
-                                onClick={() => setSelectedService(services[2])}
-                            >
-                                {/* Background Image */}
-                                <img
-                                    src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=1000&h=600&fit=crop&auto=format"
-                                    alt="VR Technology Background"
-                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#d97539]/75 via-[#d97539]/65 to-[#d97539]/80 group-hover:from-[#d97539]/85 group-hover:to-[#d97539]/70 transition-all duration-500"></div>
-
-                                {/* Content */}
-                                <div className="absolute inset-0 flex flex-col justify-center items-start p-6 sm:p-8 md:p-12 text-white">
-                                    {/* VR Headset Icon */}
-                                    <div className="mb-4 sm:mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-500">
-                                        <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M20.26 7.8a4.82 4.82 0 0 0-3.93-2.44 3.91 3.91 0 0 0-2.54 1.09 10.58 10.58 0 0 0-1.52 1.71 3 3 0 0 1-2.54 0 10.58 10.58 0 0 0-1.52-1.71 3.91 3.91 0 0 0-2.54-1.09A4.82 4.82 0 0 0 1.74 7.8a4.82 4.82 0 0 0 0 8.4 4.82 4.82 0 0 0 3.93 2.44 3.91 3.91 0 0 0 2.54-1.09c.53-.53 1.04-1.11 1.52-1.71a3 3 0 0 1 2.54 0c.48.6 1 1.18 1.52 1.71a3.91 3.91 0 0 0 2.54 1.09 4.82 4.82 0 0 0 3.93-2.44 4.82 4.82 0 0 0 0-8.4zM7.5 14.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm9 0a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-                                        </svg>
-                                    </div>
-
-                                    <h3 style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)', fontWeight: 600, marginBottom: 'clamp(0.5rem, 2vw, 1rem)', lineHeight: 1.2, textShadow: '0 4px 8px rgba(0,0,0,0.3)' }} className="transform group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-500">
-                                        VR-Technologie &<br />
-                                        Immersive Planung
-                                    </h3>
-
-                                </div>
-
-                                {/* Subtle Border Effect */}
-                                <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/30 rounded-xl sm:rounded-2xl transition-all duration-500"></div>
-                            </div>
-
-                            {/* 3D Laser Scanner Card */}
-                            <div
-                                className="relative h-64 sm:h-80 md:h-96 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer group shadow-xl transition-all duration-500 hover:scale-[1.02] sm:hover:scale-[1.03] hover:shadow-2xl"
-                                onClick={() => setSelectedService(services[3])}
-                            >
-                                {/* Background Image */}
-                                <img
-                                    src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1000&h=600&fit=crop&auto=format"
-                                    alt="3D Laser Scanning Background"
-                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#1e3767]/75 via-[#1e3767]/65 to-[#1e3767]/80 group-hover:from-[#1e3767]/85 group-hover:to-[#1e3767]/70 transition-all duration-500"></div>
-
-                                {/* Content */}
-                                <div className="absolute inset-0 flex flex-col justify-center items-start p-6 sm:p-8 md:p-12 text-white">
-                                    {/* Laser Scanner Icon */}
-                                    <div className="mb-4 sm:mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-500">
-                                        <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                                            {/* Main scanner body */}
-                                            <rect x="10" y="8" width="4" height="8" rx="1" fill="currentColor"/>
-                                            {/* Tripod legs */}
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 16l-6 6M12 16l6 6M12 16l0 6"/>
-                                            {/* Laser beams */}
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 10l-8-2M12 10l8-2M12 10l-6-6M12 10l6-6M12 10l0-8"/>
-                                            {/* Rotating scanner head */}
-                                            <circle cx="12" cy="10" r="2" fill="none" stroke="currentColor" strokeWidth="2"/>
-                                            {/* Central dot */}
-                                            <circle cx="12" cy="10" r="0.5" fill="currentColor"/>
-                                        </svg>
-                                    </div>
-
-                                    <h3 style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)', fontWeight: 600, marginBottom: 'clamp(0.5rem, 2vw, 1rem)', lineHeight: 1.2, textShadow: '0 4px 8px rgba(0,0,0,0.3)' }} className="transform group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-500">
-                                        3D-Laserscanning &<br />
-                                        Präzisionsvermessung
-                                    </h3>
-                                </div>
-
-                                {/* Subtle Border Effect */}
-                                <div className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-300/30 rounded-xl sm:rounded-2xl transition-all duration-500"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </>
+            </section>
+        </div>
     );
 };
 
-export default NewLeistungen;
+export default Leistungen;
