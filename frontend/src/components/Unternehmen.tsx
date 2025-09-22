@@ -1,8 +1,8 @@
 import {useState, useEffect, JSX} from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../index.css'
-import rogl from '../assets/rogl.png';
-import fasching from '../assets/fasching.png';
+import rogl from '../assets/RoglAndreas.jpg';
+import christian from '../assets/Christian.jpg';
 import iso from '../assets/iso.png';
 import iq from '../assets/iqZert.png';
 import {Helmet} from "@vuer-ai/react-helmet-async";
@@ -295,7 +295,7 @@ const Unternehmen = () => {
                                 <div className="text-center">
                                     <div className="w-32 h-40 sm:w-48 sm:h-60 mx-auto mb-4 sm:mb-6 rounded-lg overflow-hidden bg-gray-100">
                                         <img
-                                            src={fasching}
+                                            src={christian}
                                             alt="DI Christian Walter"
                                             className="w-full h-full object-cover object-top"
                                         />
