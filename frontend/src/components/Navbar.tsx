@@ -11,8 +11,8 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Unternehmen', path: '/Unternehmen' },
-        { name: 'Branchen', path: '/Branchen' },
         { name: 'Leistungen', path: '/Leistungen' },
+        { name: 'Technologien', path: '/Technologien' },
         { name: 'Karriere', path: '/Karriere' },
         { name: 'Kontakt', path: '/Kontakt' }
     ];
