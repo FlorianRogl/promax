@@ -3,7 +3,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder'
 
 export const client: SanityClient = createClient({
-    projectId: 'dwm6bfip', // findest du in sanity-studio/sanity.config.ts
+    projectId: '8er2mgl5', // ← NEUE Project ID!
     dataset: 'production',
     apiVersion: '2024-01-01',
     useCdn: true,
