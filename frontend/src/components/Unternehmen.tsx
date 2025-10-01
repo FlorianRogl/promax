@@ -129,7 +129,7 @@ const Unternehmen = () => {
                     id="hero-section"
                     className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`,
+                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('/unternehmenPic.jpg')`,
                         backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
                     }}
                 >
