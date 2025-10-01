@@ -1,42 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Beaker, Zap, Pill, FileText, Utensils, Factory, Atom, Grid3x3 } from 'lucide-react';
 import VideoSection2 from "./VideoSection2.tsx";
 
 const Homepage = () => {
-    const [yearsCount, setYearsCount] = useState(0);
     const yearRef = useRef(null);
-    const [hasAnimated, setHasAnimated] = useState(false);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !hasAnimated) {
-                        setHasAnimated(true);
-                        let count = 0;
-                        const target = 25;
-                        const increment = target / 50;
-                        const timer = setInterval(() => {
-                            count += increment;
-                            if (count >= target) {
-                                setYearsCount(target);
-                                clearInterval(timer);
-                            } else {
-                                setYearsCount(Math.floor(count));
-                            }
-                        }, 30);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        if (yearRef.current) {
-            observer.observe(yearRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, [hasAnimated]);
 
     const industries = [
         { name: 'Chemie', icon: Beaker },
@@ -157,7 +125,7 @@ const Homepage = () => {
                         <h2 className="text-4xl font-bold mb-4 text-promax-blue">Unsere Branchen</h2>
                         <div className="w-24 h-1 mx-auto mb-6 bg-promax-orange"></div>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            Mit <span ref={yearRef} className="font-bold text-promax-blue">{yearsCount}</span> jahrzehntelanger Expertise bedienen wir anspruchsvolle Industrien und setzen höchste Standards in Qualität und Sicherheit.
+                            Mit <span ref={yearRef} className="font-bold text-promax-blue"></span> jahrzehntelanger Expertise bedienen wir anspruchsvolle Industrien und setzen höchste Standards in Qualität und Sicherheit.
                         </p>
                     </div>
 

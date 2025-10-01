@@ -9,7 +9,7 @@ const Leistungen: React.FC = () => {
                 id="hero-section"
                 className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.8), rgba(30, 55, 103, 0.8)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.8), rgba(30, 55, 103, 0.8)), url('/LeistungenPic.jpg')`,
                     backgroundAttachment: 'fixed'
                 }}
             >
