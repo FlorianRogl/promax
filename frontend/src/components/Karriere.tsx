@@ -19,6 +19,7 @@ const Karriere: React.FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [selectedJob, setSelectedJob] = useState<FormattedJob | null>(null);
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+    const [isMetaExpanded, setIsMetaExpanded] = useState<boolean>(false);
 
     // Sanity Integration States
     const [jobOpenings, setJobOpenings] = useState<FormattedJob[]>([]);
@@ -46,7 +47,6 @@ const Karriere: React.FC = () => {
             } catch (err) {
                 console.error('Fehler beim Laden der Jobs:', err);
                 setError('Jobs konnten nicht geladen werden. Bitte versuchen Sie es später erneut.');
-                // Set empty array so the rest of the page still shows
                 setJobOpenings([]);
             } finally {
                 setLoading(false);
@@ -193,11 +193,13 @@ const Karriere: React.FC = () => {
 
     const handleJobClick = (job: FormattedJob): void => {
         setSelectedJob(job);
+        setIsMetaExpanded(false);
         document.body.style.overflow = 'hidden';
     };
 
     const closeModal = (): void => {
         setSelectedJob(null);
+        setIsMetaExpanded(false);
         document.body.style.overflow = 'unset';
     };
 
@@ -277,7 +279,7 @@ const Karriere: React.FC = () => {
                         {featuredJobs.map((job, index) => (
                             <div
                                 key={job.id}
-                                className="group relative bg-white p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+                                className="group relative bg-white p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
                                 style={{
                                     boxShadow: '0 8px 32px rgba(30, 55, 103, 0.12)',
                                     transitionDelay: `${index * 100}ms`
@@ -291,7 +293,7 @@ const Karriere: React.FC = () => {
                                 />
 
                                 {/* Content */}
-                                <div className="relative z-10">
+                                <div className="relative z-10 flex flex-col flex-1">
                                     {/* Header */}
                                     <div className="flex items-start justify-between mb-6">
                                         <div
@@ -311,13 +313,13 @@ const Karriere: React.FC = () => {
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="leading-relaxed mb-6 opacity-80 line-clamp-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                    <p className="leading-relaxed mb-6 opacity-80 line-clamp-3 flex-1" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                         {job.description}
                                     </p>
 
-                                    {/* Metadata */}
-                                    <div className="space-y-3">
-                                        <div className="flex items-center gap-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.75rem)', color: '#1e3767' }}>
+                                    {/* Metadata - Fixed at bottom */}
+                                    <div className="space-y-3 mt-auto">
+                                        <div className="flex items-center gap-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                             <div className="flex items-center gap-2 px-3 py-2 bg-gray-100">
                                                 <MapPin size={12} />
                                                 <span className="font-medium">{job.location}</span>
@@ -328,7 +330,7 @@ const Karriere: React.FC = () => {
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center justify-between" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.75rem)', color: '#1e3767' }}>
+                                        <div className="flex items-center justify-between" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                             <div className="flex items-center gap-2 opacity-70">
                                                 <Users size={12} />
                                                 <span>Team: {job.teamSize}</span>
@@ -393,7 +395,7 @@ const Karriere: React.FC = () => {
                                     {carouselJobs.map((job) => (
                                         <div
                                             key={job.id}
-                                            className="group relative bg-white p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+                                            className="group relative bg-white p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
                                             style={{
                                                 width: '340px',
                                                 flexShrink: 0,
@@ -408,7 +410,7 @@ const Karriere: React.FC = () => {
                                             />
 
                                             {/* Content */}
-                                            <div className="relative z-10">
+                                            <div className="relative z-10 flex flex-col flex-1">
                                                 {/* Header */}
                                                 <div className="flex items-start justify-between mb-6">
                                                     <div
@@ -428,13 +430,13 @@ const Karriere: React.FC = () => {
                                                 </h3>
 
                                                 {/* Description */}
-                                                <p className="leading-relaxed mb-6 opacity-80 line-clamp-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                                <p className="leading-relaxed mb-6 opacity-80 line-clamp-3 flex-1" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                                     {job.description}
                                                 </p>
 
-                                                {/* Metadata */}
-                                                <div className="space-y-3">
-                                                    <div className="flex items-center gap-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.75rem)', color: '#1e3767' }}>
+                                                {/* Metadata - Fixed at bottom */}
+                                                <div className="space-y-3 mt-auto">
+                                                    <div className="flex items-center gap-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                                         <div className="flex items-center gap-2 px-3 py-2 bg-gray-100">
                                                             <MapPin size={12} />
                                                             <span className="font-medium">{job.location}</span>
@@ -445,7 +447,7 @@ const Karriere: React.FC = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex items-center justify-between" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.75rem)', color: '#1e3767' }}>
+                                                    <div className="flex items-center justify-between" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                                         <div className="flex items-center gap-2 opacity-70">
                                                             <Users size={12} />
                                                             <span>Team: {job.teamSize}</span>
@@ -556,13 +558,12 @@ const Karriere: React.FC = () => {
                         </div>
 
                         <div className="relative hidden lg:block">
-                            <div className="w-full h-96 lg:h-[500px] shadow-2xl overflow-hidden">
-                                <img
-                                    src={planungImage}
-                                    alt="PROMAX Team bei der Projektplanung"
-                                    className="w-full h-full object-cover"
-                                    loading="lazy"
-                                />
+                            <div className="w-full h-96 lg:h-[500px] shadow-2xl overflow-hidden"><img
+                                src={planungImage}
+                                alt="PROMAX Team bei der Projektplanung"
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                            />
                             </div>
                         </div>
                     </div>
@@ -623,53 +624,62 @@ const Karriere: React.FC = () => {
                             </div>
                         </div>
                         <h4 style={{ fontSize: 'clamp(1.125rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '0.5rem', color: '#1e3767' }}>E-Mail Bewerbung</h4>
-                        <a
-                            href="mailto:jasmin.pieber@promax.at"
-                            className="hover:underline"
-                            style={{ color: '#d97539', fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', fontWeight: 500 }}
-                        >
-                            jasmin.pieber@promax.at
-                        </a>
-                        <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', marginTop: '1rem', color: '#1e3767', fontWeight: 400 }}>
-                            Bitte fügen Sie Lebenslauf, Anschreiben und relevante Zeugnisse bei.
-                        </p>
-                    </div>
+                    <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', marginTop: '1rem', color: '#1e3767', fontWeight: 400 }}>
+                        Bitte fügen Sie Lebenslauf, Anschreiben und relevante Zeugnisse bei.
+                    </p>
                 </div>
-            </section>
+        </div>
+</section>
 
-            {/* Responsive Job Details Modal */}
-            {selectedJob && (
-                <div className="fixed inset-0 z-[9999] bg-black bg-opacity-60 backdrop-blur-sm">
-                    <div className="h-full flex items-start justify-center p-2 sm:p-4 lg:p-8 lg:items-center">
-                        <div className="relative bg-white w-full max-w-7xl max-h-[100vh] lg:max-h-[90vh] shadow-2xl flex flex-col">
-                            {/* Header with Close Button */}
-                            <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 flex-shrink-0">
-                                <div className="flex-1 mr-4">
-                                    <div
-                                        className="inline-block px-3 py-1 text-sm font-semibold text-white mb-2"
-                                        style={{ backgroundColor: getDepartmentColor(selectedJob.department) }}
-                                    >
-                                        {selectedJob.department}
-                                    </div>
-                                    <h1 style={{ fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', fontWeight: 600, color: '#1e3767', lineHeight: 1.2 }}>
-                                        {selectedJob.title}
-                                    </h1>
-                                </div>
-                                <button
-                                    className="w-10 h-10 bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors flex-shrink-0"
-                                    onClick={closeModal}
-                                    style={{ borderRadius: '50%' }}
-                                >
-                                    <X size={20} style={{ color: '#1e3767' }} />
-                                </button>
+    {/* Responsive Job Details Modal */}
+    {selectedJob && (
+        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-60 backdrop-blur-sm">
+            <div className="h-full flex items-start justify-center p-2 sm:p-4 lg:p-8 lg:items-center">
+                <div className="relative bg-white w-full max-w-7xl max-h-[100vh] lg:max-h-[90vh] shadow-2xl flex flex-col">
+                    {/* Header with Close Button */}
+                    <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 flex-shrink-0">
+                        <div className="flex-1 mr-4">
+                            <div
+                                className="inline-block px-3 py-1 text-sm font-semibold text-white mb-2"
+                                style={{ backgroundColor: getDepartmentColor(selectedJob.department) }}
+                            >
+                                {selectedJob.department}
                             </div>
+                            <h1 style={{ fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', fontWeight: 600, color: '#1e3767', lineHeight: 1.2 }}>
+                                {selectedJob.title}
+                            </h1>
+                        </div>
+                        <button
+                            className="w-10 h-10 bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors flex-shrink-0"
+                            onClick={closeModal}
+                            style={{ borderRadius: '50%' }}
+                        >
+                            <X size={20} style={{ color: '#1e3767' }} />
+                        </button>
+                    </div>
 
-                            {/* Content Area - Mobile First Layout */}
-                            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
-                                {/* Mobile: Stacked Top / Desktop: Left Sidebar */}
-                                <div className="w-full lg:w-80 flex-shrink-0 p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50 overflow-y-auto">
+                    {/* Content Area - Mobile First Layout */}
+                    <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
+                        {/* Mobile: Stacked Top / Desktop: Left Sidebar */}
+                        <div className="w-full lg:w-80 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50">
+                            {/* Mobile: Collapsible Header */}
+                            <button
+                                onClick={() => setIsMetaExpanded(!isMetaExpanded)}
+                                className="w-full p-4 sm:p-6 flex items-center justify-between lg:hidden border-b border-gray-200 hover:bg-gray-100 transition-colors"
+                            >
+                                        <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)', fontWeight: 600, color: '#1e3767' }}>
+                                            Job-Details {isMetaExpanded ? 'ausblenden' : 'anzeigen'}
+                                        </span>
+                                <div className={`transform transition-transform duration-300 ${isMetaExpanded ? 'rotate-180' : ''}`}>
+                                    <ChevronRight size={20} style={{ color: '#1e3767', transform: 'rotate(90deg)' }} />
+                                </div>
+                            </button>
+
+                            {/* Collapsible Content */}
+                            <div className={`overflow-hidden transition-all duration-300 ${isMetaExpanded ? 'max-h-[2000px] lg:max-h-none' : 'max-h-0 lg:max-h-none'} lg:overflow-y-auto`}>
+                                <div className="p-4 sm:p-6">
                                     {/* Job Meta Info */}
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-4 mb-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 mb-6">
                                         <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
                                             <div className="font-semibold mb-1">Standort</div>
                                             <div className="opacity-70">{selectedJob.location}</div>
@@ -696,15 +706,6 @@ const Karriere: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    {/* Team Description */}
-                                    <div className="bg-white p-4 border-l-4 mb-6" style={{ borderLeftColor: getDepartmentColor(selectedJob.department) }}>
-                                        <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#64748b', lineHeight: 1.6 }}>
-                                            Als Teil unseres {selectedJob.department}-Teams arbeiten Sie in einem dynamischen Umfeld
-                                            mit modernster Technologie und internationalen Projekten. Wir bieten Ihnen die Möglichkeit,
-                                            Ihre Expertise einzusetzen und gleichzeitig kontinuierlich zu wachsen.
-                                        </p>
-                                    </div>
-
                                     {/* Quick Contact Info */}
                                     <div className="p-4 bg-white border border-gray-200 shadow-sm">
                                         <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: 'clamp(0.875rem, 2vw, 1rem)', color: '#1e3767' }}>Direkter Kontakt</h4>
@@ -717,111 +718,113 @@ const Karriere: React.FC = () => {
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                {/* Scrollable Content Area */}
-                                <div className="flex-1 overflow-y-auto">
-                                    <div className="p-4 sm:p-6 lg:p-8">
-                                        {/* Job Description */}
-                                        <section className="mb-8">
-                                            <h2 style={{ fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', fontWeight: 600, marginBottom: '1.5rem', color: '#1e3767' }}>Über diese Position</h2>
-                                            <div>
-                                                <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.1rem)', lineHeight: 1.7, color: '#1e3767' }}>
-                                                    {selectedJob.description}
-                                                </p>
-                                            </div>
-                                        </section>
-
-                                        {/* Responsibilities and Requirements - Mobile Stacked / Desktop Side by Side */}
-                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
-                                            {/* Responsibilities */}
-                                            <section>
-                                                <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>Ihre Aufgaben</h2>
-                                                <div className="space-y-3">
-                                                    {selectedJob.responsibilities.map((item, index) => (
-                                                        <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
-                                                            <div
-                                                                className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
-                                                                style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
-                                                            >
-                                                                {index + 1}
-                                                            </div>
-                                                            <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </section>
-
-                                            {/* Requirements */}
-                                            <section>
-                                                <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>Ihr Profil</h2>
-                                                <div className="space-y-3">
-                                                    {selectedJob.requirements.map((item, index) => (
-                                                        <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
-                                                            <div
-                                                                className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
-                                                                style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
-                                                            >
-                                                                {index + 1}
-                                                            </div>
-                                                            <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </section>
-                                        </div>
-
-                                        {/* Benefits */}
-                                        <section className="mb-6">
-                                            <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>Was wir bieten</h2>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                                                {selectedJob.benefits.map((item, index) => (
-                                                    <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
-                                                        <div
-                                                            className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
-                                                            style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
-                                                        >
-                                                            {index + 1}
-                                                        </div>
-                                                        <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </section>
-
-                                        {/* Contact Information */}
-                                        <section className="border-t border-gray-200 pt-6">
-                                            <div className="text-center">
-                                                <h3 style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', fontWeight: 600, marginBottom: '0.75rem', color: '#1e3767' }}>
-                                                    Interesse an dieser Position?
-                                                </h3>
-                                                <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', marginBottom: '1rem', color: '#64748b' }}>
-                                                    Senden Sie Ihre Bewerbungsunterlagen an unser HR-Team.
-                                                </p>
-                                                <div className="bg-white border border-gray-200 p-4 sm:p-6 shadow-sm max-w-md mx-auto">
-                                                    <div className="flex items-center justify-center mb-3">
-                                                        <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: '#1e3767' }}>
-                                                            <Mail size={20} color="white" />
-                                                        </div>
-                                                    </div>
-                                                    <p style={{ fontWeight: 500, fontSize: 'clamp(1rem, 3vw, 1.125rem)', marginBottom: '0.25rem', color: '#1e3767' }}>
-                                                        <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline">
-                                                            jasmin.pieber@promax.at
-                                                        </a>
-                                                    </p>
-                                                    <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#64748b' }}>
-                                                        Bitte fügen Sie Lebenslauf, Anschreiben und relevante Zeugnisse bei.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </section>
+                        {/* Scrollable Content Area */}
+                        <div className="flex-1 overflow-y-auto">
+                            <div className="p-4 sm:p-6 lg:p-8">
+                                {/* Job Description */}
+                                <section className="mb-8">
+                                    <h2 style={{ fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', fontWeight: 600, marginBottom: '1.5rem', color: '#1e3767' }}>Über diese Position</h2>
+                                    <div>
+                                        <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.1rem)', lineHeight: 1.7, color: '#1e3767' }}>
+                                            {selectedJob.description}
+                                        </p>
                                     </div>
+                                </section>
+
+                                {/* Responsibilities and Requirements - Mobile Stacked / Desktop Side by Side */}
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
+                                    {/* Responsibilities */}
+                                    <section>
+                                        <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>Ihre Aufgaben</h2>
+                                        <div className="space-y-3">
+                                            {selectedJob.responsibilities.map((item, index) => (
+                                                <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
+                                                    <div
+                                                        className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
+                                                        style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                                                    >
+                                                        {index + 1}
+                                                    </div>
+                                                    <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </section>
+
+                                    {/* Requirements */}
+                                    <section>
+                                        <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>Ihr Profil</h2>
+                                        <div className="space-y-3">
+                                            {selectedJob.requirements.map((item, index) => (
+                                                <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
+                                                    <div
+                                                        className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
+                                                        style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                                                    >
+                                                        {index + 1}
+                                                    </div>
+                                                    <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </section>
                                 </div>
+
+                                {/* Benefits */}
+                                <section className="mb-6">
+                                    <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>Was wir bieten</h2>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        {selectedJob.benefits.map((item, index) => (
+                                            <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
+                                                <div
+                                                    className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
+                                                    style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                                                >
+                                                    {index + 1}
+                                                </div>
+                                                <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+
+                                {/* Contact Information */}
+                                <section className="border-t border-gray-200 pt-6">
+                                    <div className="text-center">
+                                        <h3 style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', fontWeight: 600, marginBottom: '0.75rem', color: '#1e3767' }}>
+                                            Interesse an dieser Position?
+                                        </h3>
+                                        <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', marginBottom: '1rem', color: '#64748b' }}>
+                                            Senden Sie Ihre Bewerbungsunterlagen an unser HR-Team.
+                                        </p>
+                                        <div className="bg-white border border-gray-200 p-4 sm:p-6 shadow-sm max-w-md mx-auto">
+                                            <div className="flex items-center justify-center mb-3">
+                                                <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: '#1e3767' }}>
+                                                    <Mail size={20} color="white" />
+                                                </div>
+                                            </div>
+                                            <p style={{ fontWeight: 500, fontSize: 'clamp(1rem, 3vw, 1.125rem)', marginBottom: '0.25rem', color: '#1e3767' }}>
+                                                <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline">
+                                                    jasmin.pieber@promax.at
+                                                </a>
+                                            </p>
+                                            <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#64748b' }}>
+                                                Bitte fügen Sie Lebenslauf, Anschreiben und relevante Zeugnisse bei.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
-            <style>{`
+            </div>
+        </div>
+    )}
+    <style>{`
                 .scrollbar-hide {
                     -ms-overflow-style: none;
                     scrollbar-width: none;
@@ -839,8 +842,8 @@ const Karriere: React.FC = () => {
                     padding-left: 3.25rem;
                 }
             `}</style>
-        </div>
-    );
+</div>
+);
 };
 
 export default Karriere;
