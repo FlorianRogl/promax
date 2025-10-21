@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import tech1 from '../assets/tech1.jpg';
 import tech2 from '../assets/ROHR2.jpg';
 import tech3 from '../assets/tech3.jpg';
