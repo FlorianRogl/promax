@@ -305,7 +305,6 @@ const Unternehmen = () => {
                                     <p className="text-[#d97539] font-medium mb-2">Niederlassungsleitung</p>
                                     <p className="text-sm text-gray-600 mb-2">Niederlassung Wien</p>
                                     <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">christian.walter@promax.at</p>
-                                    <br/>
 
                                     <div className="flex justify-center space-x-4">
                                         <a
