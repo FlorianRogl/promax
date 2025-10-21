@@ -440,7 +440,7 @@ const LegalPage = () => {
                 </section>
 
                 <div className="text-center mt-12 pt-8 border-t border-slate-200 text-slate-500 text-sm">
-                    <p>Stand: {new Date().toLocaleDateString('de-AT')} | PROMAX Project Management GesmbH</p>
+                    <p>2025|PROMAX Project Management GesmbH</p>
                 </div>
             </div>
         </div>

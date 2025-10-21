@@ -18,7 +18,7 @@ interface Resource {
     color: 'blue' | 'orange';
 }
 
-const Unternehmen = () => {
+const Unternehmen2 = () => {
     const navigate = useNavigate();
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
@@ -130,24 +130,32 @@ const Unternehmen = () => {
                     id="hero-section"
                     className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('/unternehmenPic.jpg')`,
+                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.85), rgba(30, 55, 103, 0.75)), url('/unternehmenPic.jpg')`,
                         backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
                     }}
                 >
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-white/5"></div>
 
-                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
                         <div className="animate-fade-in-up">
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
-                                Know-how und Leidenschaft für Ihre Projekte
-                                <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">Seit 1999</span>
+                            <div className="mb-6 sm:mb-8">
+                                <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm sm:text-base font-medium tracking-wide">
+                                    Exzellenz seit über 25 Jahren
+                                </span>
+                            </div>
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mb-6 sm:mb-8 leading-tight">
+                                Know-how und Leidenschaft
+                                <span className="block font-semibold text-[#d97539] mt-2 sm:mt-3">für Ihre Projekte</span>
                             </h1>
+                            <p className="text-lg sm:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 sm:mb-10 font-light">
+                                Professionelles Projektmanagement im Industrieanlagenbau – präzise, zuverlässig und innovativ
+                            </p>
                         </div>
                     </div>
 
-                    {/* Scroll indicator - hidden on mobile */}
+                    {/* Scroll indicator */}
                     <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-                        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center animate-pulse">
                             <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
                         </div>
                     </div>
@@ -189,31 +197,34 @@ const Unternehmen = () => {
                 </section>
 
                 {/* About Section */}
-                <section id="about-section" className="py-16 sm:py-20 lg:py-24 bg-white">
+                <section id="about-section" className="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                             <div className={`animate-fade-in-right ${visibleSections.has('about-section') ? 'opacity-100' : 'opacity-0'}`}>
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                                <div className="inline-block mb-4">
+                                    <span className="text-[#d97539] font-semibold text-sm sm:text-base uppercase tracking-wider">Über PROMAX</span>
+                                </div>
+                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6 leading-tight">
                                     Kompetenz trifft{' '}
-                                    <span className="text-[#1e3767] font-semibold">Innovation</span>
+                                    <span className="text-[#1e3767] font-semibold block mt-2">Innovation</span>
                                 </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
+                                <div className="w-24 h-1 bg-gradient-to-r from-[#d97539] to-[#1e3767] mb-8"></div>
+                                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 font-light">
                                     PROMAX steht seit 1999 für professionelle Projektumsetzung im Industrieanlagenbau. Mit unserem 35-köpfigen Team aus erfahrenen Experten begleiten wir komplexe Projekte in den unterschiedlichsten Branchen – von der Planung bis zur Inbetriebnahme.
                                 </p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                                    <div className="flex items-start space-x-3">
-                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2"></div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                                    <div className="flex items-start space-x-4 bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                                        <div className="w-3 h-3 bg-gradient-to-br from-[#d97539] to-[#e89050] rounded-full mt-2 flex-shrink-0"></div>
                                         <div>
-                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">International tätig</h4>
-                                            <p className="text-xs sm:text-sm text-gray-600">Projekte weltweit</p>
+                                            <h4 className="font-semibold text-gray-900 text-base mb-1">International tätig</h4>
+                                            <p className="text-sm text-gray-600">Projekte weltweit</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-start space-x-3">
-                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2"></div>
+                                    <div className="flex items-start space-x-4 bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                                        <div className="w-3 h-3 bg-gradient-to-br from-[#1e3767] to-[#2a4a7f] rounded-full mt-2 flex-shrink-0"></div>
                                         <div>
-                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">ISO 9001:2015</h4>
-                                            <p className="text-xs sm:text-sm text-gray-600">Zertifizierte Qualität</p>
+                                            <h4 className="font-semibold text-gray-900 text-base mb-1">ISO 9001:2015</h4>
+                                            <p className="text-sm text-gray-600">Zertifizierte Qualität</p>
                                         </div>
                                     </div>
                                 </div>
@@ -232,53 +243,59 @@ const Unternehmen = () => {
                     </div>
                 </section>
 
-                <section id="team-section" className="py-16 sm:py-20 lg:py-24 bg-white">
+                <section id="team-section" className="py-20 sm:py-24 lg:py-32 bg-white relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-12 sm:mb-16">
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
+                        <div className="text-center mb-16 sm:mb-20">
+                            <div className="inline-block mb-4">
+                                <span className="text-[#d97539] font-semibold text-sm sm:text-base uppercase tracking-wider">Unser Team</span>
+                            </div>
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6">
                                 Ihre{' '}
                                 <span className="text-[#1e3767] font-semibold">Ansprechpartner</span>
                             </h2>
-                            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-                                Erfahrene Experten für Ihre Projekte
+                            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-light">
+                                Erfahrene Führungskräfte mit umfassender Expertise im Projektmanagement
                             </p>
                         </div>
 
                         <div className="grid sm:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto">
                             {/* Ing. Andreas Rogl */}
                             <div
-                                className={`bg-white rounded-lg p-6 sm:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
+                                className={`group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 sm:p-10 border border-gray-200 hover:border-[#1e3767] hover:shadow-2xl transition-all duration-500 ${
                                     visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 }`}
                                 style={{animationDelay: `0ms`}}
                             >
                                 <div className="text-center">
-                                    <div className="w-32 h-40 sm:w-48 sm:h-60 mx-auto mb-4 sm:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    <div className="w-40 h-48 sm:w-56 sm:h-72 mx-auto mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                                         <img
                                             src={rogl}
                                             alt="Ing. Andreas Rogl"
-                                            className="w-full h-full object-cover object-top"
+                                            className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
                                         />
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">Ing. Andreas Rogl</h3>
-                                    <p className="text-[#d97539] font-medium mb-2">Geschäftsführer</p>
-                                    <p className="text-sm text-gray-600 mb-2">Zentrale Grambach</p>
-                                    <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">andreas.rogl@promax.at</p>
+                                    <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-2">Ing. Andreas Rogl</h3>
+                                    <p className="text-[#d97539] font-semibold mb-3 text-lg">Geschäftsführer</p>
+                                    <div className="space-y-1 mb-6">
+                                        <p className="text-sm text-gray-600 font-medium">Zentrale Grambach</p>
+                                        <p className="text-sm text-gray-500">andreas.rogl@promax.at</p>
+                                    </div>
 
                                     <div className="flex justify-center space-x-4">
                                         <a
                                             href="mailto:andreas.rogl@promax.at"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
+                                            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-[#1e3767] hover:text-white transition-all duration-300"
                                         >
-                                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                             </svg>
                                         </a>
                                         <a
                                             href="#"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
+                                            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-[#1e3767] hover:text-white transition-all duration-300"
                                         >
-                                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                                             </svg>
                                         </a>
@@ -288,39 +305,40 @@ const Unternehmen = () => {
 
                             {/* DI Christian Walter */}
                             <div
-                                className={`bg-white rounded-lg p-6 sm:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
+                                className={`group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 sm:p-10 border border-gray-200 hover:border-[#1e3767] hover:shadow-2xl transition-all duration-500 ${
                                     visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 }`}
                                 style={{animationDelay: `200ms`}}
                             >
                                 <div className="text-center">
-                                    <div className="w-32 h-40 sm:w-48 sm:h-60 mx-auto mb-4 sm:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    <div className="w-40 h-48 sm:w-56 sm:h-72 mx-auto mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                                         <img
                                             src={christian}
                                             alt="DI Christian Walter"
-                                            className="w-full h-full object-cover object-top"
+                                            className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
                                         />
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">DI Christian Walter</h3>
-                                    <p className="text-[#d97539] font-medium mb-2">Niederlassungsleitung</p>
-                                    <p className="text-sm text-gray-600 mb-2">Niederlassung Wien</p>
-                                    <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">christian.walter@promax.at</p>
-                                    <br/>
+                                    <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-2">DI Christian Walter</h3>
+                                    <p className="text-[#d97539] font-semibold mb-3 text-lg">Niederlassungsleitung</p>
+                                    <div className="space-y-1 mb-6">
+                                        <p className="text-sm text-gray-600 font-medium">Niederlassung Wien</p>
+                                        <p className="text-sm text-gray-500">christian.walter@promax.at</p>
+                                    </div>
 
                                     <div className="flex justify-center space-x-4">
                                         <a
                                             href="mailto:christian.walter@promax.at"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
+                                            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-[#1e3767] hover:text-white transition-all duration-300"
                                         >
-                                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                             </svg>
                                         </a>
                                         <a
                                             href="#"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
+                                            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-[#1e3767] hover:text-white transition-all duration-300"
                                         >
-                                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                                             </svg>
                                         </a>
@@ -332,9 +350,10 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Unternehmenskultur Section */}
-                <section id="unternehmenskultur-section" className="py-16 sm:py-20 lg:py-24 bg-white">
+                <section id="unternehmenskultur-section" className="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                             {/* Image - Hidden on mobile as requested */}
                             <div className="hidden lg:block relative animate-fade-in-left">
                                 <div className="absolute -inset-4 bg-gradient-to-r from-[#d97539] to-[#1e3767] rounded-lg opacity-10 blur-lg"></div>
@@ -346,16 +365,15 @@ const Unternehmen = () => {
                             </div>
 
                             <div className="animate-fade-in-right">
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                                <div className="inline-block mb-4">
+                                    <span className="text-[#d97539] font-semibold text-sm sm:text-base uppercase tracking-wider">Unsere Werte</span>
+                                </div>
+                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6 leading-tight">
                                     Wofür{' '}
-                                    <span className="text-[#1e3767] font-semibold">PROMAX</span>{' '}
+                                    <span className="text-[#1e3767] font-semibold block mt-2">PROMAX</span>{' '}
                                     steht
                                 </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
-
-                                <h3 className="text-xl sm:text-2xl font-medium text-[#1e3767] mb-4">
-                                    Unsere Unternehmenskultur
-                                </h3>
+                                <div className="w-24 h-1 bg-gradient-to-r from-[#d97539] to-[#1e3767] mb-8"></div>
 
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
                                     Bei PROMAX Project Management GesmbH verbinden wir Teamgeist, offene Kommunikation und
@@ -396,15 +414,18 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Certification Section */}
-                <section id="certification" className="py-16 sm:py-20 lg:py-24 bg-gray-50">
+                <section id="certification" className="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                             <div>
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                                <div className="inline-block mb-4">
+                                    <span className="text-[#d97539] font-semibold text-sm sm:text-base uppercase tracking-wider">Qualitätsstandards</span>
+                                </div>
+                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6 leading-tight">
                                     Zertifizierte{' '}
-                                    <span className="text-[#1e3767] font-semibold">Qualität</span>
+                                    <span className="text-[#1e3767] font-semibold block mt-2">Qualität</span>
                                 </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
+                                <div className="w-24 h-1 bg-gradient-to-r from-[#d97539] to-[#1e3767] mb-8"></div>
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
                                     PROMAX Project Management GesmbH ist nach ISO 9001:2015 zertifiziert und
                                     gewährleistet damit höchste Qualitätsstandards in allen Bereichen unserer Dienstleistungen.
@@ -470,48 +491,51 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Resources/Downloads Section */}
-                <section id="resources" className="py-16 sm:py-20 lg:py-24 bg-white">
+                <section id="resources" className="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-12 sm:mb-16">
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 text-center">
-                                Wichtige Dokumente und Informationen zum{' '}
-                                <span className="text-[#d97539] font-semibold">Download</span>
+                        <div className="text-center mb-16 sm:mb-20">
+                            <div className="inline-block mb-4">
+                                <span className="text-[#d97539] font-semibold text-sm sm:text-base uppercase tracking-wider">Downloads</span>
+                            </div>
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6">
+                                Wichtige Dokumente{' '}
+                                <span className="text-[#d97539] font-semibold block mt-2">zum Download</span>
                             </h2>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
                             {resources.map((resource, index) => (
                                 <a
                                     key={resource.title}
                                     href={resource.downloadUrl}
                                     download
-                                    className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-6 sm:p-8 cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 block"
+                                    className="group bg-white rounded-2xl p-8 cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 block border border-gray-200 hover:border-[#d97539]"
                                     style={{ animationDelay: `${index * 100}ms` }}
                                 >
-                                    <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4">
+                                    <div className="flex flex-col items-center text-center space-y-5">
                                         <div
-                                            className={`w-12 h-12 sm:w-16 sm:h-16 ${
+                                            className={`w-20 h-20 ${
                                                 resource.color === 'blue'
                                                     ? 'bg-gradient-to-br from-[#1e3767] to-[#2a4a7f]'
                                                     : 'bg-gradient-to-br from-[#d97539] to-[#e89050]'
-                                            } rounded-lg flex items-center justify-center`}
+                                            } rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
                                         >
                                             {resource.icon}
                                         </div>
-                                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">
+                                        <h3 className="text-xl font-semibold text-gray-900 text-center">
                                             {resource.title}
                                         </h3>
-                                        <p className="text-gray-600 text-xs sm:text-sm text-center">
+                                        <p className="text-gray-500 text-sm text-center">
                                             {resource.type} • {resource.size}
                                         </p>
                                         <div
                                             className={`flex items-center justify-center ${
                                                 resource.color === 'blue' ? 'text-[#1e3767]' : 'text-[#d97539]'
-                                            } font-medium pt-2 text-sm sm:text-base`}
+                                            } font-semibold pt-2 text-base group-hover:gap-3 transition-all`}
                                         >
                                             <span>Download</span>
                                             <svg
-                                                className="w-4 h-4 ml-2"
+                                                className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -532,32 +556,42 @@ const Unternehmen = () => {
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
+                <section className="py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#1e3767] via-[#2a4a7f] to-[#1e3767] relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0 bg-pattern"></div>
                     </div>
+                    <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6">
-                            Bereit für Ihr nächstes <span className="font-semibold">Projekt?</span>
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+                        <div className="inline-block mb-6">
+                            <span className="text-[#d97539] font-semibold text-sm sm:text-base uppercase tracking-wider">Kontakt</span>
+                        </div>
+                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+                            Bereit für Ihr nächstes{' '}
+                            <span className="font-semibold block mt-2">Projekt?</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-10 max-w-2xl mx-auto">
+                        <p className="text-xl sm:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
                             Lassen Sie uns gemeinsam Ihre Vision in die Realität umsetzen.
                             Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
                             <button
                                 onClick={() => navigate('/Kontakt')}
-                                className="px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
+                                className="group px-10 py-5 bg-gradient-to-r from-[#d97539] to-[#e89050] text-white rounded-full hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold text-lg shadow-xl"
                             >
-                                Projekt besprechen
+                                <span className="flex items-center justify-center gap-3">
+                                    Projekt besprechen
+                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </span>
                             </button>
+                        </div>
                     </div>
-            </div>
-        </section>
+                </section>
 
-{/* Add required styles */}
-    <style>{`
+                {/* Add required styles */}
+                <style>{`
                 @keyframes fade-in-up {
                     from {
                         opacity: 0;
@@ -636,9 +670,9 @@ const Unternehmen = () => {
                     }
                 }
             `}</style>
-</div>
-</>
-);
+            </div>
+        </>
+    );
 };
 
-export default Unternehmen;
+export default Unternehmen2;

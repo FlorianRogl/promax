@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { MapPin, Clock, Users, ArrowRight, ChevronLeft, ChevronRight, Sparkles, Mail, X } from 'lucide-react';
-import planungImage from '../assets/Fotolia_59046832_XS.jpg';
+import planungImage from '../assets/klugeKöpfe.png';
 import { jobService } from '../services/jobService';
 import type { FormattedJob } from '../types/job.types';
 
@@ -104,6 +104,7 @@ const Karriere: React.FC = () => {
         setTimeout(() => {
             if (heroRef.current) {
                 heroRef.current.setAttribute('data-section', 'hero');
+                observer.observe(heroRef.current);
                 observer.observe(heroRef.current);
 
                 const rect = heroRef.current.getBoundingClientRect();
@@ -480,31 +481,51 @@ const Karriere: React.FC = () => {
 
     return (
         <div style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif", color: '#1e3767', minHeight: '100vh' }}>
-            {/* Hero Section mit originalem Firmentext */}
-            <section ref={heroRef} className="max-w-6xl mx-auto px-6 py-20">
+            {/* Hero Section with Parallax */}
+            <section
+                ref={heroRef}
+                className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&auto=format')`,
+                    backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
+                }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
+
+                <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                    <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
+                            Karriere bei PROMAX
+                            <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">Ihre Zukunft im Industrieanlagenbau</span>
+                        </h1>
+                    </div>
+                </div>
+
+                {/* Scroll indicator */}
+                <div className="hidden sm:block absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                </div>
+            </section>
+
+            {/* Intro Section */}
+            <section className="max-w-6xl mx-auto px-6 py-20">
                 <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <div className="inline-flex items-center gap-2 px-4 py-2 mb-8" style={{ backgroundColor: '#d1d8dc' }}>
                         <Sparkles size={16} style={{ color: '#1e3767' }} />
                         <span style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', fontWeight: 500, color: '#1e3767' }}>Wir stellen ein</span>
                     </div>
 
-                    <h1 style={{ fontSize: 'clamp(3rem, 8vw, 4.5rem)', fontWeight: 600, marginBottom: '1.5rem', color: '#1e3767', lineHeight: 1.1 }}>
-                        Karriere bei PROMAX
-                    </h1>
-
-                    <h2 style={{ fontSize: 'clamp(1.125rem, 3vw, 1.5rem)', fontWeight: 600, color: '#d97539', marginBottom: '2rem', lineHeight: 1.3 }}>
-                        Ihre Zukunft im Industrieanlagenbau
-                    </h2>
-
                     <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', marginBottom: '2rem', lineHeight: 1.4 }}>
                         Unsere Projekte. Ihre Ideen. Gemeinsame Erfolge.
                     </h3>
 
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', maxWidth: '48rem', lineHeight: 1.7, marginBottom: '1.5rem', color: '#64748b', fontWeight: 400 }}>
+                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, marginBottom: '1.5rem', color: '#64748b', fontWeight: 400 }}>
                         Als erfahrenes Ingenieurbüro im Industrieanlagenbau sind wir seit mehr als 25 Jahren ein verlässlicher Partner für namhafte Kunden aus verschiedenen Branchen. Unsere Arbeit verbindet technisches Know-how mit praxisnahen Lösungen. Dabei stehen Qualität, Sicherheit und Nachhaltigkeit stets im Mittelpunkt.
                     </p>
 
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', maxWidth: '48rem', lineHeight: 1.7, marginBottom: '3rem', color: '#64748b', fontWeight: 400 }}>
+                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, marginBottom: '3rem', color: '#64748b', fontWeight: 400 }}>
                         Was uns besonders macht? Unser Team. Bei PROMAX arbeiten Ingenieurinnen und Ingenieure, Techniker*innen und Projektmanager*innen mit Leidenschaft, Präzision und Teamgeist an anspruchsvollen Aufgaben. Wir glauben: Nur gemeinsam können wir Spitzenleistungen erbringen.
                     </p>
                 </div>
@@ -556,54 +577,17 @@ const Karriere: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="relative hidden lg:block">
-                            <div className="w-full h-96 lg:h-[500px] shadow-2xl overflow-hidden"><img
-                                src={planungImage}
-                                alt="PROMAX Team bei der Projektplanung"
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                            </div>
-                        </div>
+                                <img
+                                    src={planungImage}
+                                    alt="PROMAX Team bei der Projektplanung"
+                                    className="w-full h-full object-cover"
+                                    loading="lazy"
+                                />
                     </div>
                 </div>
             </section>
 
-            {/* Wen wir suchen Section */}
-            <section ref={setSectionRef('seeking')} className="max-w-6xl mx-auto px-6 py-20">
-                <div className={`text-center transition-all duration-1000 transform ${visibleSections.has('seeking') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, marginBottom: '2rem', color: '#1e3767', lineHeight: 1.2 }}>
-                        Wen wir suchen
-                    </h2>
 
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, marginBottom: '2rem', color: '#64748b', fontWeight: 400, maxWidth: '48rem', margin: '0 auto 2rem auto' }}>
-                        Wir sind immer auf der Suche nach engagierten Persönlichkeiten, die Technik lieben, mitdenken und Verantwortung übernehmen möchten – z. B. in folgenden Bereichen:
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div className="bg-white border rounded-lg p-6 text-center flex items-center justify-center" style={{ borderColor: '#d1d8dc', minHeight: '120px' }}>
-                            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', margin: 0 }}>
-                                Planung und Projektierung von Industrieanlagen
-                            </h3>
-                        </div>
-                        <div className="bg-white border rounded-lg p-6 text-center flex items-center justify-center" style={{ borderColor: '#d1d8dc', minHeight: '120px' }}>
-                            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', margin: 0 }}>
-                                Maschinenbau
-                            </h3>
-                        </div>
-                        <div className="bg-white border rounded-lg p-6 text-center flex items-center justify-center" style={{ borderColor: '#d1d8dc', minHeight: '120px' }}>
-                            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', margin: 0 }}>
-                                Projektmanagement
-                            </h3>
-                        </div>
-                    </div>
-
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, color: '#64748b', fontWeight: 400, maxWidth: '36rem', margin: '0 auto' }}>
-                        Ob Berufseinsteiger*in, Junior - oder Senior Engineers – bei uns finden Sie den passenden Einstieg.
-                    </p>
-                </div>
-            </section>
 
             {/* Jobs Section - Dynamic Content */}
             {renderJobsSection()}

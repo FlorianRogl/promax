@@ -8,6 +8,12 @@ import {
     ArrowUp
 } from 'lucide-react';
 
+// Import der Logo-Bilder
+import qualityAustriaLogo from '../assets/iso.png';
+import ingenieurburosLogo from '../assets/ingbuero_mindestgroesse_25mm1.jpg';
+import iqnetLogo from '../assets/IQNet certification mark 2022.jpg';
+import agbPdf from '/documents/PROMAX_AGB Ingenieurbüros 2021 November.pdf';
+
 const Footer = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [showScrollTop, setShowScrollTop] = useState(false);
@@ -50,9 +56,9 @@ const Footer = () => {
     ];
 
     const legalLinks = [
-        { name: 'Impressum', path: '/Rechtliches#impressum' },
-        { name: 'Datenschutz', path: '/Rechtliches#datenschutz' },
-        { name: 'AGB', path: '/Rechtliches#agb' }
+        { name: 'Impressum', path: '/Rechtliches#impressum', isExternal: false },
+        { name: 'Datenschutz', path: '/Rechtliches#datenschutz', isExternal: false },
+        { name: 'AGB', path: agbPdf, isExternal: true }
     ];
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -97,7 +103,8 @@ const Footer = () => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'flex-start',
-                    gap: '60px'
+                    gap: '60px',
+                    flexWrap: 'wrap'
                 }}>
                     {/* Contact Section */}
                     <div className={`${isVisible ? styles.animateUp : ''}`}>
@@ -141,22 +148,91 @@ const Footer = () => {
                         </h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             {legalLinks.map((link, linkIndex) => (
-                                <Link
-                                    key={linkIndex}
-                                    to={link.path}
-                                    style={{
-                                        color: '#e5e5e5',
-                                        textDecoration: 'none',
-                                        fontSize: '14px',
-                                        transition: 'color 0.3s ease'
-                                    }}
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    className={`${isVisible ? styles.animateFadeIn : ''}`}
-                                >
-                                    {link.name}
-                                </Link>
+                                link.isExternal ? (
+                                    <a
+                                        key={linkIndex}
+                                        href={link.path}
+                                        download="AGB.pdf"
+                                        style={{
+                                            color: '#e5e5e5',
+                                            textDecoration: 'none',
+                                            fontSize: '14px',
+                                            transition: 'color 0.3s ease',
+                                            cursor: 'pointer'
+                                        }}
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        className={`${isVisible ? styles.animateFadeIn : ''}`}
+                                    >
+                                        {link.name}
+                                    </a>
+                                ) : (
+                                    <Link
+                                        key={linkIndex}
+                                        to={link.path}
+                                        style={{
+                                            color: '#e5e5e5',
+                                            textDecoration: 'none',
+                                            fontSize: '14px',
+                                            transition: 'color 0.3s ease'
+                                        }}
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        className={`${isVisible ? styles.animateFadeIn : ''}`}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                )
                             ))}
+                        </div>
+                    </div>
+
+                    {/* Certification Logos */}
+                    <div className={`${isVisible ? styles.animateUp : ''}`}>
+                        <h4 style={{
+                            color: 'white',
+                            fontSize: '18px',
+                            marginBottom: '20px',
+                            fontWeight: '600'
+                        }}>
+                            Zertifizierungen
+                        </h4>
+                        <div style={{
+                            display: 'flex',
+                            gap: '20px',
+                            alignItems: 'center',
+                            flexWrap: 'wrap'
+                        }}>
+                            <img
+                                src={qualityAustriaLogo}
+                                alt="Quality Austria ISO 9001:2015"
+                                style={{
+                                    height: '60px',
+                                    width: 'auto',
+                                    objectFit: 'contain'
+                                }}
+                                className={`${isVisible ? styles.animateFadeIn : ''}`}
+                            />
+                            <img
+                                src={ingenieurburosLogo}
+                                alt="Ingenieurbüros Österreich EU"
+                                style={{
+                                    height: '60px',
+                                    width: 'auto',
+                                    objectFit: 'contain'
+                                }}
+                                className={`${isVisible ? styles.animateFadeIn : ''}`}
+                            />
+                            <img
+                                src={iqnetLogo}
+                                alt="IQNet Certified Management System"
+                                style={{
+                                    height: '60px',
+                                    width: 'auto',
+                                    objectFit: 'contain'
+                                }}
+                                className={`${isVisible ? styles.animateFadeIn : ''}`}
+                            />
                         </div>
                     </div>
                 </div>

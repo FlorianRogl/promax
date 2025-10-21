@@ -1,6 +1,13 @@
 import {Helmet} from "@vuer-ai/react-helmet-async";
+import { useState, useEffect } from 'react';
 
 const Kontakt = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
+
     return (
         <>
             <Helmet>
@@ -34,31 +41,48 @@ const Kontakt = () => {
                 <meta name="description" content="Kontaktieren Sie uns für Projektanfragen, Beratung oder allgemeine Anfragen. Wir freuen uns auf Ihre Nachricht."/>
                 <link rel="canonical" href="https://www.promax.at/Kontakt"/>
             </Helmet>
-            <div className="min-h-screen bg-white">
-                {/* Header mit mehr Farbe */}
-                <section className="bg-[#1e3767] relative overflow-hidden">
-                    <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20">
-                        <h1 className="text-5xl lg:text-6xl font-light text-white mb-4">Kontakt</h1>
-                        <p className="text-lg text-[#d1d8dc] max-w-2xl">
-                            Wir freuen uns auf Ihre Kontaktaufnahme und stehen Ihnen gerne für
-                            ein persönliches Gespräch zur Verfügung.
-                        </p>
+
+            <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
+                {/* Hero Section with Parallax */}
+                <section
+                    className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=1080&fit=crop&auto=format')`,
+                        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
+                    }}
+                >
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
+
+                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                        <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
+                                Kontakt
+                            </h1>
+                            <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#d97539] leading-relaxed">
+                                Wir freuen uns auf Ihre Nachricht
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Scroll indicator */}
+                    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+                        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+                        </div>
                     </div>
                 </section>
 
-                {/* Main Content - Jetzt mit Kontaktinfo links und Karten rechts */}
-                <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+                {/* Main Content */}
+                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
 
                         {/* Linke Spalte - Kontaktinformationen */}
                         <div className="lg:col-span-2 space-y-12">
                             {/* Direkte Kontaktmöglichkeiten */}
                             <div>
-                                <h2 className="text-3xl sm:text-4xl lg:text-4xl font-light text-gray-900 mb-4">
-                                    Sprechen Sie mit{' '}
-                                    <span className="text-[#1e3767] font-semibold">
-                                        uns
-                                    </span>
+                                <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
+                                    So erreichen Sie{' '}
+                                    <span className="text-[#1e3767] font-semibold">uns</span>
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-8"></div>
 
@@ -91,25 +115,22 @@ const Kontakt = () => {
                                 </div>
                             </div>
 
-                            {/* Standorte mit Farbe */}
+                            {/* Standorte */}
                             <div>
-                                <h3 className="text-3xl sm:text-4xl lg:text-4xl font-light text-gray-900 mb-4">
+                                <h3 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
                                     Unsere{' '}
-                                    <span className="text-[#1e3767] font-semibold">
-                                        Standorte
-                                    </span>
+                                    <span className="text-[#1e3767] font-semibold">Standorte</span>
                                 </h3>
                                 <div className="w-20 h-1 bg-[#d97539] mb-8"></div>
 
                                 <div className="space-y-8">
                                     {/* Hauptsitz */}
-                                    <div
-                                        className="border-l-3 border-[#1e3767] pl-6 hover:border-[#d97539] transition-colors">
+                                    <div className="border-l-4 border-[#1e3767] pl-6 hover:border-[#d97539] transition-colors">
                                         <div className="flex items-center gap-2 mb-3">
                                             <div className="w-2 h-2 bg-[#1e3767] rounded-full"></div>
                                             <h4 className="font-semibold text-[#1e3767] text-base">Hauptsitz Raaba-Grambach</h4>
                                         </div>
-                                        <address className="not-italic text-gray-500 text-sm leading-relaxed">
+                                        <address className="not-italic text-gray-600 text-sm leading-relaxed">
                                             PROMAX Project Management GesmbH<br/>
                                             Parkring 18/F<br/>
                                             8074 Raaba-Grambach<br/>
@@ -118,12 +139,12 @@ const Kontakt = () => {
                                     </div>
 
                                     {/* Wien */}
-                                    <div className="border-l-3 border-[#d97539] pl-6">
+                                    <div className="border-l-4 border-[#d97539] pl-6 hover:border-[#1e3767] transition-colors">
                                         <div className="flex items-center gap-2 mb-3">
                                             <div className="w-2 h-2 bg-[#d97539] rounded-full"></div>
                                             <h4 className="font-semibold text-[#1e3767] text-base">Zweigstelle Wien</h4>
                                         </div>
-                                        <address className="not-italic text-gray-500 text-sm leading-relaxed">
+                                        <address className="not-italic text-gray-600 text-sm leading-relaxed">
                                             PROMAX Project Management GesmbH<br/>
                                             Löwengasse 3/5<br/>
                                             1030 Wien<br/>
@@ -137,20 +158,18 @@ const Kontakt = () => {
                         {/* Rechte Spalte - Anfahrt/Karten */}
                         <div className="lg:col-span-3">
                             <div>
-                                <h2 className="text-3xl sm:text-4xl lg:text-4xl font-light text-gray-900 mb-4">
+                                <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
                                     Anfahrt zu unseren{' '}
-                                    <span className="text-[#1e3767] font-semibold">
-                                        Standorten
-                                    </span>
+                                    <span className="text-[#1e3767] font-semibold">Standorten</span>
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-8"></div>
 
                                 <div className="space-y-6">
                                     {/* Graz Karte */}
-                                    <div className="bg-white shadow-sm border border-gray-100 overflow-hidden rounded-lg">
+                                    <div className="bg-white shadow-xl border border-gray-100 overflow-hidden rounded-lg">
                                         <div className="p-4 sm:p-6 bg-[#1e3767]">
                                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Hauptsitz Raaba-Grambach</h3>
-                                            <p className="text-[#d1d8dc] text-sm">Parkring 18/F, 8074 Raaba-Grambach</p>
+                                            <p className="text-white text-opacity-90 text-sm">Parkring 18/F, 8074 Raaba-Grambach</p>
                                         </div>
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.7289447742!2d15.4461!3d47.0379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476e35925b8c0c71%3A0x5b8c0c71b8c0c71b!2sParkring%2018%2C%208074%20Raaba-Grambach%2C%20Austria!5e0!3m2!1sde!2sat!4v1"
@@ -165,7 +184,7 @@ const Kontakt = () => {
                                     </div>
 
                                     {/* Wien Karte */}
-                                    <div className="bg-white shadow-sm border border-gray-100 overflow-hidden rounded-lg">
+                                    <div className="bg-white shadow-xl border border-gray-100 overflow-hidden rounded-lg">
                                         <div className="p-4 sm:p-6 bg-[#d97539]">
                                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Zweigstelle Wien</h3>
                                             <p className="text-white text-opacity-90 text-sm">Löwengasse 3/5, 1030 Wien</p>
@@ -186,7 +205,47 @@ const Kontakt = () => {
                         </div>
                     </div>
                 </section>
+
+                {/* CTA Section */}
+                <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0 bg-pattern"></div>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6">
+                            Bereit für Ihr nächstes <span className="font-semibold">Projekt?</span>
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-10 max-w-2xl mx-auto">
+                            Lassen Sie uns gemeinsam Ihre Vision in die Realität umsetzen.
+                        </p>
+                        <a
+                            href="mailto:office@promax.at"
+                            className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
+                        >
+                            Jetzt Kontakt aufnehmen
+                        </a>
+                    </div>
+                </section>
             </div>
+
+            {/* Add required styles */}
+            <style>{`
+                @keyframes fade-in-up {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .bg-pattern {
+                    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                }
+            `}</style>
         </>
     );
 };

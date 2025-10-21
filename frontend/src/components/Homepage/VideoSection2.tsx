@@ -99,14 +99,15 @@ const VideoSection2 = () => {
             `}</style>
 
             <section ref={sectionRef} className="relative h-screen overflow-hidden">
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-black">
                     <div className="absolute inset-0 z-10" style={{backgroundColor: 'rgba(30, 55, 103, 0.7)'}}></div>
                     <video
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute inset-0 w-full h-full"
+                        style={{objectFit: 'cover'}}
                         src="/promaxstockvideo_VrMEem5A.mp4"
                     />
                 </div>
@@ -141,7 +142,7 @@ const VideoSection2 = () => {
                             transition: 'all 0.8s ease'
                         }}
                     >
-                        <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+                        <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{lineHeight: '1.2'}}>
                             Wir gestalten Zukunft im<br />
                             <span style={{color: '#d97539'}}>Industrieanlagenbau</span>
                         </h1>

@@ -1,10 +1,11 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Beaker, Zap, Pill, FileText, Utensils, Factory, Atom, Grid3x3 } from 'lucide-react';
 import VideoSection2 from "./VideoSection2.tsx";
 
 const Homepage = () => {
     const yearRef = useRef(null);
-
+    const navigate = useNavigate();
 
     const industries = [
         { name: 'Chemie', icon: Beaker },
@@ -32,7 +33,10 @@ const Homepage = () => {
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                         {/* Ingenieurplanung Card */}
-                        <div className="relative h-80 overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                        <div
+                            onClick={() => navigate('/Leistungen#ingenieurplanung')}
+                            className="relative h-80 overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                        >
                             {/* Background Image */}
                             <img
                                 src="https://images.pexels.com/photos/3184315/pexels-photo-3184315.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"
@@ -72,7 +76,10 @@ const Homepage = () => {
                         </div>
 
                         {/* Operative Projektunterstützung Card */}
-                        <div className="relative h-80 overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                        <div
+                            onClick={() => navigate('/Leistungen#operative-projektstuetzung')}
+                            className="relative h-80 overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                        >
                             {/* Background Image */}
                             <img
                                 src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"
@@ -117,9 +124,6 @@ const Homepage = () => {
 
             {/* Industries Section */}
             <section className="py-20 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 rounded-full -mr-48 -mt-48 opacity-5 bg-promax-orange"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full -ml-48 -mb-48 opacity-5 bg-promax-blue"></div>
-
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold mb-4 text-promax-blue">Unsere Branchen</h2>
@@ -146,12 +150,15 @@ const Homepage = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="diagonal-clip py-32 relative bg-promax-blue">
+            <section className="py-32 relative bg-promax-blue">
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <h2 className="text-4xl font-bold text-white mb-6">
                         Ihr Partner für anspruchsvollen Industrieanlagenbau
                     </h2>
-                    <button className="bg-promax-orange text-white px-8 py-4 text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <button
+                        onClick={() => navigate('/Kontakt')}
+                        className="bg-promax-orange text-white px-8 py-4 text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-2xl"
+                    >
                         Projekt anfragen
                     </button>
                 </div>
@@ -184,9 +191,6 @@ const Homepage = () => {
                   border-bottom-color: #d97539;
                 }
                 
-                .diagonal-clip {
-                  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-                }
                 
                 .nav-link {
                   position: relative;
