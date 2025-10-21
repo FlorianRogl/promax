@@ -4,7 +4,7 @@ import '../index.css'
 import rogl from '../assets/RoglAndreas.jpg';
 import christian from '../assets/Christian.jpg';
 import iso from '../assets/iso.png';
-import iq from '../assets/iqZert.png';
+import iq from '../assets/IQNet certification mark 2022.jpg';
 import {Helmet} from "@vuer-ai/react-helmet-async";
 import CheckIcon from "./CheckIcon.tsx";
 import unternehmen1 from "../assets/unternehmen1.jpg";
