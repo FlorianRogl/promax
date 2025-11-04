@@ -1,36 +1,36 @@
-/* Navbar.module.css - VollstÃ¤ndig Responsive mit Fixed Position LÃ¶sung */
+/* Navbar.module.css - Vollständig Responsive mit Fixed Position Lösung - OHNE ANIMATIONEN */
 
-/* CSS Custom Properties fÃ¼r bessere Skalierung - ANGEPASSTE WERTE */
+/* CSS Custom Properties für bessere Skalierung - ANGEPASSTE WERTE */
 :root {
     --navbar-height: 85px; /* Erhöht von 80px für breitere Navbar */
     --logo-height: clamp(85px, 5vw, 55px); /* Erhöht von clamp(75px, 4vw, 45px) für größeres Logo */
     --font-size-nav: clamp(0.85rem, 1.6vw, 1.05rem);
     --font-size-logo: clamp(1.1rem, 2.2vw, 1.6rem);
     --font-size-tagline: clamp(0.55rem, 1.1vw, 0.8rem);
-    /* Gap zwischen Links REDUZIERT fÃ¼r engere Anordnung */
+    /* Gap zwischen Links REDUZIERT für engere Anordnung */
     --gap-nav: clamp(0.8rem, 2.5vw, 2rem); /* Reduziert von 1.2rem-3rem auf 0.8rem-2rem */
     --padding-horizontal: clamp(1.5rem, 5vw, 7rem); /* Erhöht von clamp(1rem, 4vw, 6rem) für breitere Navbar */
     --brand-margin: clamp(1rem, 4vw, 6rem);
 }
 
-/* WICHTIG: Body Padding-Top fÃ¼r Fixed Navbar */
+/* WICHTIG: Body Padding-Top für Fixed Navbar */
 body {
     padding-top: 85px !important; /* Angepasst an neue Navbar-Höhe */
 }
 
-/* Alternative: Falls du das nicht global setzen mÃ¶chtest,
-   fÃ¼ge diese Klasse zum Haupt-Container deiner Seiten hinzu */
+/* Alternative: Falls du das nicht global setzen möchtest,
+   füge diese Klasse zum Haupt-Container deiner Seiten hinzu */
 .pageContainer {
     padding-top: var(--navbar-height);
 }
 
-/* Navbar Animations */
+/* Navbar Base Styles - OHNE ANIMATION */
 .navbar {
     /* WEISSE NAVBAR */
     background: #ffffff;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(209, 213, 219, 0.3); /* Hellerer Border */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtiler Schatten fÃ¼r Tiefe */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtiler Schatten für Tiefe */
     position: fixed;
     top: 0;
     left: 0;
@@ -38,152 +38,16 @@ body {
     z-index: 1000;
     width: 100%;
     font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-    animation: slideDown 0.8s ease-out;
 }
 
-@keyframes slideDown {
+/* Mobile Overlay Fade Animation (behalten für bessere UX) */
+@keyframes fadeIn {
     from {
-        transform: translateY(-100%);
         opacity: 0;
     }
     to {
-        transform: translateY(0);
         opacity: 1;
     }
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Reload Animations - triggered on click */
-@keyframes reloadSlideDown {
-    0% {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes reloadFadeInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-40px) scale(0.8);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-}
-
-@keyframes reloadFadeInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(40px) scale(0.8);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-}
-
-@keyframes reloadBounceIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.6);
-    }
-    50% {
-        transform: translateY(-5px) scale(1.1);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes reloadPulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Click Animation */
-@keyframes clickPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Reload Animation Classes */
-.navbarReload {
-    animation: reloadSlideDown 0.6s ease-out;
-}
-
-.brandReload {
-    animation: reloadFadeInLeft 0.7s ease-out 0.2s both;
-}
-
-.navListReload {
-    animation: reloadFadeInRight 0.7s ease-out 0.3s both;
-}
-
-.navItemReload {
-    animation: reloadBounceIn 0.6s ease-out both;
-}
-
-.mobileMenuReload {
-    animation: reloadPulse 0.8s ease-out 0.4s both;
-}
-
-.navLinkClick {
-    animation: clickPulse 0.3s ease-out;
 }
 
 .container {
@@ -197,11 +61,10 @@ body {
     position: relative;
 }
 
-/* Brand/Logo Section */
+/* Brand/Logo Section - OHNE ANIMATION */
 .brand {
     display: flex;
     align-items: center;
-    animation: fadeInLeft 0.8s ease-out 0.3s both;
     text-decoration: none;
     z-index: 10;
     flex-shrink: 0;
@@ -232,14 +95,14 @@ body {
 .logo {
     font-size: var(--font-size-logo);
     font-weight: 600;
-    color: #374151; /* Dunkle Farbe fÃ¼r weiÃŸen Hintergrund */
+    color: #374151; /* Dunkle Farbe für weißen Hintergrund */
     letter-spacing: -0.3px;
     line-height: 1;
 }
 
 .tagline {
     font-size: var(--font-size-tagline);
-    color: #6b7280; /* Grauer Text fÃ¼r weiÃŸen Hintergrund */
+    color: #6b7280; /* Grauer Text für weißen Hintergrund */
     font-weight: 400;
     letter-spacing: 0.3px;
     text-transform: uppercase;
@@ -256,40 +119,24 @@ body {
     padding-left: clamp(1rem, 2.5vw, 1.5rem);
 }
 
-/* Navigation List */
+/* Navigation List - OHNE ANIMATION */
 .navList {
     display: flex;
     align-items: center;
-    gap: var(--gap-nav); /* Reduzierter Gap fÃ¼r engere Links */
+    gap: var(--gap-nav); /* Reduzierter Gap für engere Links */
     list-style: none;
     margin: 0;
     padding: 0;
-    animation: fadeInRight 0.8s ease-out 0.5s both;
     flex-wrap: nowrap;
 }
 
 .navItem {
     position: relative;
-    animation: fadeInUp 0.6s ease-out both;
     white-space: nowrap;
 }
 
-.navItem:nth-child(1) { animation-delay: 0.7s; }
-.navItem:nth-child(2) { animation-delay: 0.8s; }
-.navItem:nth-child(3) { animation-delay: 0.9s; }
-.navItem:nth-child(4) { animation-delay: 1.0s; }
-.navItem:nth-child(5) { animation-delay: 1.1s; }
-.navItem:nth-child(6) { animation-delay: 1.2s; }
-
-/* Reload-spezifische Animationen fÃ¼r navItems */
-.navItemReload:nth-child(1) { animation-delay: 0.4s; }
-.navItemReload:nth-child(2) { animation-delay: 0.5s; }
-.navItemReload:nth-child(3) { animation-delay: 0.6s; }
-.navItemReload:nth-child(4) { animation-delay: 0.7s; }
-.navItemReload:nth-child(5) { animation-delay: 0.8s; }
-
 .navLink {
-    /* DUNKLE LINKS FÃœR WEISSEN HINTERGRUND */
+    /* DUNKLE LINKS FÜR WEISSEN HINTERGRUND */
     color: #374151;
     text-decoration: none;
     font-weight: 500;
@@ -322,7 +169,7 @@ body {
 }
 
 .navLink.active {
-    color: #E67E22; /* Orange fÃ¼r aktiven Link */
+    color: #E67E22; /* Orange für aktiven Link */
     font-weight: 600;
 }
 
@@ -330,7 +177,55 @@ body {
     width: 80%;
 }
 
-/* Mobile Menu Button */
+/* Navigation Controls */
+.navControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Language Switcher Styles */
+.languageSwitcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 60px;        /* Schiebt ganz nach rechts */
+    margin-right: 60px;
+}
+
+.langBtn {
+    background: none;
+    border: none;
+    color: #999;               /* Dezentes Grau */
+    font-size: 12px;           /* Klein */
+    font-weight: 400;          /* Normal, nicht fett */
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.langBtn:hover {
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.langBtnActive {
+    color: #1e3767;            /* Promax Blau statt Orange */
+    font-weight: 500;
+    background-color: rgba(30, 55, 103, 0.05);
+}
+
+.langSeparator {
+    color: #ddd;
+    font-size: 12px;
+    user-select: none;
+}
+
+/* Mobile Menu Button - OHNE ANIMATION */
 .mobileMenuBtn {
     display: none;
     flex-direction: column;
@@ -341,7 +236,6 @@ body {
     border: none;
     cursor: pointer;
     padding: 3px;
-    animation: fadeInRight 0.8s ease-out 0.6s both;
     position: relative;
     z-index: 1001;
     flex-shrink: 0;
@@ -350,7 +244,7 @@ body {
 .hamburger {
     width: 100%;
     height: 2.5px;
-    background: #374151; /* Dunkle Hamburger-Linien fÃ¼r weiÃŸen Hintergrund */
+    background: #374151; /* Dunkle Hamburger-Linien für weißen Hintergrund */
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
@@ -358,7 +252,7 @@ body {
 
 .mobileMenuBtnOpen .hamburger:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
-    background: #E67E22; /* Orange wenn geÃ¶ffnet */
+    background: #E67E22; /* Orange wenn geöffnet */
 }
 
 .mobileMenuBtnOpen .hamburger:nth-child(2) {
@@ -368,7 +262,7 @@ body {
 
 .mobileMenuBtnOpen .hamburger:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-    background: #E67E22; /* Orange wenn geÃ¶ffnet */
+    background: #E67E22; /* Orange wenn geöffnet */
 }
 
 /* Mobile Menu Overlay */
@@ -383,15 +277,6 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 /* Mobile Menu - WICHTIG: Keine display:none auf navList bei mobile! */
 @media (max-width: 900px) {
     .navWrapper {
@@ -399,7 +284,7 @@ body {
         top: var(--navbar-height);
         right: 0;
         left: 0;
-        background: #ffffff; /* WeiÃŸer Hintergrund fÃ¼r Mobile Menu */
+        background: #ffffff; /* Weißer Hintergrund für Mobile Menu */
         backdrop-filter: blur(20px);
         transform: translateY(-100%);
         transition: transform 0.3s ease-out;
@@ -423,7 +308,6 @@ body {
         flex-direction: column;
         padding: 1.5rem;
         gap: 1.2rem;
-        animation: none;
         max-height: calc(100vh - var(--navbar-height));
         overflow-y: auto;
     }
@@ -431,7 +315,6 @@ body {
     .navItem {
         width: 100%;
         text-align: center;
-        animation: none;
     }
 
     .navLink {
@@ -462,6 +345,11 @@ body {
     .mobileMenuBtn {
         display: flex !important;
     }
+
+    .languageSwitcher {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 
 /* Responsive Breakpoints */
@@ -469,7 +357,7 @@ body {
 /* Large Tablets und Small Desktops */
 @media (max-width: 1200px) {
     :root {
-        --gap-nav: clamp(0.8rem, 2.2vw, 1.8rem); /* Reduziert fÃ¼r engere Links */
+        --gap-nav: clamp(0.8rem, 2.2vw, 1.8rem); /* Reduziert für engere Links */
         --padding-horizontal: clamp(1.2rem, 4vw, 6rem); /* Angepasst für breitere Navbar */
     }
 }
@@ -492,7 +380,7 @@ body {
         --padding-horizontal: 1rem; /* Erhöht von 0.8rem */
     }
 
-    /* Body Padding fÃ¼r Mobile anpassen */
+    /* Body Padding für Mobile anpassen */
     body {
         padding-top: 70px !important; /* Angepasst an neue Navbar-Höhe */
     }
@@ -508,7 +396,7 @@ body {
         --font-size-tagline: 0.6rem;
     }
 
-    /* Body Padding fÃ¼r Mobile anpassen */
+    /* Body Padding für Mobile anpassen */
     body {
         padding-top: 65px !important; /* Angepasst an neue Navbar-Höhe */
     }
@@ -538,7 +426,7 @@ body {
         --padding-horizontal: 0.6rem; /* Erhöht von 0.4rem */
     }
 
-    /* Body Padding fÃ¼r Mobile anpassen */
+    /* Body Padding für Mobile anpassen */
     body {
         padding-top: 60px !important; /* Angepasst an neue Navbar-Höhe */
     }
@@ -559,7 +447,7 @@ body {
     }
 }
 
-/* Smooth animations - Respektiert Benutzereinstellungen */
+/* Smooth transitions - Respektiert Benutzereinstellungen */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -582,7 +470,7 @@ body {
         --logo-height: clamp(70px, 14vw, 100px); /* Erhöht für größeres Logo im Landscape */
     }
 
-    /* Body Padding fÃ¼r Landscape anpassen */
+    /* Body Padding für Landscape anpassen */
     body {
         padding-top: 55px !important; /* Angepasst an neue Navbar-Höhe */
     }
@@ -594,7 +482,7 @@ body {
     }
 }
 
-/* Container Query Support (fÃ¼r modernere Browser) */
+/* Container Query Support (für modernere Browser) */
 @supports (container-type: inline-size) {
     .navbar {
         container-type: inline-size;

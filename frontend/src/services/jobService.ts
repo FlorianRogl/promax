@@ -1,34 +1,15 @@
 import { client } from '../sanityClient'
-import type { FormattedJob } from '../types/job.types'
-
-// Interface für Sanity Response
-interface SanityJob {
-    _id: string
-    _type: 'job'
-    title: string
-    department: string
-    location: string
-    type: string
-    experience?: string
-    teamSize?: string
-    description: string
-    responsibilities: string[]
-    requirements: string[]
-    benefits: string[]
-    isActive: boolean
-    publishedAt: string
-    orderRank?: number
-}
+import type { FormattedJob, SanityJob } from '../types/job.types'
 
 interface JobServiceInterface {
-    getActiveJobs(): Promise<FormattedJob[]>
-    formatDate(dateString: string): string
+    getActiveJobs(language?: 'de' | 'en'): Promise<FormattedJob[]>
+    formatDate(dateString: string, language?: 'de' | 'en'): string
     testConnection(): Promise<void>
 }
 
 export const jobService: JobServiceInterface = {
-    async getActiveJobs(): Promise<FormattedJob[]> {
-        console.log('🔍 Starting to fetch jobs from Sanity...');
+    async getActiveJobs(language: 'de' | 'en' = 'de'): Promise<FormattedJob[]> {
+        console.log(`🔍 Starting to fetch jobs from Sanity (Language: ${language})...`);
 
         const query = `*[_type == "job" && isActive == true] | order(orderRank asc, publishedAt desc) {
       _id,
@@ -66,21 +47,59 @@ export const jobService: JobServiceInterface = {
             }
 
             const formatted = jobs.map((job, index): FormattedJob => {
-                console.log(`🔄 Formatting job ${index + 1}:`, job.title);
+                console.log(`📄 Formatting job ${index + 1}:`, job.title);
+
+                // Helper-Funktion für sichere Extraktion lokalisierter Strings
+                const getLocalizedString = (field: any, fallback: string): string => {
+                    if (!field) return fallback;
+                    // Wenn es ein mehrsprachiges Objekt ist
+                    if (typeof field === 'object' && field[language]) {
+                        return field[language];
+                    }
+                    // Fallback auf Deutsch wenn gewählte Sprache nicht verfügbar
+                    if (typeof field === 'object' && field.de) {
+                        console.warn(`⚠️ Language ${language} not available, falling back to 'de'`);
+                        return field.de;
+                    }
+                    // Wenn es ein direkter String ist (alte Datenstruktur)
+                    if (typeof field === 'string') {
+                        return field;
+                    }
+                    return fallback;
+                };
+
+                // Helper-Funktion für Arrays
+                const getLocalizedArray = (field: any, fallback: string[]): string[] => {
+                    if (!field) return fallback;
+                    // Wenn es ein mehrsprachiges Objekt ist
+                    if (typeof field === 'object' && Array.isArray(field[language])) {
+                        return field[language];
+                    }
+                    // Fallback auf Deutsch
+                    if (typeof field === 'object' && Array.isArray(field.de)) {
+                        console.warn(`⚠️ Language ${language} not available for array, falling back to 'de'`);
+                        return field.de;
+                    }
+                    // Wenn es direkt ein Array ist (alte Datenstruktur)
+                    if (Array.isArray(field)) {
+                        return field;
+                    }
+                    return fallback;
+                };
 
                 return {
                     id: job._id,
-                    title: job.title || 'Ohne Titel',
+                    title: getLocalizedString(job.title, 'Ohne Titel'),
                     department: job.department || 'Keine Abteilung',
-                    location: job.location || 'Standort nicht angegeben',
-                    type: job.type || 'Vollzeit',
-                    experience: job.experience || 'Nach Vereinbarung',
-                    teamSize: job.teamSize || 'Flexibel',
-                    description: job.description || 'Keine Beschreibung verfügbar',
-                    responsibilities: job.responsibilities || [],
-                    requirements: job.requirements || [],
-                    benefits: job.benefits || [],
-                    posted: this.formatDate(job.publishedAt)
+                    location: getLocalizedString(job.location, 'Standort nicht angegeben'),
+                    type: getLocalizedString(job.type, 'Vollzeit'),
+                    experience: getLocalizedString(job.experience, language === 'de' ? 'Nach Vereinbarung' : 'By arrangement'),
+                    teamSize: getLocalizedString(job.teamSize, language === 'de' ? 'Flexibel' : 'Flexible'),
+                    description: getLocalizedString(job.description, language === 'de' ? 'Keine Beschreibung verfügbar' : 'No description available'),
+                    responsibilities: getLocalizedArray(job.responsibilities, []),
+                    requirements: getLocalizedArray(job.requirements, []),
+                    benefits: getLocalizedArray(job.benefits, []),
+                    posted: this.formatDate(job.publishedAt, language)
                 }
             });
 
@@ -115,10 +134,10 @@ export const jobService: JobServiceInterface = {
         }
     },
 
-    formatDate(dateString: string): string {
+    formatDate(dateString: string, language: 'de' | 'en' = 'de'): string {
         if (!dateString) {
             console.warn('⚠️ No date string provided for formatting');
-            return 'Datum unbekannt';
+            return language === 'de' ? 'Datum unbekannt' : 'Date unknown';
         }
 
         try {
@@ -127,15 +146,24 @@ export const jobService: JobServiceInterface = {
             const diffTime = Math.abs(now.getTime() - date.getTime())
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 
-            if (diffDays === 0) return 'heute'
-            if (diffDays === 1) return 'gestern'
-            if (diffDays < 7) return `vor ${diffDays} Tagen`
-            if (diffDays < 30) return `vor ${Math.floor(diffDays / 7)} Woche${diffDays >= 14 ? 'n' : ''}`
-            if (diffDays < 365) return `vor ${Math.floor(diffDays / 30)} Monat${diffDays >= 60 ? 'en' : ''}`
-            return `vor ${Math.floor(diffDays / 365)} Jahr${diffDays >= 730 ? 'en' : ''}`
+            if (language === 'de') {
+                if (diffDays === 0) return 'heute'
+                if (diffDays === 1) return 'gestern'
+                if (diffDays < 7) return `vor ${diffDays} Tagen`
+                if (diffDays < 30) return `vor ${Math.floor(diffDays / 7)} Woche${diffDays >= 14 ? 'n' : ''}`
+                if (diffDays < 365) return `vor ${Math.floor(diffDays / 30)} Monat${diffDays >= 60 ? 'en' : ''}`
+                return `vor ${Math.floor(diffDays / 365)} Jahr${diffDays >= 730 ? 'en' : ''}`
+            } else {
+                if (diffDays === 0) return 'today'
+                if (diffDays === 1) return 'yesterday'
+                if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`
+                if (diffDays < 30) return `${Math.floor(diffDays / 7)} week${diffDays >= 14 ? 's' : ''} ago`
+                if (diffDays < 365) return `${Math.floor(diffDays / 30)} month${diffDays >= 60 ? 's' : ''} ago`
+                return `${Math.floor(diffDays / 365)} year${diffDays >= 730 ? 's' : ''} ago`
+            }
         } catch (error) {
             console.error('Error formatting date:', error);
-            return 'Datum unbekannt';
+            return language === 'de' ? 'Datum unbekannt' : 'Date unknown';
         }
     },
 

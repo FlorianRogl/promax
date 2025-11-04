@@ -1,7 +1,9 @@
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Leistungen = () => {
+    const { t } = useTranslation();
     const location = useLocation();
 
     useEffect(() => {
@@ -43,10 +45,10 @@ const Leistungen = () => {
                     <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
                         <div className="animate-fade-in-up">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
-                                Leistungen
+                                {t('services.heroTitle')}
                             </h1>
                             <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#d97539] leading-relaxed">
-                                Umfassende Lösungen für komplexe Industrieanlagenprojekte
+                                {t('services.heroSubtitle')}
                             </p>
                         </div>
                     </div>
@@ -75,32 +77,32 @@ const Leistungen = () => {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">Ingenieurplanung</h2>
+                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">{t('services.engineeringTitle')}</h2>
                                             <div className="w-16 h-1 bg-[#d97539]"></div>
                                         </div>
                                     </div>
 
                                     {/* Anlagenkonzeption und Design */}
                                     <div className="mb-8">
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Anlagenkonzeption und Design</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('services.engineeringConceptTitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Investitionsentscheidungen bedürfen umsetzbarer Basisplanungen, realistischer Terminpläne und belastbarer Projektbudgets. Nicht zuletzt deshalb ist die, dem Realisierungsprojekt vorgelagerte Projektierung ein wichtiger Faktor für die richtigen Weichenstellungen am Weg zum Projekterfolg.
+                                            {t('services.engineeringConceptText')}
                                         </p>
                                     </div>
 
                                     {/* 3D-Modellierung und Berechnung */}
                                     <div className="mb-8">
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">3D-Modellierung und Berechnung</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('services.engineering3DTitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Schwerpunkte unserer Planungsaktivitäten bilden das Basic Engineering der klassischen Anlagenplanung (Layout, Schemata, Leitpläne für Bau, Stahlbau und Rohrleitungstechnik) sowie das komplette Detail-Engineering für die Rohrleitungstechnik und die Berechnungen.
+                                            {t('services.engineering3DText')}
                                         </p>
                                     </div>
 
                                     {/* LaserScan-Technologie */}
                                     <div>
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">LaserScan-Technologie</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('services.engineeringLaserTitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Wir bedienen uns aktueller Planungstools im 3D-Bereich und der Laservermessungstechnik.
+                                            {t('services.engineeringLaserText')}
                                         </p>
                                     </div>
                                 </div>
@@ -143,35 +145,35 @@ const Leistungen = () => {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">Operative Projektunterstützung</h2>
+                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">{t('services.projectSupportTitle')}</h2>
                                             <div className="w-16 h-1 bg-[#d97539]"></div>
                                         </div>
                                     </div>
 
                                     {/* Projektabwicklung */}
                                     <div className="mb-8">
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Projektabwicklung</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('services.projectExecutionTitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed mb-4">
-                                            In der Realisierungsphase von Projekten kommt es wesentlich darauf an, vordefinierte Zielsetzungen hinsichtlich Qualität-Termine-Kosten - etwa aus Verträgen - zu erfüllen oder im positiven Sinne zu übertreffen.
+                                            {t('services.projectExecutionText1')}
                                         </p>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Wir begegnen dieser Herausforderung mit professionellen Projektingenieuren, die operativ in den Bereichen Projektmanagement und technischer Projektabwicklung unterstützen.
+                                            {t('services.projectExecutionText2')}
                                         </p>
                                     </div>
 
                                     {/* Ausschreibung und Beschaffung */}
                                     <div className="mb-8">
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Ausschreibung und Beschaffung</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('services.tenderingTitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Wir übernehmen die professionelle Planung und Durchführung von Ausschreibungen von Materialien, Dienstleistungen und Anlagen. Dazu gehören die Definition von Anforderungen, die Betreuung von Lieferanten, die Prüfung und Bewertung von Angeboten sowie die Verhandlung von Konditionen.
+                                            {t('services.tenderingText')}
                                         </p>
                                     </div>
 
                                     {/* Fachbauüberwachung */}
                                     <div>
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Fachbauüberwachung</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('services.supervisionTitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Vor dem Hintergrund der ganzheitlichen Projektbetrachtung und einer der Planung entsprechenden Umsetzung vor Ort bieten wir insbesondere für Equipments und Rohrleitungstechnik, Leistungen der Ausführungsüberwachung. Alle der in diesem Bereich eingesetzten Mitarbeiter verfügen über umfangreiche Projekt- und Baustellenerfahrung und führen ein SCC-Zertifikat.
+                                            {t('services.supervisionText')}
                                         </p>
                                     </div>
                                 </div>

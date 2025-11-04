@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const VideoSection2 = () => {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const [yearsCount, setYearsCount] = useState(0);
@@ -143,14 +145,14 @@ const VideoSection2 = () => {
                         }}
                     >
                         <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{lineHeight: '1.2'}}>
-                            Wir gestalten Zukunft im<br />
-                            <span style={{color: '#d97539'}}>Industrieanlagenbau</span>
+                            {t('videoSection.title')}<br />
+                            <span style={{color: '#d97539'}}>{t('videoSection.titleHighlight')}</span>
                         </h1>
                         <div ref={yearRef} className="flex items-center justify-center space-x-4 mt-8">
                             <div className="years-display text-7xl md:text-8xl font-bold">{yearsCount}+</div>
                             <div className="text-left">
-                                <div className="text-2xl font-light">Jahre</div>
-                                <div className="text-2xl font-light">Erfahrung</div>
+                                <div className="text-2xl font-light">{t('videoSection.years')}</div>
+                                <div className="text-2xl font-light">{t('videoSection.experience')}</div>
                             </div>
                         </div>
                     </div>

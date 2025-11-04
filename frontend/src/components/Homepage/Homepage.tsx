@@ -1,21 +1,23 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Beaker, Zap, Pill, FileText, Utensils, Factory, Atom, Grid3x3 } from 'lucide-react';
 import VideoSection2 from "./VideoSection2.tsx";
 
 const Homepage = () => {
     const yearRef = useRef(null);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const industries = [
-        { name: 'Chemie', icon: Beaker },
-        { name: 'Energie & Umwelt', icon: Zap },
-        { name: 'Pharma', icon: Pill },
-        { name: 'Papier & Zellstoff', icon: FileText },
-        { name: 'Lebensmittel', icon: Utensils },
-        { name: 'Stahl', icon: Factory },
-        { name: 'Nuklear', icon: Atom },
-        { name: 'Weitere Branchen', icon: Grid3x3 }
+        { name: t('homepage.industry.chemistry'), icon: Beaker },
+        { name: t('homepage.industry.energy'), icon: Zap },
+        { name: t('homepage.industry.pharma'), icon: Pill },
+        { name: t('homepage.industry.paper'), icon: FileText },
+        { name: t('homepage.industry.food'), icon: Utensils },
+        { name: t('homepage.industry.steel'), icon: Factory },
+        { name: t('homepage.industry.nuclear'), icon: Atom },
+        { name: t('homepage.industry.other'), icon: Grid3x3 }
     ];
 
     return (
@@ -27,7 +29,7 @@ const Homepage = () => {
             <section className="py-20 bg-gray-50 relative">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-4 text-promax-blue">Unsere Leistungen</h2>
+                        <h2 className="text-4xl font-bold mb-4 text-promax-blue">{t('homepage.servicesTitle')}</h2>
                         <div className="w-24 h-1 bg-promax-orange mx-auto"></div>
                     </div>
 
@@ -54,22 +56,22 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-4">Ingenieurplanung</h3>
+                                <h3 className="text-2xl font-bold mb-4">{t('homepage.engineeringTitle')}</h3>
                                 <p className="text-sm mb-4 opacity-90 leading-relaxed">
-                                    Umfassende Planung und Konzeptentwicklung für Ihre Industrieanlagen mit modernsten Methoden und Tools.
+                                    {t('homepage.engineeringDesc')}
                                 </p>
                                 <ul className="text-left space-y-2 text-sm">
                                     <li className="flex items-center">
                                         <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange flex-shrink-0"></span>
-                                        Anlagenkonzeption & Design
+                                        {t('homepage.engineeringFeature1')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange flex-shrink-0"></span>
-                                        3D-Modellierung & Berechnung
+                                        {t('homepage.engineeringFeature2')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="w-2 h-2 rounded-full mr-3 bg-promax-orange flex-shrink-0"></span>
-                                        Laserscantechnologie
+                                        {t('homepage.engineeringFeature3')}
                                     </li>
                                 </ul>
                             </div>
@@ -98,22 +100,22 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-4">Operative Projektunterstützung</h3>
+                                <h3 className="text-2xl font-bold mb-4">{t('homepage.operativeTitle')}</h3>
                                 <p className="text-sm mb-4 opacity-90 leading-relaxed">
-                                    Individuelle Projektunterstützung von der Planung bis zur praktischen Umsetzung.
+                                    {t('homepage.operativeDesc')}
                                 </p>
                                 <ul className="text-left space-y-2 text-sm">
                                     <li className="flex items-center">
                                         <span className="w-2 h-2 rounded-full mr-3 bg-white flex-shrink-0"></span>
-                                        Projektabwicklung
+                                        {t('homepage.operativeFeature1')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="w-2 h-2 rounded-full mr-3 bg-white flex-shrink-0"></span>
-                                        Ausschreibung und Beschaffung
+                                        {t('homepage.operativeFeature2')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="w-2 h-2 rounded-full mr-3 bg-white flex-shrink-0"></span>
-                                        Fachbauüberwachung
+                                        {t('homepage.operativeFeature3')}
                                     </li>
                                 </ul>
                             </div>
@@ -126,10 +128,10 @@ const Homepage = () => {
             <section className="py-20 relative overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-4 text-promax-blue">Unsere Branchen</h2>
+                        <h2 className="text-4xl font-bold mb-4 text-promax-blue">{t('homepage.industriesTitle')}</h2>
                         <div className="w-24 h-1 mx-auto mb-6 bg-promax-orange"></div>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            Mit <span ref={yearRef} className="font-bold text-promax-blue"></span> jahrzehntelanger Expertise bedienen wir anspruchsvolle Industrien und setzen höchste Standards in Qualität und Sicherheit.
+                            <span ref={yearRef} className="font-bold text-promax-blue"></span> {t('homepage.industriesSubtitle')}
                         </p>
                     </div>
 
@@ -153,13 +155,13 @@ const Homepage = () => {
             <section className="py-32 relative bg-promax-blue">
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <h2 className="text-4xl font-bold text-white mb-6">
-                        Ihr Partner für anspruchsvollen Industrieanlagenbau
+                        {t('homepage.ctaTitle')}
                     </h2>
                     <button
                         onClick={() => navigate('/Kontakt')}
                         className="bg-promax-orange text-white px-8 py-4 text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-2xl"
                     >
-                        Projekt anfragen
+                        {t('homepage.ctaButton')}
                     </button>
                 </div>
             </section>

@@ -1,107 +1,129 @@
+
 import { defineType, defineField } from 'sanity'
+
+// Helper für mehrsprachige Textfelder
+const localizedString = (name, title) => ({
+    name,
+    title,
+    type: 'object',
+    fields: [
+        {
+            name: 'de',
+            title: 'Deutsch',
+            type: 'string'
+        },
+        {
+            name: 'en',
+            title: 'English',
+            type: 'string'
+        }
+    ]
+})
+
+// Helper für mehrsprachige Text-Felder (mehrzeilig)
+const localizedText = (name, title) => ({
+    name,
+    title,
+    type: 'object',
+    fields: [
+        {
+            name: 'de',
+            title: 'Deutsch',
+            type: 'text'
+        },
+        {
+            name: 'en',
+            title: 'English',
+            type: 'text'
+        }
+    ]
+})
+
+// Helper für mehrsprachige Array-Felder
+const localizedArray = (name, title) => ({
+    name,
+    title,
+    type: 'object',
+    fields: [
+        {
+            name: 'de',
+            title: 'Deutsch',
+            type: 'array',
+            of: [{ type: 'string' }]
+        },
+        {
+            name: 'en',
+            title: 'English',
+            type: 'array',
+            of: [{ type: 'string' }]
+        }
+    ]
+})
 
 export default defineType({
     name: 'job',
-    title: 'Stellenanzeige',
+    title: 'Stellenanzeige / Job Posting',
     type: 'document',
     fields: [
         defineField({
-            name: 'title',
-            title: 'Stellentitel',
-            type: 'string',
-            validation: Rule => Rule.required()
+            ...localizedString('title', 'Stellentitel / Job Title')
         }),
         defineField({
             name: 'department',
-            title: 'Abteilung',
+            title: 'Abteilung / Department',
             type: 'string',
             options: {
                 list: [
                     {title: 'Engineering', value: 'Engineering'},
                     {title: 'Design', value: 'Design'},
-                    {title: 'Projektmanagement', value: 'Projektmanagement'},
-                    {title: 'Automatisierung', value: 'Automatisierung'},
+                    {title: 'Projektmanagement / Project Management', value: 'Projektmanagement'},
+                    {title: 'Automatisierung / Automation', value: 'Automatisierung'},
                     {title: 'Management', value: 'Management'}
                 ]
-            },
-            validation: Rule => Rule.required()
+            }
         }),
         defineField({
-            name: 'location',
-            title: 'Standort',
-            type: 'string',
-            initialValue: 'Graz',
-            validation: Rule => Rule.required()
+            ...localizedString('location', 'Standort / Location')
         }),
         defineField({
-            name: 'type',
-            title: 'Beschäftigungsart',
-            type: 'string',
-            options: {
-                list: [
-                    {title: 'Vollzeit', value: 'Vollzeit'},
-                    {title: 'Teilzeit', value: 'Teilzeit'},
-                    {title: 'Praktikum', value: 'Praktikum'},
-                    {title: 'Werkstudent', value: 'Werkstudent'}
-                ]
-            },
-            validation: Rule => Rule.required()
+            ...localizedString('type', 'Beschäftigungsart / Employment Type')
         }),
         defineField({
-            name: 'experience',
-            title: 'Erforderliche Erfahrung',
-            type: 'string'
+            ...localizedString('experience', 'Erforderliche Erfahrung / Required Experience')
         }),
         defineField({
-            name: 'teamSize',
-            title: 'Teamgröße',
-            type: 'string'
+            ...localizedString('teamSize', 'Teamgröße / Team Size')
         }),
         defineField({
-            name: 'description',
-            title: 'Beschreibung',
-            type: 'text',
-            validation: Rule => Rule.required()
+            ...localizedText('description', 'Beschreibung / Description')
         }),
         defineField({
-            name: 'responsibilities',
-            title: 'Aufgabenbereiche',
-            type: 'array',
-            of: [{type: 'string'}],
-            validation: Rule => Rule.required()
+            ...localizedArray('responsibilities', 'Aufgabenbereiche / Responsibilities')
         }),
         defineField({
-            name: 'requirements',
-            title: 'Anforderungen',
-            type: 'array',
-            of: [{type: 'string'}],
-            validation: Rule => Rule.required()
+            ...localizedArray('requirements', 'Anforderungen / Requirements')
         }),
         defineField({
-            name: 'benefits',
-            title: 'Wir bieten',
-            type: 'array',
-            of: [{type: 'string'}],
-            validation: Rule => Rule.required()
+            ...localizedArray('benefits', 'Wir bieten / Benefits')
         }),
         defineField({
             name: 'isActive',
-            title: 'Aktiv',
+            title: 'Aktiv / Active',
             type: 'boolean',
-            description: 'Ist diese Stelle aktuell ausgeschrieben?',
+            description: 'Ist diese Stelle aktuell ausgeschrieben? / Is this position currently open?',
             initialValue: true
         }),
         defineField({
             name: 'publishedAt',
-            title: 'Veröffentlichungsdatum',
+            title: 'Veröffentlichungsdatum / Publication Date',
             type: 'datetime',
             initialValue: () => new Date().toISOString()
         }),
         defineField({
             name: 'orderRank',
-            title: 'Sortierung',
+            title: 'Sortierung / Order',
             type: 'number',
-            description: 'Niedrigere Zahlen werden zuerst angezeigt',
+            description: 'Niedrigere Zahlen werden zuerst angezeigt / Lower numbers are displayed first',
             initialValue: 100
         })
     ],
@@ -113,8 +135,9 @@ export default defineType({
         },
         prepare(selection) {
             const {title, department, active} = selection
+            const displayTitle = title?.de || 'Ohne Titel'
             return {
-                title: title || 'Ohne Titel',
+                title: displayTitle,
                 subtitle: `${department || 'Keine Abteilung'} ${active ? '✅ Aktiv' : '❌ Inaktiv'}`
             }
         }

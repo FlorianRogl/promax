@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from '../css/Footer.module.css';
 import {
     MapPin,
@@ -15,6 +16,7 @@ import iqnetLogo from '../assets/IQNet certification mark 2022.jpg';
 import agbPdf from '/documents/PROMAX_AGB Ingenieurbüros 2021 November.pdf';
 
 const Footer = () => {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
     const [showScrollTop, setShowScrollTop] = useState(false);
     const footerRef = useRef<HTMLElement>(null);
@@ -56,9 +58,9 @@ const Footer = () => {
     ];
 
     const legalLinks = [
-        { name: 'Impressum', path: '/Rechtliches#impressum', isExternal: false },
-        { name: 'Datenschutz', path: '/Rechtliches#datenschutz', isExternal: false },
-        { name: 'AGB', path: agbPdf, isExternal: true }
+        { name: t('legal.imprint'), path: '/Rechtliches#impressum', isExternal: false },
+        { name: t('legal.privacy'), path: '/Rechtliches#datenschutz', isExternal: false },
+        { name: t('legal.terms'), path: agbPdf, isExternal: true }
     ];
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -114,7 +116,7 @@ const Footer = () => {
                             marginBottom: '20px',
                             fontWeight: '600'
                         }}>
-                            Kontaktieren Sie uns
+                            {t('footer.contactUs')}
                         </h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                             {contactInfo.map((item, index) => (
@@ -144,7 +146,7 @@ const Footer = () => {
                             marginBottom: '20px',
                             fontWeight: '600'
                         }}>
-                            Rechtliches
+                            {t('footer.legal')}
                         </h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             {legalLinks.map((link, linkIndex) => (
@@ -195,7 +197,7 @@ const Footer = () => {
                             marginBottom: '20px',
                             fontWeight: '600'
                         }}>
-                            Zertifizierungen
+                            {t('footer.certifications')}
                         </h4>
                         <div style={{
                             display: 'flex',
@@ -249,7 +251,7 @@ const Footer = () => {
                         fontSize: '13px',
                         margin: 0
                     }}>
-                        &copy; 2025 PROMAX Project Management GesmbH. Alle Rechte vorbehalten.
+                        {t('footer.copyright')}
                     </p>
                 </div>
 
@@ -278,7 +280,7 @@ const Footer = () => {
                         onMouseEnter={handleButtonMouseEnter}
                         onMouseLeave={handleButtonMouseLeave}
                         className={`${styles.animateBounceIn}`}
-                        aria-label="Nach oben scrollen"
+                        aria-label={t('common.backToTop')}
                     >
                         <ArrowUp size={20} />
                     </button>

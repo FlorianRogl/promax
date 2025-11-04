@@ -1,7 +1,9 @@
 import {Helmet} from "@vuer-ai/react-helmet-async";
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Kontakt = () => {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -37,9 +39,24 @@ const Kontakt = () => {
                         }
                     })}
                 </script>
-                <title>Kontakt | PROMAX Project Management</title>
-                <meta name="description" content="Kontaktieren Sie uns für Projektanfragen, Beratung oder allgemeine Anfragen. Wir freuen uns auf Ihre Nachricht."/>
-                <link rel="canonical" href="https://www.promax.at/Kontakt"/>
+                <title>{t('contact.heroTitle')} | PROMAX Project Management</title>
+                <meta name="description" content={t('contact.ctaText')} />
+                <link rel="canonical" href="https://www.promax.at/Kontakt" />
+
+                {/* Open Graph für Social Media */}
+                <meta property="og:title" content={`${t('contact.heroTitle')} - PROMAX Projektmanagement`} />
+                <meta property="og:description" content={t('contact.ctaText')} />
+                <meta property="og:url" content="https://www.promax.at/Kontakt" />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="https://www.promax.at/og-image.jpg" />
+                <meta property="og:locale" content="de_AT" />
+                <meta property="og:site_name" content="PROMAX" />
+
+                {/* Twitter Cards */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={t('contact.heroTitle')} />
+                <meta name="twitter:description" content={t('contact.ctaText')} />
+                <meta name="twitter:image" content="https://www.promax.at/og-image.jpg" />
             </Helmet>
 
             <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
@@ -56,10 +73,10 @@ const Kontakt = () => {
                     <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
                         <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
-                                Kontakt
+                                {t('contact.heroTitle')}
                             </h1>
                             <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#d97539] leading-relaxed">
-                                Wir freuen uns auf Ihre Nachricht
+                                {t('contact.heroSubtitle')}
                             </p>
                         </div>
                     </div>
@@ -81,15 +98,15 @@ const Kontakt = () => {
                             {/* Direkte Kontaktmöglichkeiten */}
                             <div>
                                 <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
-                                    So erreichen Sie{' '}
-                                    <span className="text-[#1e3767] font-semibold">uns</span>
+                                    {t('contact.reachUsTitle')}{' '}
+                                    <span className="text-[#1e3767] font-semibold">{t('contact.reachUsTitleHighlight')}</span>
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-8"></div>
 
                                 <div className="space-y-8">
                                     {/* Telefon Graz */}
                                     <div className="group">
-                                        <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">Telefon Graz</p>
+                                        <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">{t('contact.phoneGraz')}</p>
                                         <a href="tel:+433162414393"
                                            className="text-lg text-[#1e3767] hover:text-[#d97539] transition-colors block font-medium">
                                             +43 316 241 4393
@@ -98,7 +115,7 @@ const Kontakt = () => {
 
                                     {/* Telefon Wien */}
                                     <div className="group">
-                                        <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">Telefon Wien</p>
+                                        <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">{t('contact.phoneVienna')}</p>
                                         <a href="tel:+431234567890"
                                            className="text-lg text-[#1e3767] hover:text-[#d97539] transition-colors block font-medium">
                                             +43 1 234 567 890
@@ -106,7 +123,7 @@ const Kontakt = () => {
                                     </div>
 
                                     <div className="group">
-                                        <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">E-Mail</p>
+                                        <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">{t('contact.email')}</p>
                                         <a href="mailto:office@promax.at"
                                            className="text-lg text-[#1e3767] hover:text-[#d97539] transition-colors font-medium">
                                             office@promax.at
@@ -118,8 +135,8 @@ const Kontakt = () => {
                             {/* Standorte */}
                             <div>
                                 <h3 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
-                                    Unsere{' '}
-                                    <span className="text-[#1e3767] font-semibold">Standorte</span>
+                                    {t('contact.locationsTitle')}{' '}
+                                    <span className="text-[#1e3767] font-semibold">{t('contact.locationsTitleHighlight')}</span>
                                 </h3>
                                 <div className="w-20 h-1 bg-[#d97539] mb-8"></div>
 
@@ -128,7 +145,7 @@ const Kontakt = () => {
                                     <div className="border-l-4 border-[#1e3767] pl-6 hover:border-[#d97539] transition-colors">
                                         <div className="flex items-center gap-2 mb-3">
                                             <div className="w-2 h-2 bg-[#1e3767] rounded-full"></div>
-                                            <h4 className="font-semibold text-[#1e3767] text-base">Hauptsitz Raaba-Grambach</h4>
+                                            <h4 className="font-semibold text-[#1e3767] text-base">{t('contact.headquartersTitle')}</h4>
                                         </div>
                                         <address className="not-italic text-gray-600 text-sm leading-relaxed">
                                             PROMAX Project Management GesmbH<br/>
@@ -142,7 +159,7 @@ const Kontakt = () => {
                                     <div className="border-l-4 border-[#d97539] pl-6 hover:border-[#1e3767] transition-colors">
                                         <div className="flex items-center gap-2 mb-3">
                                             <div className="w-2 h-2 bg-[#d97539] rounded-full"></div>
-                                            <h4 className="font-semibold text-[#1e3767] text-base">Zweigstelle Wien</h4>
+                                            <h4 className="font-semibold text-[#1e3767] text-base">{t('contact.branchViennaTitle')}</h4>
                                         </div>
                                         <address className="not-italic text-gray-600 text-sm leading-relaxed">
                                             PROMAX Project Management GesmbH<br/>
@@ -159,8 +176,8 @@ const Kontakt = () => {
                         <div className="lg:col-span-3">
                             <div>
                                 <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
-                                    Anfahrt zu unseren{' '}
-                                    <span className="text-[#1e3767] font-semibold">Standorten</span>
+                                    {t('contact.routeTitle')}{' '}
+                                    <span className="text-[#1e3767] font-semibold">{t('contact.routeTitleHighlight')}</span>
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-8"></div>
 
@@ -168,7 +185,7 @@ const Kontakt = () => {
                                     {/* Graz Karte */}
                                     <div className="bg-white shadow-xl border border-gray-100 overflow-hidden rounded-lg">
                                         <div className="p-4 sm:p-6 bg-[#1e3767]">
-                                            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Hauptsitz Raaba-Grambach</h3>
+                                            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{t('contact.headquartersTitle')}</h3>
                                             <p className="text-white text-opacity-90 text-sm">Parkring 18/F, 8074 Raaba-Grambach</p>
                                         </div>
                                         <iframe
@@ -186,7 +203,7 @@ const Kontakt = () => {
                                     {/* Wien Karte */}
                                     <div className="bg-white shadow-xl border border-gray-100 overflow-hidden rounded-lg">
                                         <div className="p-4 sm:p-6 bg-[#d97539]">
-                                            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Zweigstelle Wien</h3>
+                                            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{t('contact.branchViennaTitle')}</h3>
                                             <p className="text-white text-opacity-90 text-sm">Löwengasse 3/5, 1030 Wien</p>
                                         </div>
                                         <iframe
@@ -214,16 +231,16 @@ const Kontakt = () => {
 
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6">
-                            Bereit für Ihr nächstes <span className="font-semibold">Projekt?</span>
+                            {t('contact.ctaTitle')} <span className="font-semibold">{t('contact.ctaTitleHighlight')}</span>
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-10 max-w-2xl mx-auto">
-                            Lassen Sie uns gemeinsam Ihre Vision in die Realität umsetzen.
+                            {t('contact.ctaText')}
                         </p>
                         <a
                             href="mailto:office@promax.at"
                             className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
                         >
-                            Jetzt Kontakt aufnehmen
+                            {t('contact.ctaButton')}
                         </a>
                     </div>
                 </section>

@@ -1,28 +1,29 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from '../css/Navbar.module.css';
 
 import navLogo from '../assets/Final_V1-a.png'
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [hasInitiallyLoaded, setHasInitiallyLoaded] = useState(false);
     const location = useLocation();
+    const { t, i18n } = useTranslation();
+    const [currentLang, setCurrentLang] = useState(i18n.language);
 
     const navItems = [
-        { name: 'Unternehmen', path: '/Unternehmen' },
-        { name: 'Leistungen', path: '/Leistungen' },
-        { name: 'Technologien', path: '/Technologien' },
-        { name: 'Karriere', path: '/Karriere' },
-        { name: 'Kontakt', path: '/Kontakt' }
+        { name: t('nav.company'), path: '/Unternehmen' },
+        { name: t('nav.services'), path: '/Leistungen' },
+        { name: t('nav.technologies'), path: '/Technologien' },
+        { name: t('nav.career'), path: '/Karriere' },
+        { name: t('nav.contact'), path: '/Kontakt' }
     ];
 
-    // Nur beim ersten Laden der Website die Animation aktivieren
-    useEffect(() => {
-        if (!hasInitiallyLoaded) {
-            setHasInitiallyLoaded(true);
-        }
-    }, []);
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
+        setCurrentLang(lng);
+        localStorage.setItem('language', lng);
+    };
 
     // Schließe Mobile Menu beim Route-Wechsel
     useEffect(() => {
@@ -71,12 +72,12 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`${styles.navbar} ${hasInitiallyLoaded ? styles.navbarReload : ''}`} role="navigation" aria-label="Hauptnavigation">
+        <nav className={styles.navbar} role="navigation" aria-label="Hauptnavigation">
             <div className={styles.container}>
                 {/* Logo/Brand - Links positioniert */}
                 <Link
                     to="/"
-                    className={`${styles.brand} ${hasInitiallyLoaded ? styles.brandReload : ''}`}
+                    className={styles.brand}
                     onClick={(e) => handleNavClick(e)}
                     aria-label="PROMAX - Zur Startseite"
                 >
@@ -89,12 +90,11 @@ const Navbar = () => {
 
                 {/* Navigation Wrapper - Zentral positioniert */}
                 <div className={`${styles.navWrapper} ${isMobileMenuOpen ? styles.navWrapperOpen : ''}`}>
-                    <ul className={`${styles.navList} ${hasInitiallyLoaded ? styles.navListReload : ''}`} role="menubar">
-                        {navItems.map((item, index) => (
+                    <ul className={styles.navList} role="menubar">
+                        {navItems.map((item) => (
                             <li
                                 key={item.name}
-                                className={`${styles.navItem} ${hasInitiallyLoaded ? styles.navItemReload : ''}`}
-                                style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                                className={styles.navItem}
                                 role="none"
                             >
                                 <Link
@@ -113,10 +113,28 @@ const Navbar = () => {
 
                 {/* Accessibility Controls - Rechts positioniert */}
                 <div className={styles.navControls}>
+                    {/* Language Switcher */}
+                    <div className={styles.languageSwitcher}>
+                        <button
+                            className={`${styles.langBtn} ${currentLang === 'de' ? styles.langBtnActive : ''}`}
+                            onClick={() => changeLanguage('de')}
+                            aria-label="Deutsch"
+                        >
+                            DE
+                        </button>
+                        <span className={styles.langSeparator}>|</span>
+                        <button
+                            className={`${styles.langBtn} ${currentLang === 'en' ? styles.langBtnActive : ''}`}
+                            onClick={() => changeLanguage('en')}
+                            aria-label="English"
+                        >
+                            EN
+                        </button>
+                    </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.mobileMenuBtnOpen : ''} ${hasInitiallyLoaded ? styles.mobileMenuReload : ''}`}
+                        className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.mobileMenuBtnOpen : ''}`}
                         onClick={toggleMobileMenu}
                         onKeyDown={handleKeyDown}
                         aria-label={isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}

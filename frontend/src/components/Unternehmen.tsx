@@ -1,5 +1,6 @@
 import {useState, useEffect, JSX} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../index.css'
 import rogl from '../assets/RoglAndreas.jpg';
 import christian from '../assets/Christian.jpg';
@@ -19,16 +20,17 @@ interface Resource {
 }
 
 const Unternehmen = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
-    // Resources
+    // Resources - dynamically translated
     const resources: Resource[] = [
         {
-            title: "ISO 9001:2015 Zertifikat",
-            type: "PDF",
+            title: t('company.resourceISOCert'),
+            type: t('company.resourceTypePDF'),
             size: "1.1 MB",
-            downloadUrl: "/documents/Deutsch_ZER_0040281_259073.PDF", // Datei im public Ordner
+            downloadUrl: "/documents/Deutsch_ZER_0040281_259073.PDF",
             icon: (<svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                           d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -37,8 +39,8 @@ const Unternehmen = () => {
             color: 'orange'
         },
         {
-            title: "AGB Ingenieurbüros",
-            type: "PDF",
+            title: t('company.resourceAGB'),
+            type: t('company.resourceTypePDF'),
             size: "485 KB",
             downloadUrl: "/documents/PROMAX_AGB Ingenieurbüros 2021 November.pdf",
             icon: (<svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,6 +70,30 @@ const Unternehmen = () => {
 
         return () => observer.disconnect();
     }, []);
+
+    // Stats data
+    const stats = [
+        { number: t('company.statsYears'), label: t('company.statsYearsLabel') },
+        { number: t('company.statsExperts'), label: t('company.statsExpertsLabel') },
+        { number: t('company.statsProjects'), label: t('company.statsProjectsLabel') },
+        { number: t('company.statsCert'), label: t('company.statsCertLabel') }
+    ];
+
+    // Certification features
+    const certFeatures = [
+        {
+            title: t('company.certFeature1Title'),
+            description: t('company.certFeature1Text')
+        },
+        {
+            title: t('company.certFeature2Title'),
+            description: t('company.certFeature2Text')
+        },
+        {
+            title: t('company.certFeature3Title'),
+            description: t('company.certFeature3Text')
+        }
+    ];
 
     return (
         <>
@@ -105,13 +131,13 @@ const Unternehmen = () => {
                         }
                     })}
                 </script>
-                <title>Das Unternehmen - PROMAX Projektmanagement</title>
-                <meta name="description" content="PROMAX bietet seit 1999 exzellentes Projektmanagement im Industrieanlagenbau. Erfahren Sie mehr über unsere Expertise in Papier, Zellstoff, Pharma und Chemie." />
+                <title>{t('company.heroTitle')} - PROMAX Projektmanagement</title>
+                <meta name="description" content={t('company.aboutText1')} />
                 <link rel="canonical" href="https://www.promax.at/Unternehmen" />
 
                 {/* Open Graph für Social Media */}
-                <meta property="og:title" content="Das Unternehmen - PROMAX Projektmanagement" />
-                <meta property="og:description" content="PROMAX bietet seit 1999 exzellentes Projektmanagement im Industrieanlagenbau." />
+                <meta property="og:title" content={`${t('company.heroTitle')} - PROMAX Projektmanagement`} />
+                <meta property="og:description" content={t('company.aboutText1')} />
                 <meta property="og:url" content="https://www.promax.at/Unternehmen" />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content="https://www.promax.at/og-image.jpg" />
@@ -120,8 +146,8 @@ const Unternehmen = () => {
 
                 {/* Twitter Cards */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Das Unternehmen - PROMAX" />
-                <meta name="twitter:description" content="PROMAX bietet seit 1999 exzellentes Projektmanagement im Industrieanlagenbau." />
+                <meta name="twitter:title" content={t('company.heroTitle')} />
+                <meta name="twitter:description" content={t('company.aboutText1')} />
                 <meta name="twitter:image" content="https://www.promax.at/og-image.jpg" />
             </Helmet>
             <div className="min-h-screen bg-white overflow-x-hidden">
@@ -139,8 +165,8 @@ const Unternehmen = () => {
                     <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
                         <div className="animate-fade-in-up">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
-                                Know-how und Leidenschaft für Ihre Projekte
-                                <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">Seit 1999</span>
+                                {t('company.heroTitle')}
+                                <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">{t('company.heroSubtitle')}</span>
                             </h1>
                         </div>
                     </div>
@@ -161,12 +187,7 @@ const Unternehmen = () => {
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-                            {[
-                                { number: "25+", label: "Jahre Erfahrung" },
-                                { number: "35", label: "Experten" },
-                                { number: "500+", label: "Projekte" },
-                                { number: "ISO", label: "Zertifiziert" }
-                            ].map((stat, index) => (
+                            {stats.map((stat, index) => (
                                 <div
                                     key={stat.label}
                                     className={`text-center transition-all duration-700 ${
@@ -194,26 +215,26 @@ const Unternehmen = () => {
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                             <div className={`animate-fade-in-right ${visibleSections.has('about-section') ? 'opacity-100' : 'opacity-0'}`}>
                                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
-                                    Kompetenz trifft{' '}
-                                    <span className="text-[#1e3767] font-semibold">Innovation</span>
+                                    {t('company.aboutTitle')}{' '}
+                                    <span className="text-[#1e3767] font-semibold">{t('company.aboutTitleHighlight')}</span>
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
-                                    PROMAX steht seit 1999 für professionelle Projektumsetzung im Industrieanlagenbau. Mit unserem 35-köpfigen Team aus erfahrenen Experten begleiten wir komplexe Projekte in den unterschiedlichsten Branchen – von der Planung bis zur Inbetriebnahme.
+                                    {t('company.aboutText1')}
                                 </p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                     <div className="flex items-start space-x-3">
                                         <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2"></div>
                                         <div>
-                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">International tätig</h4>
-                                            <p className="text-xs sm:text-sm text-gray-600">Projekte weltweit</p>
+                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{t('company.aboutFeature1Title')}</h4>
+                                            <p className="text-xs sm:text-sm text-gray-600">{t('company.aboutFeature1Text')}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start space-x-3">
                                         <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2"></div>
                                         <div>
-                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">ISO 9001:2015</h4>
-                                            <p className="text-xs sm:text-sm text-gray-600">Zertifizierte Qualität</p>
+                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{t('company.aboutFeature2Title')}</h4>
+                                            <p className="text-xs sm:text-sm text-gray-600">{t('company.aboutFeature2Text')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -232,15 +253,16 @@ const Unternehmen = () => {
                     </div>
                 </section>
 
+                {/* Team Section */}
                 <section id="team-section" className="py-16 sm:py-20 lg:py-24 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="text-center mb-12 sm:mb-16">
                             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
-                                Ihre{' '}
-                                <span className="text-[#1e3767] font-semibold">Ansprechpartner</span>
+                                {t('company.teamTitle')}{' '}
+                                <span className="text-[#1e3767] font-semibold">{t('company.teamTitleHighlight')}</span>
                             </h2>
                             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-                                Erfahrene Experten für Ihre Projekte
+                                {t('company.teamSubtitle')}
                             </p>
                         </div>
 
@@ -261,8 +283,8 @@ const Unternehmen = () => {
                                         />
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">Ing. Andreas Rogl</h3>
-                                    <p className="text-[#d97539] font-medium mb-2">Geschäftsführer</p>
-                                    <p className="text-sm text-gray-600 mb-2">Zentrale Grambach</p>
+                                    <p className="text-[#d97539] font-medium mb-2">{t('company.teamCEO')}</p>
+                                    <p className="text-sm text-gray-600 mb-2">{t('company.teamHeadquarters')}</p>
                                     <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">andreas.rogl@promax.at</p>
 
                                     <div className="flex justify-center space-x-4">
@@ -302,8 +324,8 @@ const Unternehmen = () => {
                                         />
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">DI Christian Walter</h3>
-                                    <p className="text-[#d97539] font-medium mb-2">Niederlassungsleitung</p>
-                                    <p className="text-sm text-gray-600 mb-2">Niederlassung Wien</p>
+                                    <p className="text-[#d97539] font-medium mb-2">{t('company.teamBranchManager')}</p>
+                                    <p className="text-sm text-gray-600 mb-2">{t('company.teamBranchVienna')}</p>
                                     <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">christian.walter@promax.at</p>
 
                                     <div className="flex justify-center space-x-4">
@@ -346,27 +368,22 @@ const Unternehmen = () => {
 
                             <div className="animate-fade-in-right">
                                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
-                                    Wofür{' '}
-                                    <span className="text-[#1e3767] font-semibold">PROMAX</span>{' '}
-                                    steht
+                                    {t('company.cultureTitle')}{' '}
+                                    <span className="text-[#1e3767] font-semibold">{t('company.cultureTitleMiddle')}</span>{' '}
+                                    {t('company.cultureSubtitle')}
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
 
                                 <h3 className="text-xl sm:text-2xl font-medium text-[#1e3767] mb-4">
-                                    Unsere Unternehmenskultur
+                                    {t('company.cultureHeading')}
                                 </h3>
 
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                                    Bei PROMAX Project Management GesmbH verbinden wir Teamgeist, offene Kommunikation und
-                                    Vertrauen mit gezielter Gesundheitsförderung. Flache Hierarchien, ein kooperatives
-                                    Arbeitsumfeld und Programme für das körperliche und geistige Wohlbefinden unserer
-                                    Mitarbeiter schaffen Raum für Innovation, Motivation und nachhaltigen Erfolg.
+                                    {t('company.cultureText1')}
                                 </p>
 
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                                    So entsteht eine Unternehmenskultur, die soziale Kompetenz, Wertschätzung und
-                                    partnerschaftliche Zusammenarbeit in den Mittelpunkt stellt – für unsere Teams,
-                                    Kunden und Partner.
+                                    {t('company.cultureText2')}
                                 </p>
 
                                 <div className="space-y-3 sm:space-y-4">
@@ -374,19 +391,19 @@ const Unternehmen = () => {
                                         <div className="flex-shrink-0 mt-1">
                                             <CheckIcon />
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">Teamgeist & Zusammenarbeit</span>
+                                        <span className="text-sm sm:text-base text-gray-700 font-medium">{t('company.cultureFeature1')}</span>
                                     </div>
                                     <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                                         <div className="flex-shrink-0 mt-1">
                                             <CheckIcon />
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">Offene Kommunikation</span>
+                                        <span className="text-sm sm:text-base text-gray-700 font-medium">{t('company.cultureFeature2')}</span>
                                     </div>
                                     <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                                         <div className="flex-shrink-0 mt-1">
                                             <CheckIcon />
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">Innovation & nachhaltiger Erfolg</span>
+                                        <span className="text-sm sm:text-base text-gray-700 font-medium">{t('company.cultureFeature3')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -400,30 +417,16 @@ const Unternehmen = () => {
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                             <div>
                                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
-                                    Zertifizierte{' '}
-                                    <span className="text-[#1e3767] font-semibold">Qualität</span>
+                                    {t('company.certTitle')}{' '}
+                                    <span className="text-[#1e3767] font-semibold">{t('company.certTitleHighlight')}</span>
                                 </h2>
                                 <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
                                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                                    PROMAX Project Management GesmbH ist nach ISO 9001:2015 zertifiziert und
-                                    gewährleistet damit höchste Qualitätsstandards in allen Bereichen unserer Dienstleistungen.
+                                    {t('company.certText')}
                                 </p>
 
                                 <div className="space-y-4 sm:space-y-6">
-                                    {[
-                                        {
-                                            title: "Qualitätsmanagementsystem",
-                                            description: "Systematische Prozesse für konstante Qualität und kontinuierliche Verbesserung"
-                                        },
-                                        {
-                                            title: "Kundenorientierung",
-                                            description: "Fokus auf Kundenzufriedenheit und Erfüllung von Kundenanforderungen"
-                                        },
-                                        {
-                                            title: "Prozessverbesserung",
-                                            description: "Regelmäßige Bewertung und Optimierung aller Geschäftsprozesse"
-                                        }
-                                    ].map((item, index) => (
+                                    {certFeatures.map((item, index) => (
                                         <div key={index} className="flex items-start space-x-3 sm:space-x-4">
                                             <div className="flex-shrink-0 mt-1">
                                                 <CheckIcon />
@@ -473,8 +476,8 @@ const Unternehmen = () => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="text-center mb-12 sm:mb-16">
                             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 text-center">
-                                Wichtige Dokumente und Informationen zum{' '}
-                                <span className="text-[#d97539] font-semibold">Download</span>
+                                {t('company.resourcesTitle')}{' '}
+                                <span className="text-[#d97539] font-semibold">{t('company.resourcesTitleHighlight')}</span>
                             </h2>
                         </div>
 
@@ -508,7 +511,7 @@ const Unternehmen = () => {
                                                 resource.color === 'blue' ? 'text-[#1e3767]' : 'text-[#d97539]'
                                             } font-medium pt-2 text-sm sm:text-base`}
                                         >
-                                            <span>Download</span>
+                                            <span>{t('company.resourceDownload')}</span>
                                             <svg
                                                 className="w-4 h-4 ml-2"
                                                 fill="none"
@@ -538,106 +541,105 @@ const Unternehmen = () => {
 
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6">
-                            Bereit für Ihr nächstes <span className="font-semibold">Projekt?</span>
+                            {t('company.ctaTitle')} <span className="font-semibold">{t('company.ctaTitleHighlight')}</span>
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-10 max-w-2xl mx-auto">
-                            Lassen Sie uns gemeinsam Ihre Vision in die Realität umsetzen.
-                            Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch.
+                            {t('company.ctaText')}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button
                                 onClick={() => navigate('/Kontakt')}
                                 className="px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
                             >
-                                Projekt besprechen
+                                {t('company.ctaButton')}
                             </button>
+                        </div>
                     </div>
-            </div>
-        </section>
+                </section>
 
-{/* Add required styles */}
-    <style>{`
-                @keyframes fade-in-up {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                @keyframes fade-in-right {
-                    from {
-                        opacity: 0;
-                        transform: translateX(-30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-                
-                @keyframes fade-in-left {
-                    from {
-                        opacity: 0;
-                        transform: translateX(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-                
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.8s ease-out forwards;
-                }
-                
-                .animate-fade-in-right {
-                    animation: fade-in-right 0.8s ease-out forwards;
-                }
-                
-                .animate-fade-in-left {
-                    animation: fade-in-left 0.8s ease-out forwards;
-                }
-                
-                .bg-pattern {
-                    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-                }
-                
-                .line-clamp-2 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-                
-                /* Mobile touch optimizations */
-                @media (max-width: 640px) {
-                    .hover\\:scale-105:hover {
-                        transform: none;
+                {/* Add required styles */}
+                <style>{`
+                    @keyframes fade-in-up {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
                     }
                     
-                    .hover\\:-translate-y-1:hover {
-                        transform: none;
+                    @keyframes fade-in-right {
+                        from {
+                            opacity: 0;
+                            transform: translateX(-30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
                     }
                     
-                    .hover\\:-translate-y-2:hover {
-                        transform: none;
+                    @keyframes fade-in-left {
+                        from {
+                            opacity: 0;
+                            transform: translateX(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
                     }
-                }
-                
-                /* Improve text legibility on mobile */
-                @media (max-width: 640px) {
-                    body {
-                        -webkit-text-size-adjust: 100%;
+                    
+                    .animate-fade-in-up {
+                        animation: fade-in-up 0.8s ease-out forwards;
                     }
-                }
-            `}</style>
-</div>
-</>
-);
+                    
+                    .animate-fade-in-right {
+                        animation: fade-in-right 0.8s ease-out forwards;
+                    }
+                    
+                    .animate-fade-in-left {
+                        animation: fade-in-left 0.8s ease-out forwards;
+                    }
+                    
+                    .bg-pattern {
+                        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                    }
+                    
+                    .line-clamp-2 {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                    
+                    /* Mobile touch optimizations */
+                    @media (max-width: 640px) {
+                        .hover\\:scale-105:hover {
+                            transform: none;
+                        }
+                        
+                        .hover\\:-translate-y-1:hover {
+                            transform: none;
+                        }
+                        
+                        .hover\\:-translate-y-2:hover {
+                            transform: none;
+                        }
+                    }
+                    
+                    /* Improve text legibility on mobile */
+                    @media (max-width: 640px) {
+                        body {
+                            -webkit-text-size-adjust: 100%;
+                        }
+                    }
+                `}</style>
+            </div>
+        </>
+    );
 };
 
 export default Unternehmen;

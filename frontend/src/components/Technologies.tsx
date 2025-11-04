@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import tech1 from '../assets/tech1.jpg';
 import tech2 from '../assets/ROHR2.jpg';
 import tech3 from '../assets/tech3.jpg';
@@ -7,6 +8,8 @@ import tech4 from '../assets/tech4.jpg';
 
 
 const Technologies = () => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         // Scroll to section if hash exists in URL
         const hash = window.location.hash;
@@ -46,10 +49,10 @@ const Technologies = () => {
                     <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
                         <div className="animate-fade-in-up">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
-                                Technologien
+                                {t('technologies.heroTitle')}
                             </h1>
                             <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#d97539] leading-relaxed">
-                                Innovative Lösungen für präzise Planung und effiziente Projektabwicklung
+                                {t('technologies.heroSubtitle')}
                             </p>
                         </div>
                     </div>
@@ -78,47 +81,47 @@ const Technologies = () => {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">Planungssoftware</h2>
+                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">{t('technologies.planningTitle')}</h2>
                                             <div className="w-16 h-1 bg-[#d97539]"></div>
                                         </div>
                                     </div>
 
                                     <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                                        Bei der Umsetzung unserer Planungsleistungen setzen wir auf modernste Softwarelösungen, die eine exakte Bearbeitung unserer Projekte ermöglichen.
+                                        {t('technologies.planningIntro')}
                                     </p>
 
                                     <div className="mb-8">
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Leistungsmerkmale:</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('technologies.planningFeaturesTitle')}</h3>
                                         <ul className="space-y-2 text-gray-600 text-lg">
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                3D-Modellierung und Simulation
+                                                {t('technologies.planningFeature1')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Parametrische Konstruktion
+                                                {t('technologies.planningFeature2')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Kollisionsprüfungen und Optimierung
+                                                {t('technologies.planningFeature3')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Automatisierte Zeichnungsableitung
+                                                {t('technologies.planningFeature4')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Material- und Mengenermittlung
+                                                {t('technologies.planningFeature5')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Umfassende Strukturanalysen und Berechnungen
+                                                {t('technologies.planningFeature6')}
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div>
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Programme und Systeme:</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('technologies.planningProgramsTitle')}</h3>
                                         <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-gray-600 text-lg">
                                             <div>• AutoCAD</div>
                                             <div>• E3D</div>
@@ -188,45 +191,45 @@ const Technologies = () => {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">3D-Laserscanning</h2>
+                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">{t('technologies.scanningTitle')}</h2>
                                             <div className="w-16 h-1 bg-[#d97539]"></div>
                                         </div>
                                     </div>
 
                                     <p className="text-gray-600 text-lg leading-relaxed mb-4">
-                                        Mit moderner Laserscan-Technologie erfassen wir Gebäude und Anlagen präzise und detailgetreu. Die daraus entstehenden Punktwolken bilden eine verlässliche Grundlage für unsere 3D-Planung und ermöglichen eine sichere Dokumentation des Bestands.
+                                        {t('technologies.scanningDesc1')}
                                     </p>
 
                                     <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                                        So stellen wir höchste Genauigkeit, Transparenz und Nachvollziehbarkeit in jedem Projekt sicher.
+                                        {t('technologies.scanningDesc2')}
                                     </p>
 
                                     <div>
-                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">Leistungsspezifikationen:</h3>
+                                        <h3 className="text-2xl font-semibold text-[#1e3767] mb-4">{t('technologies.scanningSpecsTitle')}</h3>
                                         <ul className="space-y-2 text-gray-600 text-lg">
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Reichweite 0,5-200m
+                                                {t('technologies.scanningSpec1')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Entfernungsmessung: +/-1mm auf 10m
+                                                {t('technologies.scanningSpec2')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Winkelgenauigkeit: 19 Bogensek.
+                                                {t('technologies.scanningSpec3')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                LaserHDR: Ja
+                                                {t('technologies.scanningSpec4')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Max. Geschwindigkeit: Bis zu 2 MPts/Sek.
+                                                {t('technologies.scanningSpec5')}
                                             </li>
                                             <li className="flex items-start">
                                                 <span className="text-[#d97539] mr-2">•</span>
-                                                Farbauflösung: Bis zu 266 MPx Farbe
+                                                {t('technologies.scanningSpec6')}
                                             </li>
                                         </ul>
                                     </div>
@@ -250,31 +253,31 @@ const Technologies = () => {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">Virtual & Augmented Reality</h2>
+                                            <h2 className="text-4xl font-light text-[#1e3767] mb-2">{t('technologies.vrTitle')}</h2>
                                             <div className="w-16 h-1 bg-[#d97539]"></div>
                                         </div>
                                     </div>
 
                                     <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                                        Als technisches Büro nutzen wir modernste Technologien, um Planungen noch verständlicher und erlebbarer zu machen. Mit Virtual Reality (VR) und Augmented Reality (AR) können unsere Kunden Projekte bereits vor der Umsetzung realitätsnah erleben.
+                                        {t('technologies.vrIntro')}
                                     </p>
 
                                     <div className="mb-6">
-                                        <h3 className="text-xl font-semibold text-[#1e3767] mb-3">Virtual Reality (VR):</h3>
+                                        <h3 className="text-xl font-semibold text-[#1e3767] mb-3">{t('technologies.vrSubtitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Begehung von 3D-Modellen in einer virtuellen Umgebung – ideal für Präsentationen, Abstimmungen und Entscheidungsprozesse.
+                                            {t('technologies.vrDesc')}
                                         </p>
                                     </div>
 
                                     <div className="mb-8">
-                                        <h3 className="text-xl font-semibold text-[#1e3767] mb-3">Augmented Reality (AR):</h3>
+                                        <h3 className="text-xl font-semibold text-[#1e3767] mb-3">{t('technologies.arSubtitle')}</h3>
                                         <p className="text-gray-600 text-lg leading-relaxed">
-                                            Integration von 3D-Planungen direkt in die reale Umgebung – für ein präzises Verständnis von Dimensionen und Zusammenhängen.
+                                            {t('technologies.arDesc')}
                                         </p>
                                     </div>
 
                                     <p className="text-gray-600 text-lg leading-relaxed">
-                                        Damit ermöglichen wir transparente Abläufe, verlässliche Planungen und eine optimale Kommunikation zwischen allen Beteiligten.
+                                        {t('technologies.vrConclusion')}
                                     </p>
                                 </div>
 
