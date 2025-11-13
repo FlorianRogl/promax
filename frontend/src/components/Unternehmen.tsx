@@ -150,11 +150,15 @@ const Unternehmen = () => {
                 <meta name="twitter:description" content={t('company.aboutText1')} />
                 <meta name="twitter:image" content="https://www.promax.at/og-image.jpg" />
             </Helmet>
-            <div className="min-h-screen bg-white overflow-x-hidden">
+            <div className="min-h-screen bg-white overflow-x-hidden" style={{
+                wordBreak: 'normal',
+                overflowWrap: 'break-word',
+                hyphens: 'auto'
+            }}>
                 {/* Hero Section with Parallax */}
                 <section
                     id="hero-section"
-                    className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+                    className="relative min-h-[100svh] flex items-center justify-center bg-cover bg-center"
                     style={{
                         backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('/unternehmenPic.jpg')`,
                         backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
@@ -162,31 +166,31 @@ const Unternehmen = () => {
                 >
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
 
-                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                    <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                         <div className="animate-fade-in-up">
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
+                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto leading-tight">
                                 {t('company.heroTitle')}
                                 <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">{t('company.heroSubtitle')}</span>
                             </h1>
                         </div>
                     </div>
 
-                    {/* Scroll indicator - hidden on mobile */}
-                    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-                        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-                            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+                    {/* Scroll indicator */}
+                    <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+                        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center">
+                            <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
                         </div>
                     </div>
                 </section>
 
                 {/* Stats Section */}
-                <section id="stats-section" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
+                <section id="stats-section" className="py-10 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0 bg-pattern"></div>
                     </div>
 
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
                             {stats.map((stat, index) => (
                                 <div
                                     key={stat.label}
@@ -197,10 +201,10 @@ const Unternehmen = () => {
                                     }`}
                                     style={{ transitionDelay: `${index * 200}ms` }}
                                 >
-                                    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white mb-2">
+                                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white mb-1 sm:mb-2">
                                         {stat.number}
                                     </div>
-                                    <div className="text-xs sm:text-sm uppercase tracking-wider text-gray-300">
+                                    <div className="text-xs sm:text-sm uppercase tracking-wider text-gray-300 break-words px-2">
                                         {stat.label}
                                     </div>
                                 </div>
@@ -210,37 +214,37 @@ const Unternehmen = () => {
                 </section>
 
                 {/* About Section */}
-                <section id="about-section" className="py-16 sm:py-20 lg:py-24 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <section id="about-section" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
                             <div className={`animate-fade-in-right ${visibleSections.has('about-section') ? 'opacity-100' : 'opacity-0'}`}>
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto">
                                     {t('company.aboutTitle')}{' '}
                                     <span className="text-[#1e3767] font-semibold">{t('company.aboutTitleHighlight')}</span>
                                 </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
+                                <div className="w-16 sm:w-20 h-1 bg-[#d97539] mb-4 sm:mb-6 md:mb-8"></div>
+                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 break-words">
                                     {t('company.aboutText1')}
                                 </p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                                    <div className="flex items-start space-x-3">
-                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2"></div>
-                                        <div>
-                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{t('company.aboutFeature1Title')}</h4>
-                                            <p className="text-xs sm:text-sm text-gray-600">{t('company.aboutFeature1Text')}</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                                    <div className="flex items-start space-x-2 sm:space-x-3">
+                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2 flex-shrink-0"></div>
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base break-words">{t('company.aboutFeature1Title')}</h4>
+                                            <p className="text-xs sm:text-sm text-gray-600 break-words">{t('company.aboutFeature1Text')}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-start space-x-3">
-                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2"></div>
-                                        <div>
-                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{t('company.aboutFeature2Title')}</h4>
-                                            <p className="text-xs sm:text-sm text-gray-600">{t('company.aboutFeature2Text')}</p>
+                                    <div className="flex items-start space-x-2 sm:space-x-3">
+                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2 flex-shrink-0"></div>
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base break-words">{t('company.aboutFeature2Title')}</h4>
+                                            <p className="text-xs sm:text-sm text-gray-600 break-words">{t('company.aboutFeature2Text')}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Image - Hidden on mobile as requested */}
+                            {/* Image */}
                             <div className={`hidden lg:block relative animate-fade-in-left ${visibleSections.has('about-section') ? 'opacity-100' : 'opacity-0'}`}>
                                 <div className="absolute -inset-4 bg-gradient-to-r from-[#1e3767] to-[#d97539] rounded-lg opacity-10 blur-lg"></div>
                                 <img
@@ -254,40 +258,40 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Team Section */}
-                <section id="team-section" className="py-16 sm:py-20 lg:py-24 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-12 sm:mb-16">
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
+                <section id="team-section" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-3 sm:mb-4 break-words hyphens-auto px-2">
                                 {t('company.teamTitle')}{' '}
                                 <span className="text-[#1e3767] font-semibold">{t('company.teamTitleHighlight')}</span>
                             </h2>
-                            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto break-words px-4">
                                 {t('company.teamSubtitle')}
                             </p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
                             {/* Ing. Andreas Rogl */}
                             <div
-                                className={`bg-white rounded-lg p-6 sm:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
+                                className={`bg-white rounded-lg p-4 sm:p-6 md:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
                                     visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 }`}
                                 style={{animationDelay: `0ms`}}
                             >
                                 <div className="text-center">
-                                    <div className="w-32 h-40 sm:w-48 sm:h-60 mx-auto mb-4 sm:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    <div className="w-28 h-36 sm:w-36 sm:h-44 md:w-48 md:h-60 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg overflow-hidden bg-gray-100">
                                         <img
                                             src={rogl}
                                             alt="Ing. Andreas Rogl"
                                             className="w-full h-full object-cover object-top"
                                         />
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">Ing. Andreas Rogl</h3>
-                                    <p className="text-[#d97539] font-medium mb-2">{t('company.teamCEO')}</p>
-                                    <p className="text-sm text-gray-600 mb-2">{t('company.teamHeadquarters')}</p>
-                                    <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">andreas.rogl@promax.at</p>
+                                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2 break-words">Ing. Andreas Rogl</h3>
+                                    <p className="text-[#d97539] font-medium mb-1 sm:mb-2 text-sm sm:text-base">{t('company.teamCEO')}</p>
+                                    <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">{t('company.teamHeadquarters')}</p>
+                                    <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 md:mb-6 break-all">andreas.rogl@promax.at</p>
 
-                                    <div className="flex justify-center space-x-4">
+                                    <div className="flex justify-center space-x-3 sm:space-x-4">
                                         <a
                                             href="mailto:andreas.rogl@promax.at"
                                             className="text-gray-400 hover:text-[#1e3767] transition-colors"
@@ -310,25 +314,25 @@ const Unternehmen = () => {
 
                             {/* DI Christian Walter */}
                             <div
-                                className={`bg-white rounded-lg p-6 sm:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
+                                className={`bg-white rounded-lg p-4 sm:p-6 md:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
                                     visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 }`}
                                 style={{animationDelay: `200ms`}}
                             >
                                 <div className="text-center">
-                                    <div className="w-32 h-40 sm:w-48 sm:h-60 mx-auto mb-4 sm:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    <div className="w-28 h-36 sm:w-36 sm:h-44 md:w-48 md:h-60 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg overflow-hidden bg-gray-100">
                                         <img
                                             src={christian}
                                             alt="DI Christian Walter"
                                             className="w-full h-full object-cover object-top"
                                         />
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">DI Christian Walter</h3>
-                                    <p className="text-[#d97539] font-medium mb-2">{t('company.teamBranchManager')}</p>
-                                    <p className="text-sm text-gray-600 mb-2">{t('company.teamBranchVienna')}</p>
-                                    <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">christian.walter@promax.at</p>
+                                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2 break-words">DI Christian Walter</h3>
+                                    <p className="text-[#d97539] font-medium mb-1 sm:mb-2 text-sm sm:text-base">{t('company.teamBranchManager')}</p>
+                                    <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">{t('company.teamBranchVienna')}</p>
+                                    <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 md:mb-6 break-all">christian.walter@promax.at</p>
 
-                                    <div className="flex justify-center space-x-4">
+                                    <div className="flex justify-center space-x-3 sm:space-x-4">
                                         <a
                                             href="mailto:christian.walter@promax.at"
                                             className="text-gray-400 hover:text-[#1e3767] transition-colors"
@@ -353,10 +357,10 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Unternehmenskultur Section */}
-                <section id="unternehmenskultur-section" className="py-16 sm:py-20 lg:py-24 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                            {/* Image - Hidden on mobile as requested */}
+                <section id="unternehmenskultur-section" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
+                            {/* Image */}
                             <div className="hidden lg:block relative animate-fade-in-left">
                                 <div className="absolute -inset-4 bg-gradient-to-r from-[#d97539] to-[#1e3767] rounded-lg opacity-10 blur-lg"></div>
                                 <img
@@ -367,43 +371,43 @@ const Unternehmen = () => {
                             </div>
 
                             <div className="animate-fade-in-right">
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto">
                                     {t('company.cultureTitle')}{' '}
                                     <span className="text-[#1e3767] font-semibold">{t('company.cultureTitleMiddle')}</span>{' '}
                                     {t('company.cultureSubtitle')}
                                 </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
+                                <div className="w-16 sm:w-20 h-1 bg-[#d97539] mb-4 sm:mb-6 md:mb-8"></div>
 
-                                <h3 className="text-xl sm:text-2xl font-medium text-[#1e3767] mb-4">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-[#1e3767] mb-3 sm:mb-4 break-words">
                                     {t('company.cultureHeading')}
                                 </h3>
 
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
+                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 md:mb-8 break-words">
                                     {t('company.cultureText1')}
                                 </p>
 
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
+                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 md:mb-8 break-words">
                                     {t('company.cultureText2')}
                                 </p>
 
-                                <div className="space-y-3 sm:space-y-4">
-                                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                        <div className="flex-shrink-0 mt-1">
+                                <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4 p-2 sm:p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                        <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                             <CheckIcon />
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">{t('company.cultureFeature1')}</span>
+                                        <span className="text-xs sm:text-sm md:text-base text-gray-700 font-medium break-words flex-1">{t('company.cultureFeature1')}</span>
                                     </div>
-                                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                        <div className="flex-shrink-0 mt-1">
+                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4 p-2 sm:p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                        <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                             <CheckIcon />
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">{t('company.cultureFeature2')}</span>
+                                        <span className="text-xs sm:text-sm md:text-base text-gray-700 font-medium break-words flex-1">{t('company.cultureFeature2')}</span>
                                     </div>
-                                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                        <div className="flex-shrink-0 mt-1">
+                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4 p-2 sm:p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                        <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                             <CheckIcon />
                                         </div>
-                                        <span className="text-sm sm:text-base text-gray-700 font-medium">{t('company.cultureFeature3')}</span>
+                                        <span className="text-xs sm:text-sm md:text-base text-gray-700 font-medium break-words flex-1">{t('company.cultureFeature3')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -412,28 +416,28 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Certification Section */}
-                <section id="certification" className="py-16 sm:py-20 lg:py-24 bg-gray-50">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <section id="certification" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
                             <div>
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto">
                                     {t('company.certTitle')}{' '}
                                     <span className="text-[#1e3767] font-semibold">{t('company.certTitleHighlight')}</span>
                                 </h2>
-                                <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
+                                <div className="w-16 sm:w-20 h-1 bg-[#d97539] mb-4 sm:mb-6 md:mb-8"></div>
+                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 md:mb-8 break-words">
                                     {t('company.certText')}
                                 </p>
 
-                                <div className="space-y-4 sm:space-y-6">
+                                <div className="space-y-3 sm:space-y-4 md:space-y-6">
                                     {certFeatures.map((item, index) => (
-                                        <div key={index} className="flex items-start space-x-3 sm:space-x-4">
-                                            <div className="flex-shrink-0 mt-1">
+                                        <div key={index} className="flex items-start space-x-2 sm:space-x-3 md:space-x-4">
+                                            <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                                 <CheckIcon />
                                             </div>
-                                            <div>
-                                                <h4 className="text-base sm:text-lg font-medium text-gray-900 mb-1 sm:mb-2">{item.title}</h4>
-                                                <p className="text-sm sm:text-base text-gray-600">{item.description}</p>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-1 sm:mb-2 break-words">{item.title}</h4>
+                                                <p className="text-xs sm:text-sm md:text-base text-gray-600 break-words">{item.description}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -442,12 +446,12 @@ const Unternehmen = () => {
 
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-bl from-blue-500/5 to-orange-400/5 rounded-2xl transform rotate-2"></div>
-                                <div className="relative bg-white rounded-2xl shadow-xl p-6 sm:p-8 space-y-4 sm:space-y-6">
+                                <div className="relative bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4 md:space-y-6">
                                     <div className="flex justify-center">
                                         <img
                                             src={iso}
                                             alt="Quality Austria ISO 9001:2015 Zertifizierung"
-                                            className="h-20 sm:h-24 w-auto object-contain"
+                                            className="h-16 sm:h-20 md:h-24 w-auto object-contain"
                                         />
                                     </div>
 
@@ -457,11 +461,11 @@ const Unternehmen = () => {
                                         <img
                                             src={iq}
                                             alt="IQNet Certified Management System"
-                                            className="h-12 sm:h-16 w-auto object-contain"
+                                            className="h-10 sm:h-12 md:h-16 w-auto object-contain"
                                         />
                                     </div>
 
-                                    <div className="text-center space-y-2 pt-2 sm:pt-4">
+                                    <div className="text-center space-y-1 sm:space-y-2 pt-2 sm:pt-4">
                                         <p className="text-xs sm:text-sm font-medium text-slate-700">ISO 9001:2015</p>
                                         <p className="text-xs text-slate-500">Qualitätsmanagementsystem</p>
                                     </div>
@@ -472,48 +476,48 @@ const Unternehmen = () => {
                 </section>
 
                 {/* Resources/Downloads Section */}
-                <section id="resources" className="py-16 sm:py-20 lg:py-24 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-12 sm:mb-16">
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 text-center">
+                <section id="resources" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-3 sm:mb-4 text-center break-words hyphens-auto px-2">
                                 {t('company.resourcesTitle')}{' '}
                                 <span className="text-[#d97539] font-semibold">{t('company.resourcesTitleHighlight')}</span>
                             </h2>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
                             {resources.map((resource, index) => (
                                 <a
                                     key={resource.title}
                                     href={resource.downloadUrl}
                                     download
-                                    className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-6 sm:p-8 cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 block"
+                                    className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-4 sm:p-6 md:p-8 cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 block"
                                     style={{ animationDelay: `${index * 100}ms` }}
                                 >
-                                    <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4">
+                                    <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3 md:space-y-4">
                                         <div
-                                            className={`w-12 h-12 sm:w-16 sm:h-16 ${
+                                            className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 ${
                                                 resource.color === 'blue'
                                                     ? 'bg-gradient-to-br from-[#1e3767] to-[#2a4a7f]'
                                                     : 'bg-gradient-to-br from-[#d97539] to-[#e89050]'
-                                            } rounded-lg flex items-center justify-center`}
+                                            } rounded-lg flex items-center justify-center flex-shrink-0`}
                                         >
                                             {resource.icon}
                                         </div>
-                                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">
+                                        <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 text-center break-words px-2">
                                             {resource.title}
                                         </h3>
-                                        <p className="text-gray-600 text-xs sm:text-sm text-center">
+                                        <p className="text-gray-600 text-xs sm:text-sm text-center break-words">
                                             {resource.type} • {resource.size}
                                         </p>
                                         <div
                                             className={`flex items-center justify-center ${
                                                 resource.color === 'blue' ? 'text-[#1e3767]' : 'text-[#d97539]'
-                                            } font-medium pt-2 text-sm sm:text-base`}
+                                            } font-medium pt-1 sm:pt-2 text-xs sm:text-sm md:text-base`}
                                         >
                                             <span>{t('company.resourceDownload')}</span>
                                             <svg
-                                                className="w-4 h-4 ml-2"
+                                                className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -534,22 +538,22 @@ const Unternehmen = () => {
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
+                <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0 bg-pattern"></div>
                     </div>
 
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto px-2">
                             {t('company.ctaTitle')} <span className="font-semibold">{t('company.ctaTitleHighlight')}</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-10 max-w-2xl mx-auto">
+                        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto break-words px-2">
                             {t('company.ctaText')}
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                             <button
                                 onClick={() => navigate('/Kontakt')}
-                                className="px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
+                                className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl"
                             >
                                 {t('company.ctaButton')}
                             </button>

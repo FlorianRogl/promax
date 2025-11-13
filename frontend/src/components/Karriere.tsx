@@ -35,12 +35,11 @@ const Karriere: React.FC = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
     const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-    // Helper function for section refs
     const setSectionRef = (key: string) => (el: HTMLElement | null) => {
         sectionRefs.current[key] = el;
     };
 
-    // Jobs von Sanity laden - MIT SPRACH-UNTERSTÜTZUNG
+    // Jobs von Sanity laden
     useEffect(() => {
         const loadJobs = async (): Promise<void> => {
             try {
@@ -58,9 +57,9 @@ const Karriere: React.FC = () => {
         };
 
         loadJobs();
-    }, [currentLang, t]); // Neu laden wenn Sprache wechselt
+    }, [currentLang, t]);
 
-    // SEO Meta Tags setzen
+    // SEO Meta Tags
     useEffect(() => {
         const titles = {
             de: 'Karriere bei PROMAX - Jobs im Industrieanlagenbau in Graz',
@@ -88,7 +87,7 @@ const Karriere: React.FC = () => {
         setMetaTag('description', descriptions[currentLang] || descriptions.de);
     }, [currentLang]);
 
-    // Intersection Observer für Scroll-Animationen
+    // Intersection Observer
     useEffect(() => {
         const observerOptions: IntersectionObserverInit = {
             threshold: 0.1,
@@ -138,7 +137,7 @@ const Karriere: React.FC = () => {
         };
     }, []);
 
-    // Carousel scroll functions
+    // Carousel functions
     const scrollCarousel = useCallback((direction: 'left' | 'right'): void => {
         if (carouselRef.current) {
             const scrollAmount = 350;
@@ -154,7 +153,6 @@ const Karriere: React.FC = () => {
         }
     }, []);
 
-    // Check if carousel can scroll
     const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
     const [canScrollRight, setCanScrollRight] = useState<boolean>(true);
 
@@ -171,7 +169,6 @@ const Karriere: React.FC = () => {
         if (carousel) {
             carousel.addEventListener('scroll', checkScrollability);
             checkScrollability();
-
             window.addEventListener('resize', checkScrollability);
 
             return () => {
@@ -181,7 +178,7 @@ const Karriere: React.FC = () => {
         }
     }, [checkScrollability, jobOpenings]);
 
-    // Touch handling for mobile
+    // Touch handling
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
@@ -216,19 +213,17 @@ const Karriere: React.FC = () => {
         document.body.style.overflow = 'unset';
     };
 
-    // Split jobs into featured and carousel
     const featuredJobs = jobOpenings.slice(0, 3);
     const carouselJobs = jobOpenings.slice(3);
 
-    // Render Jobs Section based on state
     const renderJobsSection = () => {
         if (loading) {
             return (
-                <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-6 py-20">
+                <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                     <div className="text-center">
                         <div className="animate-pulse">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded"></div>
-                            <div style={{ fontSize: 'clamp(1.125rem, 3vw, 1.25rem)', color: '#1e3767' }}>{t('career.jobsLoading')}</div>
+                            <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gray-200 rounded"></div>
+                            <div className="text-base sm:text-lg md:text-xl text-[#1e3767]">{t('career.jobsLoading')}</div>
                         </div>
                     </div>
                 </section>
@@ -237,17 +232,16 @@ const Karriere: React.FC = () => {
 
         if (error) {
             return (
-                <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-6 py-20">
+                <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                     <div className={`transition-all duration-1000 transform ${visibleSections.has('jobs') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, marginBottom: '1rem', color: '#1e3767' }}>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 text-[#1e3767]">
                             {t('career.jobsTitle')}
                         </h2>
-                        <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
-                            <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', color: '#ef4444', marginBottom: '1rem' }}>{error}</div>
+                        <div className="text-center p-6 sm:p-8 bg-red-50 border border-red-200 rounded-lg">
+                            <div className="text-sm sm:text-base text-red-600 mb-4">{error}</div>
                             <button
                                 onClick={() => window.location.reload()}
-                                className="px-6 py-3 text-white hover:opacity-90 transition-opacity rounded"
-                                style={{ backgroundColor: '#1e3767', fontSize: 'clamp(0.875rem, 2vw, 1rem)', fontWeight: 400 }}
+                                className="px-4 sm:px-6 py-2 sm:py-3 text-white bg-[#1e3767] rounded text-sm sm:text-base"
                             >
                                 {t('career.jobsReload')}
                             </button>
@@ -259,16 +253,16 @@ const Karriere: React.FC = () => {
 
         if (jobOpenings.length === 0) {
             return (
-                <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-6 py-20">
+                <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                     <div className={`transition-all duration-1000 transform ${visibleSections.has('jobs') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, marginBottom: '1rem', color: '#1e3767' }}>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 text-[#1e3767]">
                             {t('career.jobsTitle')}
                         </h2>
-                        <div className="text-center p-8 bg-blue-50 border border-blue-200 rounded-lg">
-                            <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', marginBottom: '1rem', color: '#1e3767', fontWeight: 500 }}>
+                        <div className="text-center p-6 sm:p-8 bg-blue-50 border border-blue-200 rounded-lg">
+                            <p className="text-base sm:text-lg mb-3 sm:mb-4 text-[#1e3767] font-medium">
                                 {t('career.jobsEmpty')}
                             </p>
-                            <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)', color: '#64748b', fontWeight: 400 }}>
+                            <p className="text-sm sm:text-base text-gray-600">
                                 {t('career.jobsEmptyText')}
                             </p>
                         </div>
@@ -278,84 +272,76 @@ const Karriere: React.FC = () => {
         }
 
         return (
-            <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-6 py-20">
+            <section ref={setSectionRef('jobs')} className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                 <div className={`transition-all duration-1000 transform ${visibleSections.has('jobs') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, marginBottom: '1rem', color: '#1e3767' }}>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4 text-[#1e3767]">
                         {t('career.jobsTitle')}
                     </h2>
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)', marginBottom: '4rem', maxWidth: '32rem', color: '#64748b', fontWeight: 400 }}>
+                    <p className="text-sm sm:text-base md:text-lg mb-8 sm:mb-12 md:mb-16 max-w-2xl text-gray-600">
                         {t('career.jobsSubtitle')}
                     </p>
 
-                    {/* Featured Jobs - Angular Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    {/* Featured Jobs */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16">
                         {featuredJobs.map((job, index) => (
                             <div
                                 key={job.id}
-                                className="group relative bg-white p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
+                                className="group relative bg-white p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col shadow-lg"
                                 style={{
-                                    boxShadow: '0 8px 32px rgba(30, 55, 103, 0.12)',
                                     transitionDelay: `${index * 100}ms`
                                 }}
                                 onClick={() => handleJobClick(job)}
                             >
-                                {/* Top accent line */}
                                 <div
                                     className="absolute top-0 left-0 w-full h-1"
                                     style={{ backgroundColor: getDepartmentColor(job.department) }}
                                 />
 
-                                {/* Content */}
                                 <div className="relative z-10 flex flex-col flex-1">
-                                    {/* Header */}
-                                    <div className="flex items-start justify-between mb-6">
+                                    <div className="flex items-start justify-between mb-4 sm:mb-6">
                                         <div
-                                            className="px-4 py-2 text-sm font-semibold text-white"
+                                            className="px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 text-xs sm:text-sm font-semibold text-white"
                                             style={{ backgroundColor: getDepartmentColor(job.department) }}
                                         >
                                             {job.department}
                                         </div>
                                         <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
-                                            <ArrowRight size={20} style={{ color: getDepartmentColor(job.department) }} />
+                                            <ArrowRight size={18} className="sm:w-5 sm:h-5" style={{ color: getDepartmentColor(job.department) }} />
                                         </div>
                                     </div>
 
-                                    {/* Title */}
-                                    <h3 style={{ fontSize: 'clamp(1.125rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1rem', lineHeight: 1.3, color: '#1e3767' }}>
+                                    <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 leading-tight text-[#1e3767] break-words">
                                         {job.title}
                                     </h3>
 
-                                    {/* Description */}
-                                    <p className="leading-relaxed mb-6 opacity-80 line-clamp-3 flex-1" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                    <p className="text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 opacity-80 line-clamp-3 flex-1 text-[#1e3767] break-words">
                                         {job.description}
                                     </p>
 
-                                    {/* Metadata - Fixed at bottom */}
-                                    <div className="space-y-3 mt-auto">
-                                        <div className="flex items-center gap-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
-                                            <div className="flex items-center gap-2 px-3 py-2 bg-gray-100">
-                                                <MapPin size={12} />
-                                                <span className="font-medium">{job.location}</span>
+                                    <div className="space-y-2 sm:space-y-3 mt-auto">
+                                        <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#1e3767]">
+                                            <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-gray-100">
+                                                <MapPin size={12} className="flex-shrink-0" />
+                                                <span className="font-medium break-words">{job.location}</span>
                                             </div>
-                                            <div className="flex items-center gap-2 px-3 py-2 bg-gray-100">
-                                                <Clock size={12} />
-                                                <span className="font-medium">{job.type}</span>
+                                            <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-gray-100">
+                                                <Clock size={12} className="flex-shrink-0" />
+                                                <span className="font-medium break-words">{job.type}</span>
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center justify-between" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
-                                            <div className="flex items-center gap-2 opacity-70">
-                                                <Users size={12} />
-                                                <span>{t('career.jobTeam')}: {job.teamSize}</span>
+                                        <div className="flex items-center justify-between text-xs sm:text-sm text-[#1e3767]">
+                                            <div className="flex items-center gap-1.5 sm:gap-2 opacity-70">
+                                                <Users size={12} className="flex-shrink-0" />
+                                                <span className="break-words">{t('career.jobTeam')}: {job.teamSize}</span>
                                             </div>
-                                            <div className="opacity-70">
+                                            <div className="opacity-70 text-right break-words">
                                                 {job.posted}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Hover effect */}
                                 <div
                                     className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300"
                                     style={{ backgroundColor: getDepartmentColor(job.department) }}
@@ -367,15 +353,14 @@ const Karriere: React.FC = () => {
                     {/* Carousel Jobs */}
                     {carouselJobs.length > 0 && (
                         <div>
-                            <div className="flex items-center justify-between mb-8">
-                                <h3 style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 600, color: '#1e3767' }}>{t('career.jobsMorePositions')}</h3>
-                                <div className="flex gap-3">
+                            <div className="flex items-center justify-between mb-6 sm:mb-8">
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#1e3767]">{t('career.jobsMorePositions')}</h3>
+                                <div className="hidden sm:flex gap-3">
                                     <button
-                                        className="w-12 h-12 flex items-center justify-center transition-all duration-300 disabled:opacity-40"
+                                        className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 disabled:opacity-40 shadow-lg"
                                         style={{
                                             backgroundColor: canScrollLeft ? '#1e3767' : '#f8f9fa',
-                                            color: canScrollLeft ? 'white' : '#1e3767',
-                                            boxShadow: '0 4px 16px rgba(30, 55, 103, 0.2)'
+                                            color: canScrollLeft ? 'white' : '#1e3767'
                                         }}
                                         onClick={() => scrollCarousel('left')}
                                         disabled={!canScrollLeft}
@@ -383,11 +368,10 @@ const Karriere: React.FC = () => {
                                         <ChevronLeft size={20} />
                                     </button>
                                     <button
-                                        className="w-12 h-12 flex items-center justify-center transition-all duration-300 disabled:opacity-40"
+                                        className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-all duration-300 disabled:opacity-40 shadow-lg"
                                         style={{
                                             backgroundColor: canScrollRight ? '#1e3767' : '#f8f9fa',
-                                            color: canScrollRight ? 'white' : '#1e3767',
-                                            boxShadow: '0 4px 16px rgba(30, 55, 103, 0.2)'
+                                            color: canScrollRight ? 'white' : '#1e3767'
                                         }}
                                         onClick={() => scrollCarousel('right')}
                                         disabled={!canScrollRight}
@@ -404,63 +388,61 @@ const Karriere: React.FC = () => {
                                 onTouchMove={handleTouchMove}
                                 onTouchEnd={handleTouchEnd}
                             >
-                                <div className="flex gap-8 pb-4" style={{ width: 'max-content' }}>
+                                <div className="flex gap-4 sm:gap-6 md:gap-8 pb-4" style={{ width: 'max-content' }}>
                                     {carouselJobs.map((job) => (
                                         <div
                                             key={job.id}
-                                            className="group relative bg-white p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
+                                            className="group relative bg-white p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col shadow-lg"
                                             style={{
-                                                width: '340px',
-                                                flexShrink: 0,
-                                                boxShadow: '0 8px 32px rgba(30, 55, 103, 0.12)'
+                                                width: '280px',
+                                                flexShrink: 0
                                             }}
                                             onClick={() => handleJobClick(job)}
                                         >
-                                            {/* Similar content structure as featured jobs */}
                                             <div
                                                 className="absolute top-0 left-0 w-full h-1"
                                                 style={{ backgroundColor: getDepartmentColor(job.department) }}
                                             />
 
                                             <div className="relative z-10 flex flex-col flex-1">
-                                                <div className="flex items-start justify-between mb-6">
+                                                <div className="flex items-start justify-between mb-4">
                                                     <div
-                                                        className="px-4 py-2 text-sm font-semibold text-white"
+                                                        className="px-3 py-1.5 text-xs font-semibold text-white"
                                                         style={{ backgroundColor: getDepartmentColor(job.department) }}
                                                     >
                                                         {job.department}
                                                     </div>
                                                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
-                                                        <ArrowRight size={20} style={{ color: getDepartmentColor(job.department) }} />
+                                                        <ArrowRight size={18} style={{ color: getDepartmentColor(job.department) }} />
                                                     </div>
                                                 </div>
 
-                                                <h3 style={{ fontSize: 'clamp(1.125rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1rem', lineHeight: 1.3, color: '#1e3767' }}>
+                                                <h3 className="text-base font-semibold mb-3 leading-tight text-[#1e3767] break-words">
                                                     {job.title}
                                                 </h3>
 
-                                                <p className="leading-relaxed mb-6 opacity-80 line-clamp-3 flex-1" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                                <p className="text-xs leading-relaxed mb-4 opacity-80 line-clamp-3 flex-1 text-[#1e3767] break-words">
                                                     {job.description}
                                                 </p>
 
-                                                <div className="space-y-3 mt-auto">
-                                                    <div className="flex items-center gap-3" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
-                                                        <div className="flex items-center gap-2 px-3 py-2 bg-gray-100">
-                                                            <MapPin size={12} />
-                                                            <span className="font-medium">{job.location}</span>
+                                                <div className="space-y-2 mt-auto">
+                                                    <div className="flex flex-wrap items-center gap-2 text-xs text-[#1e3767]">
+                                                        <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100">
+                                                            <MapPin size={12} className="flex-shrink-0" />
+                                                            <span className="font-medium break-words">{job.location}</span>
                                                         </div>
-                                                        <div className="flex items-center gap-2 px-3 py-2 bg-gray-100">
-                                                            <Clock size={12} />
-                                                            <span className="font-medium">{job.type}</span>
+                                                        <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-100">
+                                                            <Clock size={12} className="flex-shrink-0" />
+                                                            <span className="font-medium break-words">{job.type}</span>
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex items-center justify-between" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
-                                                        <div className="flex items-center gap-2 opacity-70">
-                                                            <Users size={12} />
-                                                            <span>{t('career.jobTeam')}: {job.teamSize}</span>
+                                                    <div className="flex items-center justify-between text-xs text-[#1e3767]">
+                                                        <div className="flex items-center gap-1.5 opacity-70">
+                                                            <Users size={12} className="flex-shrink-0" />
+                                                            <span className="break-words">{t('career.jobTeam')}: {job.teamSize}</span>
                                                         </div>
-                                                        <div className="opacity-70">
+                                                        <div className="opacity-70 text-right break-words">
                                                             {job.posted}
                                                         </div>
                                                     </div>
@@ -475,7 +457,7 @@ const Karriere: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div className="text-center mt-6 opacity-60 lg:hidden" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                            <div className="text-center mt-4 sm:mt-6 opacity-60 sm:hidden text-xs sm:text-sm text-[#1e3767]">
                                 {t('career.jobsSwipeHint')}
                             </div>
                         </div>
@@ -486,11 +468,11 @@ const Karriere: React.FC = () => {
     };
 
     return (
-        <div style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif", color: '#1e3767', minHeight: '100vh' }}>
-            {/* Hero Section with Parallax */}
+        <div className="overflow-x-hidden" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif", color: '#1e3767', minHeight: '100vh' }}>
+            {/* Hero Section */}
             <section
                 ref={heroRef}
-                className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+                className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center justify-center bg-cover bg-center"
                 style={{
                     backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&auto=format')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
@@ -498,87 +480,86 @@ const Karriere: React.FC = () => {
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
 
-                <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full">
                     <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
                             {t('career.heroTitle')}
                             <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">{t('career.heroSubtitle')}</span>
                         </h1>
                     </div>
                 </div>
 
-                {/* Scroll indicator */}
-                <div className="hidden sm:block absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="hidden sm:block absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                     </svg>
                 </div>
             </section>
 
             {/* Intro Section */}
-            <section className="max-w-6xl mx-auto px-6 py-20">
+            <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
                 <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 mb-8" style={{ backgroundColor: '#d1d8dc' }}>
-                        <Sparkles size={16} style={{ color: '#1e3767' }} />
-                        <span style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', fontWeight: 500, color: '#1e3767' }}>{t('career.hiring')}</span>
+                    <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 bg-gray-200">
+                        <Sparkles size={14} className="sm:w-4 sm:h-4 text-[#1e3767]" />
+                        <span className="text-xs sm:text-sm font-medium text-[#1e3767]">{t('career.hiring')}</span>
                     </div>
 
-                    <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 500, color: '#1e3767', marginBottom: '2rem', lineHeight: 1.4 }}>
+                    <h3 className="text-base sm:text-lg md:text-xl font-medium text-[#1e3767] mb-4 sm:mb-6 md:mb-8 leading-relaxed break-words">
                         {t('career.introTitle')}
                     </h3>
 
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, marginBottom: '1.5rem', color: '#64748b', fontWeight: 400 }}>
+                    <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4 md:mb-6 text-gray-600 break-words">
                         {t('career.introText1')}
                     </p>
 
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, marginBottom: '3rem', color: '#64748b', fontWeight: 400 }}>
+                    <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 md:mb-12 text-gray-600 break-words">
                         {t('career.introText2')}
                     </p>
                 </div>
             </section>
 
             {/* Warum PROMAX Section */}
-            <section ref={setSectionRef('values')} className="max-w-6xl mx-auto px-6 py-20">
+            <section ref={setSectionRef('values')} className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
                 <div className={`transition-all duration-1000 transform ${visibleSections.has('values') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
                         <div>
-                            <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, marginBottom: '2rem', color: '#1e3767', lineHeight: 1.2 }}>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 sm:mb-8 md:mb-10 text-[#1e3767] leading-tight break-words">
                                 {t('career.whyTitle')}
                             </h2>
 
-                            <div className="space-y-6" style={{ fontSize: 'clamp(0.875rem, 2vw, 1.1rem)', lineHeight: 1.7, color: '#64748b' }}>
-                                <div className="flex items-start gap-3">
-                                    <span style={{ color: '#d97539', fontWeight: 600, fontSize: '1.2em', lineHeight: 1 }}>✓</span>
-                                    <div>
-                                        <strong style={{ color: '#1e3767' }}>{t('career.whyFeature1Title')}</strong> {t('career.whyFeature1Text')}
+                            <div className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg leading-relaxed text-gray-600">
+                                <div className="flex items-start gap-2 sm:gap-3">
+                                    <span className="text-[#d97539] font-semibold text-lg sm:text-xl flex-shrink-0">✓</span>
+                                    <div className="break-words">
+                                        <strong className="text-[#1e3767]">{t('career.whyFeature1Title')}</strong> {t('career.whyFeature1Text')}
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-3">
-                                    <span style={{ color: '#d97539', fontWeight: 600, fontSize: '1.2em', lineHeight: 1 }}>✓</span>
-                                    <div>
-                                        <strong style={{ color: '#1e3767' }}>{t('career.whyFeature2Title')}</strong> {t('career.whyFeature2Text')}
+                                <div className="flex items-start gap-2 sm:gap-3">
+                                    <span className="text-[#d97539] font-semibold text-lg sm:text-xl flex-shrink-0">✓</span>
+                                    <div className="break-words">
+                                        <strong className="text-[#1e3767]">{t('career.whyFeature2Title')}</strong> {t('career.whyFeature2Text')}
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-3">
-                                    <span style={{ color: '#d97539', fontWeight: 600, fontSize: '1.2em', lineHeight: 1 }}>✓</span>
-                                    <div>
-                                        <strong style={{ color: '#1e3767' }}>{t('career.whyFeature3Title')}</strong> {t('career.whyFeature3Text')}
+                                <div className="flex items-start gap-2 sm:gap-3">
+                                    <span className="text-[#d97539] font-semibold text-lg sm:text-xl flex-shrink-0">✓</span>
+                                    <div className="break-words">
+                                        <strong className="text-[#1e3767]">{t('career.whyFeature3Title')}</strong> {t('career.whyFeature3Text')}
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-3">
-                                    <span style={{ color: '#d97539', fontWeight: 600, fontSize: '1.2em', lineHeight: 1 }}>✓</span>
-                                    <div>
-                                        <strong style={{ color: '#1e3767' }}>{t('career.whyFeature4Title')}</strong> {t('career.whyFeature4Text')}
+                                <div className="flex items-start gap-2 sm:gap-3">
+                                    <span className="text-[#d97539] font-semibold text-lg sm:text-xl flex-shrink-0">✓</span>
+                                    <div className="break-words">
+                                        <strong className="text-[#1e3767]">{t('career.whyFeature4Title')}</strong> {t('career.whyFeature4Text')}
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-3">
-                                    <span style={{ color: '#d97539', fontWeight: 600, fontSize: '1.2em', lineHeight: 1 }}>✓</span>
-                                    <div>
-                                        <strong style={{ color: '#1e3767' }}>{t('career.whyFeature5Title')}</strong> {t('career.whyFeature5Text')}
+                                <div className="flex items-start gap-2 sm:gap-3">
+                                    <span className="text-[#d97539] font-semibold text-lg sm:text-xl flex-shrink-0">✓</span>
+                                    <div className="break-words">
+                                        <strong className="text-[#1e3767]">{t('career.whyFeature5Title')}</strong> {t('career.whyFeature5Text')}
                                     </div>
                                 </div>
                             </div>
@@ -586,124 +567,119 @@ const Karriere: React.FC = () => {
                         <img
                             src={planungImage}
                             alt="PROMAX Team bei der Projektplanung"
-                            className="w-full h-full object-cover"
+                            className="w-full h-64 sm:h-80 lg:h-full object-contain lg:object-cover"
                             loading="lazy"
                         />
                     </div>
                 </div>
             </section>
 
-            {/* Jobs Section - Dynamic Content */}
+            {/* Jobs Section */}
             {renderJobsSection()}
 
             {/* CTA Section */}
-            <section ref={setSectionRef('cta')} className="max-w-6xl mx-auto px-6 py-20">
+            <section ref={setSectionRef('cta')} className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
                 <div className={`text-center transition-all duration-1000 transform ${visibleSections.has('cta') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h3 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 600, marginBottom: '1rem', color: '#1e3767' }}>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 text-[#1e3767] break-words px-2">
                         {t('career.ctaTitle')}
                     </h3>
-                    <p style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)', marginBottom: '2rem', maxWidth: '32rem', margin: '0 auto 2rem auto', color: '#64748b', fontWeight: 400 }}>
+                    <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto text-gray-600 break-words px-2">
                         {t('career.ctaText')} <strong>{t('career.ctaTextHighlight')}</strong>.
                     </p>
-                    <div className="bg-white border p-8 max-w-md mx-auto" style={{ borderColor: '#d1d8dc' }}>
-                        <div className="flex items-center justify-center mb-4">
-                            <div className="w-12 h-12 flex items-center justify-center" style={{ backgroundColor: '#1e3767' }}>
-                                <Mail size={24} color="white" />
+                    <div className="bg-white border border-gray-300 p-6 sm:p-8 max-w-md mx-auto shadow-lg">
+                        <div className="flex items-center justify-center mb-3 sm:mb-4">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#1e3767]">
+                                <Mail size={20} className="sm:w-6 sm:h-6 text-white" />
                             </div>
                         </div>
-                        <h4 style={{ fontSize: 'clamp(1.125rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '0.5rem', color: '#1e3767' }}>{t('career.ctaEmailTitle')}</h4>
-                        <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)', fontWeight: 500 }}>
+                        <h4 className="text-base sm:text-lg md:text-xl font-semibold mb-2 text-[#1e3767]">{t('career.ctaEmailTitle')}</h4>
+                        <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline text-sm sm:text-base font-medium break-all">
                             jasmin.pieber@promax.at
                         </a>
-                        <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', marginTop: '1rem', color: '#1e3767', fontWeight: 400 }}>
+                        <p className="text-xs sm:text-sm mt-3 sm:mt-4 text-[#1e3767] break-words">
                             {t('career.jobAttachments')}
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Responsive Job Details Modal */}
+            {/* Job Modal */}
             {selectedJob && (
-                <div className="fixed inset-0 z-[9999] bg-black bg-opacity-60 backdrop-blur-sm">
-                    <div className="h-full flex items-start justify-center p-2 sm:p-4 lg:p-8 lg:items-center">
-                        <div className="relative bg-white w-full max-w-7xl max-h-[100vh] lg:max-h-[90vh] shadow-2xl flex flex-col">
-                            {/* Header with Close Button */}
-                            <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 flex-shrink-0">
-                                <div className="flex-1 mr-4">
+                <div className="fixed inset-0 z-[9999] bg-black bg-opacity-60 backdrop-blur-sm overflow-y-auto">
+                    <div className="min-h-screen flex items-start sm:items-center justify-center p-0 sm:p-4">
+                        <div className="relative bg-white w-full max-w-7xl min-h-screen sm:min-h-0 sm:max-h-[90vh] shadow-2xl flex flex-col">
+                            {/* Header */}
+                            <div className="flex justify-between items-start gap-3 p-4 sm:p-6 border-b border-gray-200 flex-shrink-0">
+                                <div className="flex-1 min-w-0">
                                     <div
-                                        className="inline-block px-3 py-1 text-sm font-semibold text-white mb-2"
+                                        className="inline-block px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold text-white mb-2"
                                         style={{ backgroundColor: getDepartmentColor(selectedJob.department) }}
                                     >
                                         {selectedJob.department}
                                     </div>
-                                    <h1 style={{ fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', fontWeight: 600, color: '#1e3767', lineHeight: 1.2 }}>
+                                    <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#1e3767] leading-tight break-words">
                                         {selectedJob.title}
                                     </h1>
                                 </div>
                                 <button
-                                    className="w-10 h-10 bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors flex-shrink-0"
+                                    className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 hover:bg-gray-200 flex items-center justify-center rounded-full flex-shrink-0"
                                     onClick={closeModal}
-                                    style={{ borderRadius: '50%' }}
                                 >
-                                    <X size={20} style={{ color: '#1e3767' }} />
+                                    <X size={18} className="sm:w-5 sm:h-5 text-[#1e3767]" />
                                 </button>
                             </div>
 
-                            {/* Content Area - Mobile First Layout */}
+                            {/* Content */}
                             <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
-                                {/* Mobile: Stacked Top / Desktop: Left Sidebar */}
+                                {/* Sidebar */}
                                 <div className="w-full lg:w-80 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50">
-                                    {/* Mobile: Collapsible Header */}
                                     <button
                                         onClick={() => setIsMetaExpanded(!isMetaExpanded)}
-                                        className="w-full p-4 sm:p-6 flex items-center justify-between lg:hidden border-b border-gray-200 hover:bg-gray-100 transition-colors"
+                                        className="w-full p-4 flex items-center justify-between lg:hidden border-b border-gray-200 hover:bg-gray-100"
                                     >
-                                        <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)', fontWeight: 600, color: '#1e3767' }}>
+                                        <span className="text-sm sm:text-base font-semibold text-[#1e3767]">
                                             {t('career.jobDetailsToggle')} {isMetaExpanded ? t('career.jobDetailsHide') : t('career.jobDetailsShow')}
                                         </span>
                                         <div className={`transform transition-transform duration-300 ${isMetaExpanded ? 'rotate-180' : ''}`}>
-                                            <ChevronRight size={20} style={{ color: '#1e3767', transform: 'rotate(90deg)' }} />
+                                            <ChevronRight size={18} className="text-[#1e3767] rotate-90" />
                                         </div>
                                     </button>
 
-                                    {/* Collapsible Content */}
                                     <div className={`overflow-hidden transition-all duration-300 ${isMetaExpanded ? 'max-h-[2000px] lg:max-h-none' : 'max-h-0 lg:max-h-none'} lg:overflow-y-auto`}>
                                         <div className="p-4 sm:p-6">
-                                            {/* Job Meta Info */}
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 mb-6">
-                                                <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 mb-4 sm:mb-6 text-xs sm:text-sm text-[#1e3767]">
+                                                <div>
                                                     <div className="font-semibold mb-1">{t('career.jobLocation')}</div>
-                                                    <div className="opacity-70">{selectedJob.location}</div>
+                                                    <div className="opacity-70 break-words">{selectedJob.location}</div>
                                                 </div>
 
-                                                <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                                <div>
                                                     <div className="font-semibold mb-1">{t('career.jobType')}</div>
-                                                    <div className="opacity-70">{selectedJob.type}</div>
+                                                    <div className="opacity-70 break-words">{selectedJob.type}</div>
                                                 </div>
 
-                                                <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                                <div>
                                                     <div className="font-semibold mb-1">{t('career.jobTeam')}</div>
-                                                    <div className="opacity-70">{selectedJob.teamSize}</div>
+                                                    <div className="opacity-70 break-words">{selectedJob.teamSize}</div>
                                                 </div>
 
-                                                <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                                <div>
                                                     <div className="font-semibold mb-1">{t('career.jobPosted')}</div>
-                                                    <div className="opacity-70">{selectedJob.posted}</div>
+                                                    <div className="opacity-70 break-words">{selectedJob.posted}</div>
                                                 </div>
 
-                                                <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                                <div className="col-span-2 lg:col-span-1">
                                                     <div className="font-semibold mb-1">{t('career.jobExperience')}</div>
-                                                    <div className="opacity-70">{selectedJob.experience}</div>
+                                                    <div className="opacity-70 break-words">{selectedJob.experience}</div>
                                                 </div>
                                             </div>
 
-                                            {/* Quick Contact Info */}
-                                            <div className="p-4 bg-white border border-gray-200 shadow-sm">
-                                                <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: 'clamp(0.875rem, 2vw, 1rem)', color: '#1e3767' }}>{t('career.jobDirectContact')}</h4>
-                                                <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#64748b', marginBottom: '0.25rem' }}>{t('career.jobContactQuestion')}</p>
-                                                <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#1e3767' }}>
+                                            <div className="p-3 sm:p-4 bg-white border border-gray-200 shadow-sm">
+                                                <h4 className="font-semibold mb-2 text-sm sm:text-base text-[#1e3767]">{t('career.jobDirectContact')}</h4>
+                                                <p className="text-xs sm:text-sm text-gray-600 mb-1 break-words">{t('career.jobContactQuestion')}</p>
+                                                <p className="text-xs sm:text-sm text-[#1e3767]">
                                                     <span className="font-medium">{t('career.jobHRTeam')}</span><br />
-                                                    <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline">
+                                                    <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline break-all">
                                                         jasmin.pieber@promax.at
                                                     </a>
                                                 </p>
@@ -712,97 +688,89 @@ const Karriere: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Scrollable Content Area */}
+                                {/* Main Content */}
                                 <div className="flex-1 overflow-y-auto">
                                     <div className="p-4 sm:p-6 lg:p-8">
-                                        {/* Job Description */}
-                                        <section className="mb-8">
-                                            <h2 style={{ fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', fontWeight: 600, marginBottom: '1.5rem', color: '#1e3767' }}>{t('career.jobAboutPosition')}</h2>
-                                            <div>
-                                                <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.1rem)', lineHeight: 1.7, color: '#1e3767' }}>
-                                                    {selectedJob.description}
-                                                </p>
-                                            </div>
+                                        <section className="mb-6 sm:mb-8">
+                                            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 text-[#1e3767]">{t('career.jobAboutPosition')}</h2>
+                                            <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#1e3767] break-words">
+                                                {selectedJob.description}
+                                            </p>
                                         </section>
 
-                                        {/* Responsibilities and Requirements - Mobile Stacked / Desktop Side by Side */}
-                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
-                                            {/* Responsibilities */}
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
                                             <section>
-                                                <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>{t('career.jobResponsibilities')}</h2>
-                                                <div className="space-y-3">
+                                                <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-[#1e3767]">{t('career.jobResponsibilities')}</h2>
+                                                <div className="space-y-2 sm:space-y-3">
                                                     {selectedJob.responsibilities.map((item, index) => (
-                                                        <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
+                                                        <div key={index} className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white border border-gray-200 shadow-sm">
                                                             <div
-                                                                className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
-                                                                style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                                                                className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+                                                                style={{ backgroundColor: getDepartmentColor(selectedJob.department) }}
                                                             >
                                                                 {index + 1}
                                                             </div>
-                                                            <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
+                                                            <span className="text-xs sm:text-sm md:text-base leading-relaxed text-[#1e3767] break-words">{item}</span>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </section>
 
-                                            {/* Requirements */}
                                             <section>
-                                                <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>{t('career.jobRequirements')}</h2>
-                                                <div className="space-y-3">
+                                                <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-[#1e3767]">{t('career.jobRequirements')}</h2>
+                                                <div className="space-y-2 sm:space-y-3">
                                                     {selectedJob.requirements.map((item, index) => (
-                                                        <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
+                                                        <div key={index} className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white border border-gray-200 shadow-sm">
                                                             <div
-                                                                className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
-                                                                style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                                                                className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+                                                                style={{ backgroundColor: getDepartmentColor(selectedJob.department) }}
                                                             >
                                                                 {index + 1}
                                                             </div>
-                                                            <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
+                                                            <span className="text-xs sm:text-sm md:text-base leading-relaxed text-[#1e3767] break-words">{item}</span>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </section>
                                         </div>
 
-                                        {/* Benefits */}
                                         <section className="mb-6">
-                                            <h2 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: 600, marginBottom: '1.25rem', color: '#1e3767' }}>{t('career.jobBenefits')}</h2>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                            <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-[#1e3767]">{t('career.jobBenefits')}</h2>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                                                 {selectedJob.benefits.map((item, index) => (
-                                                    <div key={index} className="flex items-start gap-3 p-3 bg-white border border-gray-200 shadow-sm">
+                                                    <div key={index} className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white border border-gray-200 shadow-sm">
                                                         <div
-                                                            className="w-6 h-6 flex items-center justify-center text-white font-bold mt-0.5 flex-shrink-0"
-                                                            style={{ backgroundColor: getDepartmentColor(selectedJob.department), fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                                                            className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+                                                            style={{ backgroundColor: getDepartmentColor(selectedJob.department) }}
                                                         >
                                                             {index + 1}
                                                         </div>
-                                                        <span style={{ lineHeight: 1.6, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#1e3767' }}>{item}</span>
+                                                        <span className="text-xs sm:text-sm md:text-base leading-relaxed text-[#1e3767] break-words">{item}</span>
                                                     </div>
                                                 ))}
                                             </div>
                                         </section>
 
-                                        {/* Contact Information */}
-                                        <section className="border-t border-gray-200 pt-6">
+                                        <section className="border-t border-gray-200 pt-4 sm:pt-6">
                                             <div className="text-center">
-                                                <h3 style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', fontWeight: 600, marginBottom: '0.75rem', color: '#1e3767' }}>
+                                                <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 text-[#1e3767] break-words">
                                                     {t('career.jobInterested')}
                                                 </h3>
-                                                <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', marginBottom: '1rem', color: '#64748b' }}>
+                                                <p className="text-sm sm:text-base mb-4 sm:mb-6 text-gray-600 break-words px-2">
                                                     {t('career.jobInterestedText')}
                                                 </p>
                                                 <div className="bg-white border border-gray-200 p-4 sm:p-6 shadow-sm max-w-md mx-auto">
-                                                    <div className="flex items-center justify-center mb-3">
-                                                        <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: '#1e3767' }}>
-                                                            <Mail size={20} color="white" />
+                                                    <div className="flex items-center justify-center mb-2 sm:mb-3">
+                                                        <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-[#1e3767]">
+                                                            <Mail size={18} className="sm:w-5 sm:h-5 text-white" />
                                                         </div>
                                                     </div>
-                                                    <p style={{ fontWeight: 500, fontSize: 'clamp(1rem, 3vw, 1.125rem)', marginBottom: '0.25rem', color: '#1e3767' }}>
-                                                        <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline">
+                                                    <p className="font-medium text-sm sm:text-base md:text-lg mb-1 text-[#1e3767]">
+                                                        <a href="mailto:jasmin.pieber@promax.at" className="text-orange-500 hover:underline break-all">
                                                             jasmin.pieber@promax.at
                                                         </a>
                                                     </p>
-                                                    <p style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', color: '#64748b' }}>
+                                                    <p className="text-xs sm:text-sm text-gray-600 break-words">
                                                         {t('career.jobAttachments')}
                                                     </p>
                                                 </div>
