@@ -9,7 +9,7 @@ const FitImJob = () => {
     const handleBackClick = () => {
         // In a real app, this would navigate back
         navigate("/Unternehmen");
-    };
+    }; 
 
     return (
         <div className="min-h-screen bg-white">
