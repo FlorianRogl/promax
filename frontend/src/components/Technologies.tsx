@@ -367,6 +367,15 @@ const Technologies = () => {
 
             {/* Keyframe Animation */}
             <style>{`
+             @keyframes fadeOut {
+    0%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
                 @keyframes fade-in-up {
                     from {
                         opacity: 0;

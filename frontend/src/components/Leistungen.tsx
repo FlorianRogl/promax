@@ -123,7 +123,7 @@ const Leistungen = () => {
                             {/* Content */}
                             <div className="order-2 lg:order-1">
                                 {/* Header */}
-                                <div className="flex flex-col items-center text-center lg:flex-row lg:items-start lg:text-left" style={{
+                                <div className="flex flex-col items-center text-center lg:flex-row lg:items-center lg:text-left" style={{
                                     marginBottom: 'clamp(1.5rem, 4vw, 2rem)'
                                 }}>
                                     <div style={{
@@ -157,12 +157,6 @@ const Leistungen = () => {
                                         }} className="lg:px-0">
                                             {t('services.engineeringTitle')}
                                         </h2>
-                                        <div style={{
-                                            width: 'clamp(3rem, 8vw, 4rem)',
-                                            height: '0.25rem',
-                                            backgroundColor: '#d97539',
-                                            margin: '0 auto'
-                                        }} className="lg:mx-0"></div>
                                     </div>
                                 </div>
 
@@ -286,8 +280,8 @@ const Leistungen = () => {
 
                             {/* Content */}
                             <div className="order-2">
-                                {/* Header */}
-                                <div className="flex flex-col items-center text-center lg:flex-row lg:items-start lg:text-left" style={{
+                                {/* Header - Icon zentriert auf Desktop */}
+                                <div className="flex flex-col items-center text-center lg:flex-row lg:items-center lg:text-left" style={{
                                     marginBottom: 'clamp(1.5rem, 4vw, 2rem)'
                                 }}>
                                     <div style={{
@@ -322,12 +316,6 @@ const Leistungen = () => {
                                         }} className="lg:px-0">
                                             {t('services.projectSupportTitle')}
                                         </h2>
-                                        <div style={{
-                                            width: 'clamp(3rem, 8vw, 4rem)',
-                                            height: '0.25rem',
-                                            backgroundColor: '#d97539',
-                                            margin: '0 auto'
-                                        }} className="lg:mx-0"></div>
                                     </div>
                                 </div>
 
@@ -413,15 +401,16 @@ const Leistungen = () => {
 
             {/* Keyframe Animation */}
             <style>{`
-            @keyframes fadeOut {
-    0%, 50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
+                @keyframes fadeOut {
+                    0%, 50% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+                
                 @keyframes fade-in-up {
                     from {
                         opacity: 0;
