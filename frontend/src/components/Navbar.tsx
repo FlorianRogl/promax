@@ -64,14 +64,14 @@ const Navbar = () => {
                 }`}
             >
                 <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-                    <div className="flex items-center justify-between h-20 md:h-22 lg:h-24 xl:h-28 2xl:h-32">
+                    <div className="flex items-center justify-between h-20 md:h-22 lg:h-20 xl:h-22 2xl:h-24">
 
                         {/* Logo - Links */}
                         <Link to="/" className="flex-shrink-0 z-50">
                             <img
                                 src={navLogo}
                                 alt="Logo"
-                                className="h-12 md:h-14 lg:h-14 xl:h-16 2xl:h-20 w-auto object-contain transition-all duration-300"
+                                className="h-12 md:h-14 lg:h-12 xl:h-13 2xl:h-14 w-auto object-contain transition-all duration-300"
                             />
                         </Link>
 
@@ -98,7 +98,7 @@ const Navbar = () => {
                         {/* Right Side - Language + Mobile Menu */}
                         <div className="flex items-center space-x-4 md:space-x-6">
                             {/* Language Switcher - Immer sichtbar */}
-                            <div className="flex items-center space-x-1.5 md:space-x-2 text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">
+                            <div className="flex items-center space-x-1.5 md:space-x-2 text-sm md:text-base lg:text-sm xl:text-base 2xl:text-lg font-medium">
                                 <button
                                     onClick={() => changeLanguage('de')}
                                     className={`transition-colors px-1.5 md:px-2 ${
@@ -198,7 +198,7 @@ const Navbar = () => {
             </div>
 
             {/* Spacer für fixed navbar */}
-            <div className="h-20 md:h-22 lg:h-24 xl:h-28 2xl:h-32" />
+            <div className="h-20 md:h-22 lg:h-20 xl:h-22 2xl:h-24" />
         </>
     );
 };

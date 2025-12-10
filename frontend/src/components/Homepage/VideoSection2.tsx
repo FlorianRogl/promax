@@ -73,99 +73,180 @@ const VideoSection2 = () => {
     }, []);
 
     return (
-        <>
-            <style>{`
-                @media (max-width: 768px) {
-                    .hero-title {
-                        font-size: 2.5rem !important;
-                    }
-                    .hero-subtitle {
-                        font-size: 2rem !important;
-                    }
-                    .years-display {
-                        font-size: 4rem !important;
-                    }
-                }
-                
-                @media (max-width: 480px) {
-                    .hero-title {
-                        font-size: 2rem !important;
-                    }
-                    .hero-subtitle {
-                        font-size: 1.5rem !important;
-                    }
-                    .years-display {
-                        font-size: 3rem !important;
-                    }
-                }
-            `}</style>
-
-            <section ref={sectionRef} className="relative h-screen overflow-hidden">
-                <div className="absolute inset-0 bg-black">
-                    <div className="absolute inset-0 z-10" style={{backgroundColor: 'rgba(30, 55, 103, 0.7)'}}></div>
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="absolute inset-0 w-full h-full"
-                        style={{objectFit: 'cover'}}
-                        src="/promaxstockvideo_VrMEem5A.mp4"
-                    />
-                </div>
-
-                {/* Geometric Shapes */}
-                <div
-                    className="absolute w-[300px] h-[300px] opacity-10 transform rotate-45"
+        <section
+            ref={sectionRef}
+            style={{
+                position: 'relative',
+                width: '100%',
+                height: '100vh',
+                minHeight: '100vh',
+                overflow: 'hidden'
+            }}
+        >
+            {/* Background Video */}
+            <div style={{ position: 'absolute', inset: 0, backgroundColor: 'black' }}>
+                <div style={{ position: 'absolute', inset: 0, zIndex: 10, backgroundColor: 'rgba(30, 55, 103, 0.7)' }}></div>
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                     style={{
-                        backgroundColor: '#d97539',
-                        top: '-150px',
-                        right: '-150px',
-                        transform: `rotate(45deg) translateY(${scrollY * 0.5}px)`
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
                     }}
+                    src="/promaxstockvideo_VrMEem5A.mp4"
                 />
-                <div
-                    className="absolute w-[300px] h-[300px] opacity-10 transform rotate-45"
-                    style={{
-                        backgroundColor: '#1e3767',
-                        bottom: '-150px',
-                        left: '-150px',
-                        transform: `rotate(45deg) translateY(${scrollY * 0.5}px)`
-                    }}
-                />
+            </div>
 
-                {/* Hero Content */}
-                <div className="relative z-20 h-full flex items-center justify-center">
-                    <div
-                        className="text-center text-white px-6"
+            {/* Geometric Shapes */}
+            <div
+                style={{
+                    position: 'absolute',
+                    width: '300px',
+                    height: '300px',
+                    backgroundColor: '#d97539',
+                    opacity: 0.1,
+                    top: '-150px',
+                    right: '-150px',
+                    transform: `rotate(45deg) translateY(${scrollY * 0.5}px)`
+                }}
+            />
+            <div
+                style={{
+                    position: 'absolute',
+                    width: '300px',
+                    height: '300px',
+                    backgroundColor: '#1e3767',
+                    opacity: 0.1,
+                    bottom: '-150px',
+                    left: '-150px',
+                    transform: `rotate(45deg) translateY(${scrollY * 0.5}px)`
+                }}
+            />
+
+            {/* Hero Content */}
+            <div
+                style={{
+                    position: 'relative',
+                    zIndex: 20,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0 1rem'
+                }}
+            >
+                <div
+                    style={{
+                        textAlign: 'center',
+                        color: 'white',
+                        width: '100%',
+                        maxWidth: '80rem',
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+                        transition: 'all 0.8s ease'
+                    }}
+                >
+                    <h1
                         style={{
-                            opacity: isVisible ? 1 : 0,
-                            transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                            transition: 'all 0.8s ease'
+                            fontSize: 'clamp(1.5rem, 5vw, 4rem)',
+                            fontWeight: 'bold',
+                            marginBottom: '1.5rem',
+                            letterSpacing: '-0.02em',
+                            lineHeight: '1.2'
                         }}
                     >
-                        <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{lineHeight: '1.2'}}>
-                            {t('videoSection.title')}<br />
-                            <span style={{color: '#d97539'}}>{t('videoSection.titleHighlight')}</span>
-                        </h1>
-                        <div ref={yearRef} className="flex items-center justify-center space-x-4 mt-8">
-                            <div className="years-display text-7xl md:text-8xl font-bold">{yearsCount}+</div>
-                            <div className="text-left">
-                                <div className="text-2xl font-light">{t('videoSection.years')}</div>
-                                <div className="text-2xl font-light">{t('videoSection.experience')}</div>
+                        {t('videoSection.title')}<br />
+                        <span style={{color: '#d97539'}}>{t('videoSection.titleHighlight')}</span>
+                    </h1>
+                    <div
+                        ref={yearRef}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '1rem',
+                            marginTop: '2rem'
+                        }}
+                    >
+                        <div style={{
+                            fontSize: 'clamp(2.5rem, 10vw, 6rem)',
+                            fontWeight: 'bold'
+                        }}>
+                            {yearsCount}+
+                        </div>
+                        <div style={{ textAlign: 'left' }}>
+                            <div style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 300 }}>
+                                {t('videoSection.years')}
+                            </div>
+                            <div style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 300 }}>
+                                {t('videoSection.experience')}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Scroll Indicator */}
-                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-                        <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+                <div
+                    style={{
+                        marginTop: '1rem',
+                        zIndex: 30
+                    }}
+                >
+                    <div
+                        style={{
+                            width: '1.25rem',
+                            height: '2rem',
+                            border: '2px solid white',
+                            borderRadius: '9999px',
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                        className="sm:w-6 sm:h-10"
+                    >
+                        <div
+                            style={{
+                                width: '0.25rem',
+                                height: '0.5rem',
+                                backgroundColor: 'white',
+                                borderRadius: '9999px',
+                                marginTop: '0.5rem',
+                                animation: 'bounce 1s infinite'
+                            }}
+                            className="sm:h-3"
+                        />
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+
+            <style>{`
+                @keyframes bounce {
+                    0%, 100% {
+                        transform: translateY(0);
+                    }
+                    50% {
+                        transform: translateY(-0.5rem);
+                    }
+                }
+                
+                @media (min-width: 640px) {
+                    .sm\\:w-6 {
+                        width: 1.5rem;
+                    }
+                    .sm\\:h-10 {
+                        height: 2.5rem;
+                    }
+                    .sm\\:h-3 {
+                        height: 0.75rem;
+                    }
+                }
+            `}</style>
+        </section>
     );
 };
 

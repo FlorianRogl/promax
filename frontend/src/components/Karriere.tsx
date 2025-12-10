@@ -472,7 +472,7 @@ const Karriere: React.FC = () => {
             {/* Hero Section */}
             <section
                 ref={heroRef}
-                className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center justify-center bg-cover bg-center"
+                className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
                     backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&auto=format')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
@@ -489,10 +489,11 @@ const Karriere: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="hidden sm:block absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                    </svg>
+                {/* Scroll indicator */}
+                <div className="mt-16 z-30">
+                    <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center">
+                        <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+                    </div>
                 </div>
             </section>
 

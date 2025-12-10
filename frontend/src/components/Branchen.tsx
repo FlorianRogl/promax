@@ -204,15 +204,15 @@ const BranchesOverview: React.FC = () => {
                 )}
 
                 {/* Hero Section */}
-                <div className="max-w-6xl mx-auto px-6 py-20">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                     <div
                         className={`transition-all duration-1000 ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                     >
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-gray-900 mb-4 sm:mb-6">
+                        <h1 style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)', lineHeight: '1.2' }} className="font-light text-gray-900 mb-3 sm:mb-4 md:mb-6">
                             Engineering Excellence.
                             <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">Branchen.</span>
                         </h1>
-                        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 sm:mb-12 max-w-3xl leading-relaxed">
+                        <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', lineHeight: '1.6' }} className="text-gray-600 mb-6 sm:mb-8 md:mb-12 max-w-3xl">
                             Spezialisierte Engineering-Expertise für unterschiedlichste Industriezweige.
                             Von der chemischen Industrie über Pharma bis hin zu Energie- und Umwelttechnik —
                             wir entwickeln maßgeschneiderte Lösungen für komplexe Anlagenprojekte mit höchsten
@@ -222,21 +222,21 @@ const BranchesOverview: React.FC = () => {
                 </div>
 
                 {/* About Section */}
-                <div className="max-w-6xl mx-auto px-6 py-20">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
                         <div
                             className={`transition-all duration-1000 delay-300 ${isVisible.about ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
                         >
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', lineHeight: '1.2' }} className="font-light text-gray-900 mb-3 sm:mb-4 md:mb-6">
                                 Branchenexpertise ist unser Erfolgsrezept
                             </h2>
-                            <div className="w-20 h-1 bg-[#d97539] mb-6 sm:mb-8"></div>
-                            <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
+                            <div className="w-20 h-1 bg-[#d97539] mb-4 sm:mb-6 md:mb-8"></div>
+                            <p style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.125rem)', lineHeight: '1.7' }} className="text-gray-600 mb-3 sm:mb-4 md:mb-6">
                                 Wir verstehen die spezifischen Anforderungen jeder Branche und entwickeln darauf aufbauend
                                 maßgeschneiderte Engineering-Lösungen. Von der chemischen Industrie bis zur Pharmabranche —
                                 unser tiefgreifendes Fachwissen in den jeweiligen Industriezweigen ist die Basis für erfolgreiche Projekte.
                             </p>
-                            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                            <p style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.125rem)', lineHeight: '1.7' }} className="text-gray-600">
                                 Diese branchenspezifische Spezialisierung ermöglicht es uns, auch bei komplexesten
                                 Anforderungen die optimale Lösung zu finden und termingerecht umzusetzen.
                             </p>
@@ -244,7 +244,7 @@ const BranchesOverview: React.FC = () => {
                         <div
                             className={`transition-all duration-1000 delay-500 ${isVisible.about ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
                         >
-                            <div className="h-80 overflow-hidden rounded-lg">
+                            <div className="h-64 sm:h-72 md:h-80 overflow-hidden rounded-lg">
                                 <img
                                     src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop&auto=format"
                                     alt="Engineering Team bei der Arbeit - PROMAX Industrieanlagenbau"
@@ -259,20 +259,20 @@ const BranchesOverview: React.FC = () => {
                 </div>
 
                 {/* Services Section */}
-                <div className="max-w-6xl mx-auto px-6 py-20">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                     <div
                         className={`transition-all duration-1000 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                     >
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4">
+                        <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', lineHeight: '1.2' }} className="font-light text-gray-900 mb-3 sm:mb-4">
                             Unser{' '}
                             <span className="text-[#1e3767] font-semibold">Leistungsangebot</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mb-12 sm:mb-16">
+                        <p style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)' }} className="text-gray-600 max-w-2xl mb-8 sm:mb-12 md:mb-16">
                             Ganzheitliche Lösungen für Ihre Industrieprojekte
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
                         {branches.map((branch, index) => (
                             <div
                                 key={branch.id}
@@ -282,35 +282,35 @@ const BranchesOverview: React.FC = () => {
                                 style={{ transitionDelay: `${index * 200}ms` }}
                                 onClick={() => setSelectedBranch(branch)}
                             >
-                                <div className="mb-6">
-                                    <div className="w-20 h-20 flex items-center justify-center mb-4 rounded-lg transition-colors duration-300 hover:bg-opacity-80"
+                                <div className="mb-4 sm:mb-6">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-3 sm:mb-4 rounded-lg transition-colors duration-300 hover:bg-opacity-80"
                                          style={{ backgroundColor: '#d1d8dc' }}>
                                         {index === 0 && (
-                                            <svg className="w-10 h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Chemie Icon">
+                                            <svg className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Chemie Icon">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                             </svg>
                                         )}
                                         {index === 1 && (
-                                            <svg className="w-10 h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Energie Icon">
+                                            <svg className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Energie Icon">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                             </svg>
                                         )}
                                         {index === 2 && (
-                                            <svg className="w-10 h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Pharma Icon">
+                                            <svg className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Pharma Icon">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                             </svg>
                                         )}
                                         {index === 3 && (
-                                            <svg className="w-10 h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Papier Icon">
+                                            <svg className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: '#1e3767' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Papier Icon">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                             </svg>
                                         )}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                                    <h3 style={{ fontSize: 'clamp(1.1rem, 2vw, 1.25rem)' }} className="font-semibold mb-3 sm:mb-4 text-gray-900">
                                         {branch.title}
                                     </h3>
                                 </div>
-                                <p className="text-sm leading-relaxed text-gray-600">
+                                <p style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.875rem)', lineHeight: '1.6' }} className="text-gray-600">
                                     {branch.description}
                                 </p>
                             </div>
@@ -319,25 +319,25 @@ const BranchesOverview: React.FC = () => {
                 </div>
 
                 {/* Additional Industries Section */}
-                <div className="max-w-6xl mx-auto px-6 py-20">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
                     <div
                         className={`transition-all duration-1000 ${isVisible.additional ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                     >
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 mb-4 sm:mb-6">
+                        <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', lineHeight: '1.2' }} className="font-light text-gray-900 mb-4 sm:mb-6">
                             Darüber hinaus bearbeiten wir Projekte in weiteren Industriezweigen
                         </h2>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-base sm:text-lg leading-relaxed text-gray-600">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.125rem)', lineHeight: '1.7' }}>
                             <div
-                                className={`transition-all duration-1000 delay-300 ${isVisible.additional ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
+                                className={`transition-all duration-1000 delay-300 text-gray-600 ${isVisible.additional ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
                             >
-                                <p className="mb-6">
+                                <p className="mb-4 sm:mb-6">
                                     In der <strong>Lebensmittelindustrie</strong> entwickeln wir hygienische Anlagenkonzepte nach HACCP-Standards.
                                     Von der Getränkeproduktion über Molkerei- und Käsetechnik bis hin zur Fleisch- und Wurstverarbeitung
                                     realisieren wir maßgeschneiderte Produktionsanlagen.
                                 </p>
 
-                                <p className="mb-6">
+                                <p className="mb-4 sm:mb-6">
                                     Im Bereich <strong>Recycling und Kreislaufwirtschaft</strong> planen wir innovative Sortier- und
                                     Aufbereitungsanlagen für Kunststoff-Recycling und Elektroschrott-Aufbereitung. Nachhaltigkeit
                                     und Ressourceneffizienz stehen dabei im Mittelpunkt unserer Planungsphilosophie.
@@ -345,9 +345,9 @@ const BranchesOverview: React.FC = () => {
                             </div>
 
                             <div
-                                className={`transition-all duration-1000 delay-500 ${isVisible.additional ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
+                                className={`transition-all duration-1000 delay-500 text-gray-600 ${isVisible.additional ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
                             >
-                                <p className="mb-6">
+                                <p className="mb-4 sm:mb-6">
                                     Weitere Kompetenzen umfassen <strong>Bergbau und Metallurgie</strong>, die <strong>Automobilindustrie</strong>
                                     mit Fokus auf Zuliefererbetriebe sowie die <strong>Elektronik- und Halbleiterindustrie</strong>.
                                     Auch in der Kosmetik- und Consumer Goods-Branche entwickeln wir innovative Fertigungslösungen.

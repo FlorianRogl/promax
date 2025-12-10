@@ -32,10 +32,10 @@ const Technologies = () => {
     return (
         <div className="min-h-screen bg-white overflow-x-hidden" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
 
-            {/* Hero Section with Parallax */}
+            {/* Hero Section */}
             <section
                 id="hero-section"
-                className="relative min-h-[100svh] flex items-center justify-center bg-cover bg-center"
+                className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
                     backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1600&h=900&fit=crop')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
@@ -55,7 +55,7 @@ const Technologies = () => {
                 </div>
 
                 {/* Scroll indicator */}
-                <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+                <div className="mt-16 z-30">
                     <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center">
                         <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
                     </div>
