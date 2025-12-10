@@ -92,26 +92,9 @@ const Leistungen = () => {
                 </div>
 
                 {/* Scroll indicator */}
-                <div style={{
-                    marginTop: '4rem',
-                    zIndex: 30
-                }}>
-                    <div style={{
-                        width: '1.5rem',
-                        height: '2.5rem',
-                        border: '2px solid white',
-                        borderRadius: '9999px',
-                        display: 'flex',
-                        justifyContent: 'center'
-                    }}>
-                        <div style={{
-                            width: '0.25rem',
-                            height: '0.75rem',
-                            backgroundColor: 'white',
-                            borderRadius: '9999px',
-                            marginTop: '0.5rem',
-                            animation: 'bounce 1s infinite'
-                        }}></div>
+                <div className="mt-16 z-30">
+                    <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center animate-[fadeOut_6s_ease-in-out_forwards]">
+                        <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
                     </div>
                 </div>
             </section>
@@ -430,6 +413,15 @@ const Leistungen = () => {
 
             {/* Keyframe Animation */}
             <style>{`
+            @keyframes fadeOut {
+    0%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
                 @keyframes fade-in-up {
                     from {
                         opacity: 0;

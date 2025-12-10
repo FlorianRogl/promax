@@ -472,7 +472,7 @@ const Karriere: React.FC = () => {
             {/* Hero Section */}
             <section
                 ref={heroRef}
-                className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
+                className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
                     backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&auto=format')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
@@ -491,7 +491,7 @@ const Karriere: React.FC = () => {
 
                 {/* Scroll indicator */}
                 <div className="mt-16 z-30">
-                    <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center">
+                    <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center animate-[fadeOut_6s_ease-in-out_forwards]">
                         <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
                     </div>
                 </div>
@@ -786,6 +786,15 @@ const Karriere: React.FC = () => {
             )}
 
             <style>{`
+            @keyframes fadeOut {
+    0%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
                 .scrollbar-hide {
                     -ms-overflow-style: none;
                     scrollbar-width: none;
@@ -799,6 +808,7 @@ const Karriere: React.FC = () => {
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                 }
+                
             `}</style>
         </div>
     );

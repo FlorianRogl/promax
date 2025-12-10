@@ -178,7 +178,7 @@ const Unternehmen = () => {
 
                     {/* Scroll indicator */}
                     <div className="mt-16 z-30">
-                        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center">
+                        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center animate-[fadeOut_6s_ease-in-out_forwards]">
                             <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
                         </div>
                     </div>
@@ -564,6 +564,15 @@ const Unternehmen = () => {
 
                 {/* Add required styles */}
                 <style>{`
+                @keyframes fadeOut {
+    0%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
                     @keyframes fade-in-up {
                         from {
                             opacity: 0;

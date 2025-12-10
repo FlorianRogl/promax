@@ -62,10 +62,10 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 break-words">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 break-words px-2 leading-tight">
                                     {t('homepage.engineeringTitle')}
                                 </h3>
-                                <p className="text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 opacity-90 leading-relaxed break-words px-2">
+                                <p className="text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-2">
                                     {t('homepage.engineeringDesc')}
                                 </p>
                                 <ul className="text-left space-y-1.5 sm:space-y-2 text-xs sm:text-sm w-full max-w-xs">
@@ -108,10 +108,10 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 break-words">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 break-words px-2 leading-tight">
                                     {t('homepage.operativeTitle')}
                                 </h3>
-                                <p className="text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 opacity-90 leading-relaxed break-words px-2">
+                                <p className="text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-2">
                                     {t('homepage.operativeDesc')}
                                 </p>
                                 <ul className="text-left space-y-1.5 sm:space-y-2 text-xs sm:text-sm w-full max-w-xs">
