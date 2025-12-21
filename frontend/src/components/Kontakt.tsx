@@ -1,6 +1,7 @@
 import {Helmet} from "@vuer-ai/react-helmet-async";
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import kontaktHero from '../assets/kontaktHero.jpg';
 
 const Kontakt = () => {
     const { t } = useTranslation();
@@ -62,10 +63,14 @@ const Kontakt = () => {
             <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
                 {/* Hero Section with Parallax */}
                 <section
-                    className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
+                    className="relative w-full flex flex-col items-center justify-center bg-cover bg-center"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=1080&fit=crop&auto=format')`,
-                        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
+                        height: '105vh',
+                        minHeight: '105vh',
+                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('${kontaktHero}')`,
+                        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
                     }}
                 >
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>

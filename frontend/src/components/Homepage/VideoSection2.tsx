@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import video from '../../assets/video_mit_wasserzeichen.mp4';
 
 const VideoSection2 = () => {
     const { t } = useTranslation();
@@ -78,8 +79,8 @@ const VideoSection2 = () => {
             style={{
                 position: 'relative',
                 width: '100%',
-                height: '100vh',
-                minHeight: '100vh',
+                height: '105vh',
+                minHeight: '105vh',
                 overflow: 'hidden'
             }}
         >
@@ -98,7 +99,7 @@ const VideoSection2 = () => {
                         height: '100%',
                         objectFit: 'cover'
                     }}
-                    src="/promaxstockvideo_VrMEem5A.mp4"
+                    src={video}
                 />
             </div>
 

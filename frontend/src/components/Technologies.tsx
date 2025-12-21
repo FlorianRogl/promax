@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import tech1 from '../assets/tech1.jpg';
+import tech1 from '../assets/tech1_gekauft.jpg';
 import tech2 from '../assets/ROHR2.jpg';
-import tech3 from '../assets/tech3.jpg';
-import tech4 from '../assets/tech4.jpg';
+import tech3 from '../assets/3dLaser_gekauft.jpg';
+import tech4 from '../assets/vrBrilleEcht.jpg';
 
 const Technologies = () => {
     const { t } = useTranslation();
@@ -35,10 +35,14 @@ const Technologies = () => {
             {/* Hero Section */}
             <section
                 id="hero-section"
-                className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
+                className="relative w-full flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
+                    height: '105vh',
+                    minHeight: '105vh',
                     backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1600&h=900&fit=crop')`,
-                    backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
+                    backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>

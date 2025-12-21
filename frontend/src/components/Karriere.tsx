@@ -4,6 +4,8 @@ import { MapPin, Clock, Users, ArrowRight, ChevronLeft, ChevronRight, Sparkles, 
 import planungImage from '../assets/klugeKöpfe.png';
 import { jobService } from '../services/jobService';
 import type { FormattedJob } from '../types/job.types';
+import karrsiereHero from '../assets/karriereHero.jpg';
+
 
 const getDepartmentColor = (department: string): string => {
     const colors: { [key: string]: string } = {
@@ -472,10 +474,14 @@ const Karriere: React.FC = () => {
             {/* Hero Section */}
             <section
                 ref={heroRef}
-                className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
+                className="relative w-full flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&auto=format')`,
-                    backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
+                    height: '105vh',
+                    minHeight: '105vh',
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('${karrsiereHero}')`,
+                    backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>

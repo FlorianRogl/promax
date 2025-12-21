@@ -9,6 +9,7 @@ import iq from '../assets/IQNet certification mark 2022.jpg';
 import {Helmet} from "@vuer-ai/react-helmet-async";
 import CheckIcon from "./CheckIcon.tsx";
 import unternehmen1 from "../assets/unternehmen1.jpg";
+import unternehmenHero from '../assets/unternehmenPic.jpg';
 
 interface Resource {
     title: string;
@@ -159,10 +160,13 @@ const Unternehmen = () => {
                 {/* Hero Section */}
                 <section
                     id="hero-section"
-                    className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
+                    className="relative w-full flex flex-col items-center justify-center bg-cover bg-center"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('/unternehmenPic.jpg')`,
-                        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
+                        height: '105vh',
+                        minHeight: '105vh',
+                        backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url(${unternehmenHero})`,                        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
                     }}
                 >
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
