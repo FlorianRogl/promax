@@ -1,3 +1,4 @@
+
 import {useState, useEffect, JSX} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +7,6 @@ import rogl from '../assets/RoglAndreas.jpg';
 import christian from '../assets/Christian.jpg';
 import iso from '../assets/iso.png';
 import iq from '../assets/IQNet certification mark 2022.jpg';
-import {Helmet} from "@vuer-ai/react-helmet-async";
 import CheckIcon from "./CheckIcon.tsx";
 import unternehmen1 from "../assets/unternehmen1.jpg";
 
@@ -97,59 +97,6 @@ const Unternehmen = () => {
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "WebPage",
-                        "name": "Das Unternehmen - PROMAX Project Management",
-                        "description": "PROMAX Project Management GesmbH wurde 1999 gegründet und beschäftigt derzeit ca. 35 Mitarbeiter. Spezialisiert auf Projektmanagement im Industrieanlagenbau.",
-                        "url": "https://www.promax.at/Unternehmen",
-                        "mainEntity": {
-                            "@type": "Organization",
-                            "name": "PROMAX Project Management GesmbH",
-                            "foundingDate": "1999",
-                            "employee": "35",
-                            "description": "Dienstleistungsunternehmen im Industrieanlagenbau"
-                        },
-                        "breadcrumb": {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.promax.at/"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Das Unternehmen",
-                                    "item": "https://www.promax.at/Unternehmen"
-                                }
-                            ]
-                        }
-                    })}
-                </script>
-                <title>{t('company.heroTitle')} - PROMAX Projektmanagement</title>
-                <meta name="description" content={t('company.aboutText1')} />
-                <link rel="canonical" href="https://www.promax.at/Unternehmen" />
-
-                {/* Open Graph für Social Media */}
-                <meta property="og:title" content={`${t('company.heroTitle')} - PROMAX Projektmanagement`} />
-                <meta property="og:description" content={t('company.aboutText1')} />
-                <meta property="og:url" content="https://www.promax.at/Unternehmen" />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content="https://www.promax.at/og-image.jpg" />
-                <meta property="og:locale" content="de_AT" />
-                <meta property="og:site_name" content="PROMAX" />
-
-                {/* Twitter Cards */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={t('company.heroTitle')} />
-                <meta name="twitter:description" content={t('company.aboutText1')} />
-                <meta name="twitter:image" content="https://www.promax.at/og-image.jpg" />
-            </Helmet>
             <div className="min-h-screen bg-white overflow-x-hidden" style={{
                 wordBreak: 'normal',
                 overflowWrap: 'break-word',
