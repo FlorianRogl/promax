@@ -37,7 +37,7 @@ const Technologies = () => {
                 id="hero-section"
                 className="relative min-h-[100svh] flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1600&h=900&fit=crop')`,
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://    images.unsplash.com/photo-1581092162384-8987c1d64718?w=1600&h=900&fit=crop')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
                 }}
             >

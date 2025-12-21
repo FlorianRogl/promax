@@ -16,11 +16,13 @@ import Rechtliches from "./components/Rechtliches.tsx";
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from "./components/Navbar.tsx";
 import Technologies from "./components/Technologies.tsx";
-import './i18n'; // Import i18n configuration
+import './i18n';
+import SEOWrapper from "./seo/SeoWrapper.tsx"; // Import i18n configuration
 
 function App() {
     return (
         <HelmetProvider>
+            <SEOWrapper>
             <div>
                 <Navbar/>
                 <ScrollToTop/>
@@ -42,6 +44,7 @@ function App() {
                 <Footer/>
                 <Analytics />
             </div>
+            </SEOWrapper>
         </HelmetProvider>
     );
 }
