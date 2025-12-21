@@ -1,23 +1,29 @@
-# public/robots.txt
+# robots.txt für PROMAX Project Management
+# https://www.promax.at/robots.txt
+
 User-agent: *
 Allow: /
-
-# Wichtige Seiten
-Allow: /
-Allow: /Unternehmen
-Allow: /Leistungen
-Allow: /Branchen
-Allow: /Karriere
-Allow: /Kontakt
-
-# Unwichtige Seiten ausschließen
-Disallow: /Kontakt2
-Disallow: /Kontakt3
-Disallow: /Projektberichte
-Disallow: /FitImJob
 
 # Sitemap
 Sitemap: https://www.promax.at/sitemap.xml
 
-# Crawl-Delay
-Crawl-delay: 1
+# Crawl-Delay (optional, nur wenn Server überlastet)
+# Crawl-delay: 1
+
+# Disallow für nicht-öffentliche Bereiche
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow wichtige Ressourcen
+Allow: /assets/
+Allow: /documents/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.pdf

@@ -1,4 +1,4 @@
-import {Helmet} from "@vuer-ai/react-helmet-async";
+
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import kontaktHero from '../assets/kontaktHero.jpg';
@@ -13,52 +13,6 @@ const Kontakt = () => {
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "ContactPage",
-                        "name": "Kontakt - PROMAX Project Management",
-                        "description": "Kontaktieren Sie PROMAX Project Management für Ihr Industrieanlagenbau-Projekt. Telefon, E-Mail und Adresse.",
-                        "url": "https://www.promax.at/Kontakt",
-                        "mainEntity": {
-                            "@type": "Organization",
-                            "name": "PROMAX Project Management GesmbH",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "streetAddress": "Parkring 18/F",
-                                "addressLocality": "Raaba-Grambach",
-                                "postalCode": "8074",
-                                "addressCountry": "AT"
-                            },
-                            "contactPoint": {
-                                "@type": "ContactPoint",
-                                "telephone": "+43 316 241 393",
-                                "email": "office@promax.at",
-                                "contactType": "customer service"
-                            }
-                        }
-                    })}
-                </script>
-                <title>{t('contact.heroTitle')} | PROMAX Project Management</title>
-                <meta name="description" content={t('contact.ctaText')} />
-                <link rel="canonical" href="https://www.promax.at/Kontakt" />
-
-                {/* Open Graph für Social Media */}
-                <meta property="og:title" content={`${t('contact.heroTitle')} - PROMAX Projektmanagement`} />
-                <meta property="og:description" content={t('contact.ctaText')} />
-                <meta property="og:url" content="https://www.promax.at/Kontakt" />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content="https://www.promax.at/og-image.jpg" />
-                <meta property="og:locale" content="de_AT" />
-                <meta property="og:site_name" content="PROMAX" />
-
-                {/* Twitter Cards */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={t('contact.heroTitle')} />
-                <meta name="twitter:description" content={t('contact.ctaText')} />
-                <meta name="twitter:image" content="https://www.promax.at/og-image.jpg" />
-            </Helmet>
 
             <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
                 {/* Hero Section with Parallax */}

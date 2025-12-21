@@ -16,49 +16,32 @@ import Rechtliches from "./components/Rechtliches.tsx";
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from "./components/Navbar.tsx";
 import Technologies from "./components/Technologies.tsx";
-import './i18n';
+import './i18n'; // Import i18n configuration
 
 function App() {
     return (
         <HelmetProvider>
-            <>
-                <style>{`
-                    html {
-                        zoom: 0.85;
-                        -moz-transform: scale(0.85);
-                        -moz-transform-origin: 0 0;
-                    }
-                    
-                    @supports not (zoom: 0.85) {
-                        body {
-                            transform: scale(0.85);
-                            transform-origin: 0 0;
-                            width: 117.65%;
-                        }
-                    }
-                `}</style>
-                <div>
-                    <Navbar/>
-                    <ScrollToTop/>
-                    <Routes>
-                        <Route path="/" element={<Homepage/>} />
-                        <Route path="/Unternehmen" element={<Unternehmen/>} />
-                        <Route path="/Kontakt" element={<Kontakt/>} />
-                        <Route path="/Kontakt2" element={<Kontakt2/>} />
-                        <Route path="/Kontakt3" element={<Kontakt3/>} />
-                        <Route path="/Technologien" element={<Technologies/>} />
-                        <Route path="/Leistungen" element={<Leistungen/>} />
-                        <Route path="/Projektberichte" element={<Projektberichte/>} />
-                        <Route path="/Karriere" element={<Karriere/>} />
-                        <Route path="/FitImJob" element={<FitImJob/>}/>
-                        <Route path="/Rechtliches" element={<Rechtliches/>}/>
+            <div>
+                <Navbar/>
+                <ScrollToTop/>
+                <Routes>
+                    <Route path="/" element={<Homepage/>} />
+                    <Route path="/Unternehmen" element={<Unternehmen/>} />
+                    <Route path="/Kontakt" element={<Kontakt/>} />
+                    <Route path="/Kontakt2" element={<Kontakt2/>} />
+                    <Route path="/Kontakt3" element={<Kontakt3/>} />
+                    <Route path="/Technologien" element={<Technologies/>} />
+                    <Route path="/Leistungen" element={<Leistungen/>} />
+                    <Route path="/Projektberichte" element={<Projektberichte/>} />
+                    <Route path="/Karriere" element={<Karriere/>} />
+                    <Route path="/FitImJob" element={<FitImJob/>}/>
+                    <Route path="/Rechtliches" element={<Rechtliches/>}/>
 
-                        <Route path="*" element={<Error404/>} />
-                    </Routes>
-                    <Footer/>
-                    <Analytics />
-                </div>
-            </>
+                    <Route path="*" element={<Error404/>} />
+                </Routes>
+                <Footer/>
+                <Analytics />
+            </div>
         </HelmetProvider>
     );
 }
