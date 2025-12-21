@@ -476,8 +476,8 @@ const Karriere: React.FC = () => {
                 ref={heroRef}
                 className="relative w-full flex flex-col items-center justify-center bg-cover bg-center"
                 style={{
-                    height: '107vh',
-                    minHeight: '107vh',
+                    height: '110vh',
+                    minHeight: '110vh',
                     backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('${karrsiereHero}')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
                     backgroundSize: 'cover',
