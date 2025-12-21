@@ -79,8 +79,8 @@ const VideoSection2 = () => {
             style={{
                 position: 'relative',
                 width: '100%',
-                height: '105vh',
-                minHeight: '105vh',
+                height: '115vh',
+                minHeight: '115vh',
                 overflow: 'hidden'
             }}
         >
