@@ -41,8 +41,8 @@ const Leistungen = () => {
                 id="hero-section"
                 style={{
                     position: 'relative',
-                    height: '105vh',
-                    minHeight: '105vh',
+                    height: '115vh',
+                    minHeight: '115vh',
                     width: '100%',
                     display: 'flex',
                     flexDirection: 'column',

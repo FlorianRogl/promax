@@ -109,8 +109,8 @@ const Unternehmen = () => {
                     id="hero-section"
                     className="relative w-full flex flex-col items-center justify-center bg-cover bg-center"
                     style={{
-                        height: '105vh',
-                        minHeight: '105vh',
+                        height: '115vh',
+                        minHeight: '115vh',
                         backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url(${unternehmenHero})`,                        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
