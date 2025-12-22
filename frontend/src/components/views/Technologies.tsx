@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import tech1 from '../../assets/tech1_gekauft.jpg';
 import tech3 from '../../assets/3dLaser_gekauft.jpg';
 import tech4 from '../../assets/vrBrilleEcht.jpg';
+import titelbild from '../../assets/neuesBildTechnologie.jpg';
 
 const Technologies = () => {
     const { t } = useTranslation();
@@ -38,7 +39,7 @@ const Technologies = () => {
                 style={{
                     height: '115vh',
                     minHeight: '115vh',
-                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&h=600&fit=crop&auto=format')`,
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('${titelbild}')`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
