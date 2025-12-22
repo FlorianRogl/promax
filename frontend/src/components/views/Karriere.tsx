@@ -759,6 +759,7 @@ const Karriere: React.FC = () => {
                                             </div>
                                         </section>
 
+
                                         <section className="border-t border-gray-200 pt-4 sm:pt-6">
                                             <div className="text-center">
                                                 <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 text-[#1e3767] break-words">
@@ -784,11 +785,14 @@ const Karriere: React.FC = () => {
                                                 </div>
                                             </div>
                                         </section>
+
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                 </div>
             )}
 
