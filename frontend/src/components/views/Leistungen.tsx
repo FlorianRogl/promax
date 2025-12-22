@@ -2,7 +2,8 @@ import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import leistungHero from '../../assets/LeistungenPic.jpg';
-import titelbild from '../../assets/neuesBildTechnologie.jpg';
+import newPic from '../../assets/iStock-684873524.jpg';
+
 
 const Leistungen = () => {
     const { t } = useTranslation();
@@ -208,7 +209,7 @@ const Leistungen = () => {
                             {/* Image */}
                             <div className="order-1 lg:order-2">
                                 <img
-                                    src={titelbild}
+                                    src={newPic}
                                     alt="Ingenieurplanung - 3D Modellierung und technische Planung"
                                     style={{
                                         width: '100%',

@@ -785,6 +785,28 @@ const Karriere: React.FC = () => {
                                                 </div>
                                             </div>
                                         </section>
+                                        <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
+                                            <div className="absolute inset-0 opacity-10">
+                                                <div className="absolute inset-0 bg-pattern"></div>
+                                            </div>
+
+                                            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                                                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto px-2">
+                                                    {t('company.ctaTitle')} <span className="font-semibold">{t('company.ctaTitleHighlight')}</span>
+                                                </h2>
+                                                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto break-words px-2">
+                                                    {t('company.ctaText')}
+                                                </p>
+                                                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                                                    <a
+                                                        href="mailto:office@promax.at"
+                                                        className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl"
+                                                    >
+                                                        {t('company.ctaButton')}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </section>
 
                                     </div>
                                 </div>
