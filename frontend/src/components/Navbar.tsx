@@ -64,25 +64,25 @@ const Navbar = () => {
                 }`}
             >
                 <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-                    <div className="flex items-center justify-between h-20 md:h-22 lg:h-20 xl:h-22 2xl:h-24">
+                    <div className="flex items-center justify-between h-24 md:h-26 lg:h-24 xl:h-28 2xl:h-32">
 
                         {/* Logo - Links */}
                         <Link to="/" className="flex-shrink-0 z-50">
                             <img
                                 src={navLogo}
                                 alt="Logo"
-                                className="h-12 md:h-14 lg:h-12 xl:h-13 2xl:h-14 w-auto object-contain transition-all duration-300"
+                                className="h-16 md:h-18 lg:h-16 xl:h-18 2xl:h-20 w-auto object-contain transition-all duration-300"
                             />
                         </Link>
 
                         {/* Desktop Navigation - Zentral */}
                         <div className="hidden lg:flex items-center justify-center flex-1 mx-8 xl:mx-12 2xl:mx-16">
-                            <ul className="flex items-center space-x-10 xl:space-x-12 2xl:space-x-16">
+                            <ul className="flex items-center space-x-12 xl:space-x-14 2xl:space-x-18">
                                 {navItems.map((item) => (
                                     <li key={item.path}>
                                         <Link
                                             to={item.path}
-                                            className={`relative font-medium transition-colors duration-300 px-4 py-2 rounded-lg text-sm lg:text-base xl:text-lg 2xl:text-xl ${
+                                            className={`relative font-medium transition-colors duration-300 px-5 py-2.5 rounded-lg text-base lg:text-lg xl:text-xl 2xl:text-2xl ${
                                                 location.pathname === item.path
                                                     ? 'text-orange-600 bg-orange-50'
                                                     : 'text-gray-700'
@@ -98,7 +98,7 @@ const Navbar = () => {
                         {/* Right Side - Language + Mobile Menu */}
                         <div className="flex items-center space-x-4 md:space-x-6">
                             {/* Language Switcher - Immer sichtbar */}
-                            <div className="flex items-center space-x-1.5 md:space-x-2 text-sm md:text-base lg:text-sm xl:text-base 2xl:text-lg font-medium">
+                            <div className="flex items-center space-x-1.5 md:space-x-2 text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-medium">
                                 <button
                                     onClick={() => changeLanguage('de')}
                                     className={`transition-colors px-1.5 md:px-2 ${
@@ -131,7 +131,7 @@ const Navbar = () => {
                                 aria-label="Toggle menu"
                             >
                                 <svg
-                                    className="w-7 h-7 md:w-8 md:h-8"
+                                    className="w-8 h-8 md:w-9 md:h-9"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -180,7 +180,7 @@ const Navbar = () => {
                                 <Link
                                     to={item.path}
                                     onClick={closeMobileMenu}
-                                    className={`block py-4 px-5 rounded-lg text-lg sm:text-xl font-medium transition-all ${
+                                    className={`block py-4 px-5 rounded-lg text-xl sm:text-2xl font-medium transition-all ${
                                         location.pathname === item.path
                                             ? 'bg-orange-50 text-orange-600'
                                             : 'text-gray-700 hover:bg-gray-50'
@@ -198,7 +198,7 @@ const Navbar = () => {
             </div>
 
             {/* Spacer für fixed navbar */}
-            <div className="h-20 md:h-22 lg:h-20 xl:h-22 2xl:h-24" />
+            <div className="h-24 md:h-26 lg:h-24 xl:h-28 2xl:h-32" />
         </>
     );
 };
