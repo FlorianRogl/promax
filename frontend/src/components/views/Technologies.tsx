@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import tech1 from '../assets/tech1_gekauft.jpg';
-import tech2 from '../assets/ROHR2.jpg';
-import tech3 from '../assets/3dLaser_gekauft.jpg';
-import tech4 from '../assets/vrBrilleEcht.jpg';
+import tech1 from '../../assets/tech1_gekauft.jpg';
+import tech3 from '../../assets/3dLaser_gekauft.jpg';
+import tech4 from '../../assets/vrBrilleEcht.jpg';
 
 const Technologies = () => {
     const { t } = useTranslation();
@@ -47,14 +46,12 @@ const Technologies = () => {
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
 
-                <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+                <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full">
                     <div className="opacity-0 translate-y-8 animate-fade-in-up">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white mb-4 sm:mb-6 leading-tight">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 leading-tight" style={{ hyphens: 'none', wordBreak: 'normal', overflowWrap: 'normal' }}>
                             {t('technologies.heroTitle')}
+                            <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2" style={{ hyphens: 'none', wordBreak: 'normal', overflowWrap: 'normal' }}>{t('technologies.heroSubtitle')}</span>
                         </h1>
-                        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-[#d97539] leading-relaxed">
-                            {t('technologies.heroSubtitle')}
-                        </p>
                     </div>
                 </div>
 
@@ -130,14 +127,80 @@ const Technologies = () => {
                                         {t('technologies.planningProgramsTitle')}
                                     </h3>
                                     <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-2 text-sm sm:text-base md:text-lg text-gray-600">
-                                        <div className="break-words">• AutoCAD</div>
-                                        <div className="break-words">• E3D</div>
-                                        <div className="break-words">• AutoCAD Plant3D</div>
-                                        <div className="break-words">• Point Cloud Manager</div>
-                                        <div className="break-words">• Advance Steel</div>
-                                        <div className="break-words">• Edge Wise</div>
-                                        <div className="break-words">• Inventor</div>
-                                        <div className="break-words">• ROHR2</div>
+                                        <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-2 text-sm sm:text-base md:text-lg text-gray-600">
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>AutoCAD</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>AutoCAD Plant3D</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Advance Steel</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Inventor</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Navisworks</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Recap</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>3ds Max</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Faro Scene</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Intergraph Smart 3D</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>E3D</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Point Cloud Manager</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Edge Wise</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>ROHR2</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>ROHR2fesu</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>ROHR2flange</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>SINETZ</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>PROBAD</span>
+                                            </div>
+                                            <div className="flex items-start break-words">
+                                                <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
+                                                <span>Software-Erweiterungen</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -161,67 +224,7 @@ const Technologies = () => {
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-16 sm:mb-20 md:mb-24"></div>
 
                     {/* Berechnungssoftware */}
-                    <div id="berechnungssoftware" className="mb-16 sm:mb-20 md:mb-24 pt-16 sm:pt-20 -mt-16 sm:-mt-20">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-                            {/* Image */}
-                            <div className="lg:order-1">
-                                <img
-                                    src={tech2}
-                                    alt="ROHR2 Berechnungssoftware"
-                                    className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] object-cover rounded-xl sm:rounded-2xl shadow-2xl"
-                                    loading="lazy"
-                                    onError={(e) => {
-                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&h=600&fit=crop';
-                                    }}
-                                />
-                            </div>
 
-                            {/* Content */}
-                            <div className="lg:order-2">
-                                <div className="flex flex-col items-center text-center lg:flex-row lg:items-start lg:text-left mb-6 sm:mb-8">
-                                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#d97539] rounded-lg sm:rounded-xl flex items-center justify-center mb-4 lg:mb-0 lg:mr-4 lg:mr-6 flex-shrink-0">
-                                        <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z" />
-                                        </svg>
-                                    </div>
-                                    <div className="flex-1 min-w-0 w-full lg:w-auto">
-                                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#1e3767] mb-3 lg:mb-2 break-words">
-                                            {t('technologies.calculationTitle')}
-                                        </h2>
-                                        <div className="w-16 sm:w-20 h-1 bg-[#d97539] mx-auto lg:mx-0"></div>
-                                    </div>
-                                </div>
-
-                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 break-words">
-                                    {t('technologies.calculationIntro')}
-                                </p>
-
-                                <div className="mb-6 sm:mb-8">
-                                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#1e3767] mb-3 sm:mb-4 break-words">
-                                        {t('technologies.calculationFeaturesTitle')}
-                                    </h3>
-                                    <ul className="space-y-2 text-sm sm:text-base md:text-lg text-gray-600">
-                                        <li className="flex items-start">
-                                            <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
-                                            <span className="break-words">{t('technologies.calculationFeature1')}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
-                                            <span className="break-words">{t('technologies.calculationFeature2')}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
-                                            <span className="break-words">{t('technologies.calculationFeature3')}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
-                                            <span className="break-words">{t('technologies.calculationFeature4')}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     {/* Separator */}
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-16 sm:mb-20 md:mb-24"></div>
@@ -309,20 +312,10 @@ const Technologies = () => {
                     <div id="virtual-reality" className="pt-16 sm:pt-20 -mt-16 sm:-mt-20">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
                             {/* Image */}
-                            <div className="lg:order-1">
-                                <img
-                                    src={tech4}
-                                    alt="Ingenieur nutzt Augmented Reality Headset"
-                                    className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] object-cover rounded-xl sm:rounded-2xl shadow-2xl"
-                                    loading="lazy"
-                                    onError={(e) => {
-                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&h=600&fit=crop';
-                                    }}
-                                />
-                            </div>
+
 
                             {/* Content */}
-                            <div className="lg:order-2">
+                            <div className="lg:order-1">
                                 <div className="flex flex-col items-center text-center lg:flex-row lg:items-start lg:text-left mb-6 sm:mb-8">
                                     <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#1e3767] rounded-lg sm:rounded-xl flex items-center justify-center mb-4 lg:mb-0 lg:mr-4 lg:mr-6 flex-shrink-0">
                                         <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
@@ -364,7 +357,21 @@ const Technologies = () => {
                                     {t('technologies.vrConclusion')}
                                 </p>
                             </div>
+                            <div className="lg:order-2">
+                                <img
+                                    src={tech4}
+                                    alt="Ingenieur nutzt Augmented Reality Headset"
+                                    className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] object-cover rounded-xl sm:rounded-2xl shadow-2xl"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&h=600&fit=crop';
+                                    }}
+                                />
+                            </div>
+
                         </div>
+
+
                     </div>
                 </div>
             </section>
@@ -398,8 +405,8 @@ const Technologies = () => {
                 /* Besserer Textumbruch */
                 * {
                     word-break: normal;
-                    overflow-wrap: break-word;
-                    hyphens: auto;
+                    overflow-wrap: normal;
+                    hyphens: none;
                 }
             `}</style>
         </div>

@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import kontaktHero from '../assets/kontaktHero.jpg';
+import kontaktHero from '../../assets/kontaktHero.jpg';
 
 const Kontakt = () => {
     const { t } = useTranslation();
@@ -29,14 +28,12 @@ const Kontakt = () => {
                 >
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
 
-                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full">
                         <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white mb-4 sm:mb-6">
+                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
                                 {t('contact.heroTitle')}
+                                <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">{t('contact.heroSubtitle')}</span>
                             </h1>
-                            <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#d97539] leading-relaxed">
-                                {t('contact.heroSubtitle')}
-                            </p>
                         </div>
                     </div>
 
@@ -183,24 +180,26 @@ const Kontakt = () => {
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
+                <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-[#1e3767] to-[#2a4a7f] relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0 bg-pattern"></div>
                     </div>
 
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6">
-                            {t('contact.ctaTitle')} <span className="font-semibold">{t('contact.ctaTitleHighlight')}</span>
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto px-2">
+                            {t('company.ctaTitle')} <span className="font-semibold">{t('company.ctaTitleHighlight')}</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-200 mb-8 sm:mb-10 max-w-2xl mx-auto">
-                            {t('contact.ctaText')}
+                        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto break-words px-2">
+                            {t('company.ctaText')}
                         </p>
-                        <a
-                            href="mailto:office@promax.at"
-                            className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl"
-                        >
-                            {t('contact.ctaButton')}
-                        </a>
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                            <a
+                                href="mailto:office@promax.at"
+                                className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl"
+                            >
+                                {t('company.ctaButton')}
+                            </a>
+                        </div>
                     </div>
                 </section>
             </div>

@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import leistungHero from '../assets/LeistungenPic.jpg';
+import leistungHero from '../../assets/LeistungenPic.jpg';
 
 
 const Leistungen = () => {
@@ -60,37 +60,12 @@ const Leistungen = () => {
                     background: 'linear-gradient(to bottom, transparent, transparent, rgba(0,0,0,0.05))'
                 }}></div>
 
-                <div style={{
-                    position: 'relative',
-                    zIndex: 10,
-                    textAlign: 'center',
-                    padding: '0 1rem',
-                    maxWidth: '80rem',
-                    margin: '0 auto',
-                    width: '100%'
-                }}>
+                <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full">
                     <div className="opacity-0 translate-y-8 animate-fade-in-up">
-                        <h1 style={{
-                            fontSize: 'clamp(1.875rem, 5vw, 4.5rem)',
-                            fontWeight: '300',
-                            color: 'white',
-                            marginBottom: 'clamp(1rem, 3vw, 1.5rem)',
-                            lineHeight: '1.2',
-                            padding: '0 0.5rem',
-                            wordBreak: 'break-word'
-                        }}>
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
                             {t('services.heroTitle')}
+                            <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">{t('services.heroSubtitle')}</span>
                         </h1>
-                        <p style={{
-                            fontSize: 'clamp(1.125rem, 3vw, 1.875rem)',
-                            fontWeight: '500',
-                            color: '#d97539',
-                            lineHeight: '1.5',
-                            padding: '0 1rem',
-                            wordBreak: 'break-word'
-                        }}>
-                            {t('services.heroSubtitle')}
-                        </p>
                     </div>
                 </div>
 

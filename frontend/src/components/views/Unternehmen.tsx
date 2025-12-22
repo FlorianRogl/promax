@@ -1,15 +1,13 @@
-
 import {useState, useEffect, JSX} from 'react';
-import {useNavigate} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../index.css'
-import rogl from '../assets/RoglAndreas.jpg';
-import christian from '../assets/Christian.jpg';
-import iso from '../assets/iso.png';
-import iq from '../assets/IQNet certification mark 2022.jpg';
-import CheckIcon from "./CheckIcon.tsx";
-import unternehmen1 from "../assets/unternehmen1.jpg";
-import unternehmenHero from '../assets/unternehmenPic.jpg';
+import '../../index.css'
+import rogl from '../../assets/RoglAndreas.jpg';
+import christian from '../../assets/Christian.jpg';
+import iso from '../../assets/iso.png';
+import iq from '../../assets/IQNet certification mark 2022.jpg';
+import CheckIcon from "../CheckIcon.tsx";
+import unternehmen1 from "../../assets/unternehmen1.jpg";
+import unternehmenHero from '../../assets/unternehmenPic.jpg';
 
 interface Resource {
     title: string;
@@ -22,7 +20,6 @@ interface Resource {
 
 const Unternehmen = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
     // Resources - dynamically translated
@@ -100,8 +97,8 @@ const Unternehmen = () => {
         <>
             <div className="min-h-screen bg-white overflow-x-hidden" style={{
                 wordBreak: 'normal',
-                overflowWrap: 'break-word',
-                hyphens: 'auto'
+                overflowWrap: 'normal',
+                hyphens: 'none'
             }}>
                 {/* Hero Section with Parallax */}
                 {/* Hero Section */}
@@ -118,11 +115,11 @@ const Unternehmen = () => {
                 >
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"></div>
 
-                    <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-                        <div className="animate-fade-in-up">
-                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 break-words hyphens-auto leading-tight">
+                    <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full">
+                        <div className="transition-all duration-1000 transform opacity-100 translate-y-0">
+                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 sm:mb-4 md:mb-6 leading-tight" style={{ hyphens: 'none', wordBreak: 'normal', overflowWrap: 'normal' }}>
                                 {t('company.heroTitle')}
-                                <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2">{t('company.heroSubtitle')}</span>
+                                <span className="block font-semibold text-[#d97539] mt-1 sm:mt-2" style={{ hyphens: 'none', wordBreak: 'normal', overflowWrap: 'normal' }}>{t('company.heroSubtitle')}</span>
                             </h1>
                         </div>
                     </div>
@@ -180,14 +177,18 @@ const Unternehmen = () => {
                                 </p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                                     <div className="flex items-start space-x-2 sm:space-x-3">
-                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2 flex-shrink-0"></div>
+                                        <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                                            <CheckIcon />
+                                        </div>
                                         <div className="flex-1 min-w-0">
                                             <h4 className="font-semibold text-gray-900 text-sm sm:text-base break-words">{t('company.aboutFeature1Title')}</h4>
                                             <p className="text-xs sm:text-sm text-gray-600 break-words">{t('company.aboutFeature1Text')}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start space-x-2 sm:space-x-3">
-                                        <div className="w-2 h-2 bg-[#d97539] rounded-full mt-2 flex-shrink-0"></div>
+                                        <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                                            <CheckIcon />
+                                        </div>
                                         <div className="flex-1 min-w-0">
                                             <h4 className="font-semibold text-gray-900 text-sm sm:text-base break-words">{t('company.aboutFeature2Title')}</h4>
                                             <p className="text-xs sm:text-sm text-gray-600 break-words">{t('company.aboutFeature2Text')}</p>
@@ -202,7 +203,7 @@ const Unternehmen = () => {
                                 <img
                                     src={unternehmen1}
                                     alt="PROMAX Office"
-                                    className="relative rounded-lg shadow-2xl w-full h-[400px] lg:h-[500px] object-cover"
+                                    className="relative rounded-lg shadow-2xl w-full h-[300px] lg:h-[380px] xl:h-[420px] object-cover"
                                 />
                             </div>
                         </div>
@@ -343,19 +344,19 @@ const Unternehmen = () => {
                                 </p>
 
                                 <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4 p-2 sm:p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4">
                                         <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                             <CheckIcon />
                                         </div>
                                         <span className="text-xs sm:text-sm md:text-base text-gray-700 font-medium break-words flex-1">{t('company.cultureFeature1')}</span>
                                     </div>
-                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4 p-2 sm:p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4">
                                         <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                             <CheckIcon />
                                         </div>
                                         <span className="text-xs sm:text-sm md:text-base text-gray-700 font-medium break-words flex-1">{t('company.cultureFeature2')}</span>
                                     </div>
-                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4 p-2 sm:p-3 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <div className="flex items-start space-x-2 sm:space-x-3 md:space-x-4">
                                         <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                                             <CheckIcon />
                                         </div>
@@ -503,12 +504,12 @@ const Unternehmen = () => {
                             {t('company.ctaText')}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                            <button
-                                onClick={() => navigate('/Kontakt')}
+                            <a
+                                href="mailto:office@promax.at"
                                 className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-[#d97539] text-white rounded-full hover:bg-[#c56830] transform hover:scale-105 transition-all duration-300 font-medium text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl"
                             >
                                 {t('company.ctaButton')}
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </section>

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Clock, Users, ArrowRight, ChevronLeft, ChevronRight, Sparkles, Mail, X } from 'lucide-react';
-import planungImage from '../assets/klugeKöpfe.png';
-import { jobService } from '../services/jobService';
-import type { FormattedJob } from '../types/job.types';
-import karrsiereHero from '../assets/karriereHero.jpg';
+import planungImage from '../../assets/klugeKöpfe.png';
+import { jobService } from '../../services/jobService.ts';
+import type { FormattedJob } from '../../types/job.types.ts';
+import karrsiereHero from '../../assets/karriereHero.jpg';
 
 
 const getDepartmentColor = (department: string): string => {
@@ -574,7 +574,7 @@ const Karriere: React.FC = () => {
                         <img
                             src={planungImage}
                             alt="PROMAX Team bei der Projektplanung"
-                            className="w-full h-64 sm:h-80 lg:h-full object-contain lg:object-cover"
+                            className="w-full h-48 sm:h-56 md:h-64 lg:h-80 xl:h-96 object-contain"
                             loading="lazy"
                         />
                     </div>
@@ -585,8 +585,9 @@ const Karriere: React.FC = () => {
             {renderJobsSection()}
 
             {/* CTA Section */}
-            <section ref={setSectionRef('cta')} className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
-                <div className={`text-center transition-all duration-1000 transform ${visibleSections.has('cta') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            {/* CTA Section */}
+            <section ref={setSectionRef('cta')} className="bg-gray-50 py-10 sm:py-16 md:py-20">
+                <div className={`max-w-6xl mx-auto px-4 sm:px-6 text-center transition-all duration-1000 transform ${visibleSections.has('cta') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 text-[#1e3767] break-words px-2">
                         {t('career.ctaTitle')}
                     </h3>
