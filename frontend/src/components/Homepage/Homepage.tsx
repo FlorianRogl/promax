@@ -33,7 +33,7 @@ const Homepage = () => {
             <section className="py-12 sm:py-16 md:py-20 bg-gray-50 relative">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-10 sm:mb-12 md:mb-16">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-promax-blue break-words" style={{ hyphens: 'none' }}>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-promax-blue break-words" style={{ hyphens: 'none' }}>
                             {t('homepage.servicesTitle')}
                         </h2>
                         <div className="w-16 sm:w-20 md:w-24 h-1 bg-promax-orange mx-auto"></div>

@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Download, Sparkles, Mail, FileText } from 'lucide-react';
-import planungImage from '../assets/klugeKöpfe.png';
+import planungImage from '../../assets/klugeKöpfe.png';
+import karriereHeroImage from '../../assets/KarreiereEchtesFrontBild.jpg';
 
 // PDF Job Inserate - diese Dateien müssen in src/assets/jobs/ liegen
-import engineerPdf from '../assets/jobs/PROMAX_Inseratvorlage_Engineer_2025-08.pdf';
-import juniorEngineerFeb from '../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-02.pdf';
-import juniorEngineerMay from '../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-05.pdf';
+import engineerPdf from '../../assets/jobs/PROMAX_Inseratvorlage_Engineer_2025-08.pdf';
+import juniorEngineerFeb from '../../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-02.pdf';
+import juniorEngineerMay from '../../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-05.pdf';
 
 interface JobPdf {
     id: string;
@@ -243,7 +244,7 @@ const Karriere: React.FC = () => {
                 ref={heroRef}
                 className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center justify-center bg-cover bg-center"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&auto=format')`,
+                    backgroundImage: `linear-gradient(rgba(30, 55, 103, 0.7), rgba(30, 55, 103, 0.7)), url(${karriereHeroImage})`,
                     backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll'
                 }}
             >
@@ -273,9 +274,9 @@ const Karriere: React.FC = () => {
                         <span className="text-xs sm:text-sm font-medium text-[#1e3767]">{t('career.hiring')}</span>
                     </div>
 
-                    <h3 className="text-base sm:text-lg md:text-xl font-medium text-[#1e3767] mb-4 sm:mb-6 md:mb-8 leading-relaxed break-words">
+                    <h2 className="text-xl sm:text-2xl md:text-4xl font-medium text-[#1e3767] mb-4 sm:mb-6 md:mb-8 leading-relaxed break-words">
                         {t('career.introTitle')}
-                    </h3>
+                    </h2>
 
                     <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4 md:mb-6 text-gray-600 break-words">
                         {t('career.introText1')}

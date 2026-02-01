@@ -189,7 +189,7 @@ const resources = {
                 locationsTitle: "Unsere",
                 locationsTitleHighlight: "Standorte",
                 headquartersTitle: "Zentrale Raaba-Grambach",
-                branchViennaTitle: "Zweigstelle Wien",
+                branchViennaTitle: "Niederlassung Wien",
                 routeTitle: "Anfahrt zu unseren",
                 routeTitleHighlight: "Standorten",
                 ctaTitle: "Bereit für Ihr nächstes",
@@ -269,13 +269,13 @@ const resources = {
                 disclaimer: "Haftungsausschluss",
                 disclaimerText: "Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.",
                 copyright: "Urheberrecht",
-                copyrightText: "© 2024 PROMAX Project Management GesmbH. Alle Rechte vorbehalten. Die Inhalte und Werke auf dieser Website unterliegen dem österreichischen Urheberrecht.",
+                copyrightText: "© 2026 PROMAX Project Management GesmbH. Alle Rechte vorbehalten. Die Inhalte und Werke auf dieser Website unterliegen dem österreichischen Urheberrecht.",
                 imageCredits: "Bildnachweis",
                 privacyTitle: "Datenschutzerklärung",
                 privacySubtitle: "Informationen zur Verarbeitung Ihrer personenbezogenen Daten",
                 termsTitle: "Allgemeine Geschäftsbedingungen",
                 termsSubtitle: "Geltungsbereich und Vertragsschluss",
-                copyrightYear: "2025"
+                copyrightYear: "2026"
             },
 
             // Footer
@@ -283,7 +283,7 @@ const resources = {
                 contactUs: "Kontaktieren Sie uns",
                 legal: "Rechtliches",
                 certifications: "Zertifizierungen",
-                copyright: "© 2025 PROMAX Project Management GesmbH. Alle Rechte vorbehalten."
+                copyright: "© 2026 PROMAX Project Management GesmbH. Alle Rechte vorbehalten."
             },
 
             // Common
@@ -669,7 +669,7 @@ const resources = {
 
                 termsTitle: "General Terms and Conditions",
                 termsSubtitle: "Scope and Contract Conclusion",
-                copyrightYear: "2025"
+                copyrightYear: "2026"
             },
 
             // Footer
@@ -677,7 +677,7 @@ const resources = {
                 contactUs: "Contact Us",
                 legal: "Legal",
                 certifications: "Certifications",
-                copyright: "© 2025 PROMAX Project Management GesmbH. All rights reserved."
+                copyright: "© 2026 PROMAX Project Management GesmbH. All rights reserved."
             },
 
             // Common
