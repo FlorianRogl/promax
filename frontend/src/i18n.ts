@@ -133,6 +133,8 @@ const resources = {
             technologies: {
                 heroTitle: "Technologien",
                 heroSubtitle: "Innovative Lösungen für präzise Planung und effiziente Projektabwicklung",
+
+                // Planungssoftware
                 planningTitle: "Planungssoftware",
                 planningIntro: "Bei der Umsetzung unserer Planungsleistungen setzen wir auf modernste Softwarelösungen, die eine exakte Bearbeitung unserer Projekte ermöglichen.",
                 planningFeaturesTitle: "Leistungsmerkmale:",
@@ -143,6 +145,17 @@ const resources = {
                 planningFeature5: "Material- und Mengenermittlung",
                 planningFeature6: "Umfassende Strukturanalysen und Berechnungen",
                 planningProgramsTitle: "Programme und Systeme:",
+
+                // Berechnungssoftware
+                calculationTitle: "Berechnungssoftware",
+                calculationIntro: "Für statische und dynamische Berechnungen setzen wir auf spezialisierte Software, die höchste Genauigkeit und Zuverlässigkeit gewährleistet.",
+                calculationFeaturesTitle: "Funktionen:",
+                calculationFeature1: "Statische und dynamische Analysen",
+                calculationFeature2: "Spannungs- und Verformungsberechnungen",
+                calculationFeature3: "Festigkeitsnachweise nach gültigen Normen",
+                calculationFeature4: "Integration mit CAD-Systemen",
+
+                // 3D-Laserscanning
                 scanningTitle: "3D-Laserscanning",
                 scanningDesc1: "Mit moderner Laserscan-Technologie erfassen wir Gebäude und Anlagen präzise und detailgetreu. Die daraus entstehenden Punktwolken bilden eine verlässliche Grundlage für unsere 3D-Planung und ermöglichen eine sichere Dokumentation des Bestands.",
                 scanningDesc2: "So stellen wir höchste Genauigkeit, Transparenz und Nachvollziehbarkeit in jedem Projekt sicher.",
@@ -153,6 +166,8 @@ const resources = {
                 scanningSpec4: "LaserHDR: Ja",
                 scanningSpec5: "Max. Geschwindigkeit: Bis zu 2 MPts/Sek.",
                 scanningSpec6: "Farbauflösung: Bis zu 266 MPx Farbe",
+
+                // Virtual & Augmented Reality
                 vrTitle: "Virtual & Augmented Reality",
                 vrIntro: "Als technisches Büro nutzen wir modernste Technologien, um Planungen noch verständlicher und erlebbarer zu machen. Mit Virtual Reality (VR) und Augmented Reality (AR) können unsere Kunden Projekte bereits vor der Umsetzung realitätsnah erleben.",
                 vrSubtitle: "Virtual Reality (VR):",
@@ -412,6 +427,8 @@ const resources = {
             technologies: {
                 heroTitle: "Technologies",
                 heroSubtitle: "Innovative Solutions for Precise Planning and Efficient Project Execution",
+
+                // Planning Software
                 planningTitle: "Planning Software",
                 planningIntro: "In implementing our planning services, we rely on state-of-the-art software solutions that enable precise processing of our projects.",
                 planningFeaturesTitle: "Key Features:",
@@ -422,6 +439,17 @@ const resources = {
                 planningFeature5: "Material and Quantity Calculation",
                 planningFeature6: "Comprehensive Structural Analysis and Calculations",
                 planningProgramsTitle: "Programs and Systems:",
+
+                // Calculation Software
+                calculationTitle: "Calculation Software",
+                calculationIntro: "For static and dynamic calculations, we rely on specialized software that ensures the highest accuracy and reliability.",
+                calculationFeaturesTitle: "Features:",
+                calculationFeature1: "Static and Dynamic Analysis",
+                calculationFeature2: "Stress and Deformation Calculations",
+                calculationFeature3: "Strength Verification According to Valid Standards",
+                calculationFeature4: "Integration with CAD Systems",
+
+                // 3D Laser Scanning
                 scanningTitle: "3D Laser Scanning",
                 scanningDesc1: "Using modern laser scanning technology, we capture buildings and facilities precisely and true to detail. The resulting point clouds provide a reliable foundation for our 3D planning and enable secure documentation of existing conditions.",
                 scanningDesc2: "This ensures the highest accuracy, transparency, and traceability in every project.",
@@ -432,6 +460,8 @@ const resources = {
                 scanningSpec4: "LaserHDR: Yes",
                 scanningSpec5: "Max. Speed: Up to 2 MPts/sec.",
                 scanningSpec6: "Color Resolution: Up to 266 MPx Color",
+
+                // Virtual & Augmented Reality
                 vrTitle: "Virtual & Augmented Reality",
                 vrIntro: "As an engineering firm, we use cutting-edge technologies to make planning more understandable and experiential. With Virtual Reality (VR) and Augmented Reality (AR), our clients can experience projects realistically before implementation.",
                 vrSubtitle: "Virtual Reality (VR):",
