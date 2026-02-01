@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import leistungHero from '../../assets/LeistungenPic.jpg';
-import newPic from '../../assets/iStock-684873524.jpg';
+import leistungHero from '../assets/LeistungenPic.jpg';
+import newPic from '../assets/iStock-684873524.jpg';
 
 
 const Leistungen = () => {
