@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Building2, Phone, Mail, Globe, FileText, Scale, MapPin, Shield, Gavel } from 'lucide-react';
+import { Building2, Phone, Mail, Globe, FileText, Scale, MapPin, Shield } from 'lucide-react';
 
-const LegalPage = () => {
-    const [activeSection, setActiveSection] = useState('impressum');
-    const [isScrolling, setIsScrolling] = useState(false);
-
+const Rechtliches = () => {
     const getMainNavHeight = () => {
         const width = window.innerWidth;
         if (width <= 360) return 55;
@@ -15,7 +12,6 @@ const LegalPage = () => {
     };
 
     const [mainNavHeight, setMainNavHeight] = useState(getMainNavHeight());
-    const LEGAL_NAV_HEIGHT = 64;
 
     useEffect(() => {
         const handleResize = () => {
@@ -31,75 +27,17 @@ const LegalPage = () => {
             const element = document.getElementById(hash.substring(1));
             if (element) {
                 setTimeout(() => {
-                    const elementPosition = element.offsetTop - mainNavHeight - LEGAL_NAV_HEIGHT - 20;
+                    const elementPosition = element.offsetTop - mainNavHeight - 20;
                     window.scrollTo({ top: elementPosition, behavior: 'smooth' });
                 }, 100);
             }
         }
     }, [mainNavHeight]);
 
-    useEffect(() => {
-        let scrollTimeout: NodeJS.Timeout;
-        const handleScroll = () => {
-            if (isScrolling) return;
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                const sections = ['impressum', 'datenschutz', 'agb'];
-                const scrollPosition = window.scrollY + mainNavHeight + LEGAL_NAV_HEIGHT + 50;
-                for (const section of sections) {
-                    const element = document.getElementById(section);
-                    if (element) {
-                        const { offsetTop, offsetHeight } = element;
-                        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                            setActiveSection(section);
-                            break;
-                        }
-                    }
-                }
-            }, 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            clearTimeout(scrollTimeout);
-        };
-    }, [isScrolling, mainNavHeight]);
-
-    const scrollToSection = (sectionId: string) => {
-        setIsScrolling(true);
-        setActiveSection(sectionId);
-        const element = document.getElementById(sectionId);
-        if (element) {
-            const elementPosition = element.offsetTop - mainNavHeight - LEGAL_NAV_HEIGHT - 20;
-            window.scrollTo({ top: elementPosition, behavior: 'smooth' });
-            setTimeout(() => setIsScrolling(false), 800);
-        }
-    };
-
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-            <div className="bg-white shadow-sm border-b border-slate-200 sticky z-40" style={{ top: `${mainNavHeight}px`, height: `${LEGAL_NAV_HEIGHT}px` }}>
-                <div className="max-w-6xl mx-auto px-6 h-full">
-                    <nav className="flex space-x-8 h-full">
-                        <button onClick={() => scrollToSection('impressum')} className={`py-4 px-2 border-b-2 transition-all duration-300 flex items-center space-x-2 bg-transparent cursor-pointer ${activeSection === 'impressum' ? 'border-orange-500 text-orange-600' : 'border-transparent text-slate-700 hover:border-orange-300 hover:text-slate-900'}`}>
-                            <FileText className={`h-4 w-4 transition-transform duration-200 ${activeSection === 'impressum' ? 'scale-110' : ''}`} />
-                            <span className="font-medium">Impressum</span>
-                        </button>
-                        <button onClick={() => scrollToSection('datenschutz')} className={`py-4 px-2 border-b-2 transition-all duration-300 flex items-center space-x-2 bg-transparent cursor-pointer ${activeSection === 'datenschutz' ? 'border-orange-500 text-orange-600' : 'border-transparent text-slate-700 hover:border-orange-300 hover:text-slate-900'}`}>
-                            <Shield className={`h-4 w-4 transition-transform duration-200 ${activeSection === 'datenschutz' ? 'scale-110' : ''}`} />
-                            <span className="font-medium">Datenschutz</span>
-                        </button>
-                        <button onClick={() => scrollToSection('agb')} className={`py-4 px-2 border-b-2 transition-all duration-300 flex items-center space-x-2 bg-transparent cursor-pointer ${activeSection === 'agb' ? 'border-orange-500 text-orange-600' : 'border-transparent text-slate-700 hover:border-orange-300 hover:text-slate-900'}`}>
-                            <Gavel className={`h-4 w-4 transition-transform duration-200 ${activeSection === 'agb' ? 'scale-110' : ''}`} />
-                            <span className="font-medium">AGB</span>
-                        </button>
-                    </nav>
-                </div>
-            </div>
-
             <div className="max-w-6xl mx-auto px-6 py-12">
-                <section id="impressum" className="mb-20" style={{ scrollMarginTop: `${mainNavHeight + LEGAL_NAV_HEIGHT + 20}px` }}>
+                <section id="impressum" className="mb-20" style={{ scrollMarginTop: `${mainNavHeight + 20}px` }}>
                     <div className="mb-12">
                         <div className="flex items-center space-x-3 mb-4">
                             <FileText className="h-8 w-8 text-orange-500" />
@@ -203,7 +141,7 @@ const LegalPage = () => {
                     </div>
                 </section>
 
-                <section id="datenschutz" className="mb-20" style={{ scrollMarginTop: `${mainNavHeight + LEGAL_NAV_HEIGHT + 20}px` }}>
+                <section id="datenschutz" className="mb-20" style={{ scrollMarginTop: `${mainNavHeight + 20}px` }}>
                     <div className="mb-12">
                         <div className="flex items-center space-x-3 mb-4">
                             <Shield className="h-8 w-8 text-orange-500" />
@@ -376,69 +314,6 @@ const LegalPage = () => {
                     </div>
                 </section>
 
-                <section id="agb" className="mb-20" style={{ scrollMarginTop: `${mainNavHeight + LEGAL_NAV_HEIGHT + 20}px` }}>
-                    <div className="mb-12">
-                        <div className="flex items-center space-x-3 mb-4">
-                            <Gavel className="h-8 w-8 text-orange-500" />
-                            <h2 className="text-4xl font-bold text-slate-800">Allgemeine Geschäftsbedingungen</h2>
-                        </div>
-                        <p className="text-slate-600 text-lg">Geltungsbereich und Vertragsschluss</p>
-                    </div>
-
-                    <div className="space-y-8">
-                        <div className="border-l-4 border-orange-500 pl-4">
-                            <h3 className="text-xl font-semibold text-slate-800 mb-4">§ 1 Geltungsbereich</h3>
-                            <p className="text-slate-600 text-sm leading-relaxed mb-3">Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Geschäftsbeziehungen zwischen der PROMAX Project Management GesmbH und ihren Kunden. Abweichende Bedingungen des Kunden werden nicht anerkannt, es sei denn, wir haben ausdrücklich schriftlich zugestimmt.</p>
-                            <p className="text-slate-600 text-sm leading-relaxed">Diese AGB gelten auch für künftige Geschäfte, ohne dass wir nochmals auf sie hinweisen müssen.</p>
-                        </div>
-
-                        <div className="border-l-4 border-slate-400 pl-4">
-                            <h3 className="text-xl font-semibold text-slate-800 mb-4">§ 2 Vertragsschluss</h3>
-                            <div className="space-y-3">
-                                <p className="text-slate-600 text-sm leading-relaxed">(1) Unsere Angebote sind freibleibend und unverbindlich, sofern nicht ausdrücklich anders angegeben.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(2) Ein Vertrag kommt durch unsere schriftliche Auftragsbestätigung oder durch Ausführung der Leistung zustande.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(3) Änderungen und Ergänzungen des Vertrags bedürfen zu ihrer Wirksamkeit der Schriftform.</p>
-                            </div>
-                        </div>
-
-                        <div className="border-l-4 border-slate-600 pl-4">
-                            <h3 className="text-xl font-semibold text-slate-800 mb-4">§ 3 Leistungsumfang</h3>
-                            <div className="space-y-3">
-                                <p className="text-slate-600 text-sm leading-relaxed">(1) Der Umfang unserer Leistungen ergibt sich aus der jeweiligen Auftragsbestätigung sowie diesen AGB.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(2) Zusätzliche Leistungen werden gesondert berechnet, soweit nicht anders vereinbart.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(3) Wir behalten uns Änderungen und Verbesserungen vor, soweit sie dem Kunden zumutbar sind.</p>
-                            </div>
-                        </div>
-
-                        <div className="border-l-4 border-orange-400 pl-4">
-                            <h3 className="text-xl font-semibold text-slate-800 mb-4">§ 4 Preise und Zahlungsbedingungen</h3>
-                            <div className="space-y-3">
-                                <p className="text-slate-600 text-sm leading-relaxed">(1) Es gelten die bei Vertragsschluss vereinbarten Preise. Alle Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(2) Rechnungen sind binnen 14 Tagen nach Rechnungsstellung ohne Abzug zu begleichen.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(3) Bei Zahlungsverzug sind wir berechtigt, Verzugszinsen in Höhe von 8% über dem Basiszinssatz zu verlangen.</p>
-                            </div>
-                        </div>
-
-                        <div className="border-l-4 border-slate-500 pl-4">
-                            <h3 className="text-xl font-semibold text-slate-800 mb-4">§ 5 Haftung</h3>
-                            <div className="space-y-3">
-                                <p className="text-slate-600 text-sm leading-relaxed">(1) Wir haften unbeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie für Schäden aus der Verletzung wesentlicher Vertragspflichten.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(2) Im Übrigen ist unsere Haftung auf Vorsatz und grobe Fahrlässigkeit beschränkt.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(3) Die Haftung für mittelbare Schäden und entgangenen Gewinn ist ausgeschlossen.</p>
-                            </div>
-                        </div>
-
-                        <div className="border-l-4 border-slate-700 pl-4">
-                            <h3 className="text-xl font-semibold text-slate-800 mb-4">§ 6 Schlussbestimmungen</h3>
-                            <div className="space-y-3">
-                                <p className="text-slate-600 text-sm leading-relaxed">(1) Es gilt österreichisches Recht unter Ausschluss des UN-Kaufrechts.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(2) Erfüllungsort und Gerichtsstand ist Graz, sofern der Kunde Vollkaufmann ist.</p>
-                                <p className="text-slate-600 text-sm leading-relaxed">(3) Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 <div className="text-center mt-12 pt-8 border-t border-slate-200 text-slate-500 text-sm">
                     <p>2025|PROMAX Project Management GesmbH</p>
                 </div>
@@ -447,4 +322,4 @@ const LegalPage = () => {
     );
 };
 
-export default LegalPage;
+export default Rechtliches;

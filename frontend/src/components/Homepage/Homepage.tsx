@@ -23,8 +23,8 @@ const Homepage = () => {
     return (
         <div className="min-h-screen overflow-x-hidden" style={{
             wordBreak: 'normal',
-            overflowWrap: 'break-word',
-            hyphens: 'auto'
+            overflowWrap: 'normal',
+            hyphens: 'none'
         }}>
             {/* Only VideoSection2 */}
             <VideoSection2 />
@@ -33,7 +33,7 @@ const Homepage = () => {
             <section className="py-12 sm:py-16 md:py-20 bg-gray-50 relative">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-10 sm:mb-12 md:mb-16">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-promax-blue break-words hyphens-auto">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-promax-blue break-words" style={{ hyphens: 'none' }}>
                             {t('homepage.servicesTitle')}
                         </h2>
                         <div className="w-16 sm:w-20 md:w-24 h-1 bg-promax-orange mx-auto"></div>
@@ -62,24 +62,24 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 break-words">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 break-words px-2 leading-tight" style={{ hyphens: 'none' }}>
                                     {t('homepage.engineeringTitle')}
                                 </h3>
-                                <p className="text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 opacity-90 leading-relaxed break-words px-2">
+                                <p className="text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-2" style={{ hyphens: 'none' }}>
                                     {t('homepage.engineeringDesc')}
                                 </p>
                                 <ul className="text-left space-y-1.5 sm:space-y-2 text-xs sm:text-sm w-full max-w-xs">
                                     <li className="flex items-start">
                                         <span className="w-2 h-2 rounded-full mr-2 sm:mr-3 bg-promax-orange flex-shrink-0 mt-1"></span>
-                                        <span className="break-words flex-1">{t('homepage.engineeringFeature1')}</span>
+                                        <span className="break-words flex-1" style={{ hyphens: 'none' }}>{t('homepage.engineeringFeature1')}</span>
                                     </li>
                                     <li className="flex items-start">
                                         <span className="w-2 h-2 rounded-full mr-2 sm:mr-3 bg-promax-orange flex-shrink-0 mt-1"></span>
-                                        <span className="break-words flex-1">{t('homepage.engineeringFeature2')}</span>
+                                        <span className="break-words flex-1" style={{ hyphens: 'none' }}>{t('homepage.engineeringFeature2')}</span>
                                     </li>
                                     <li className="flex items-start">
                                         <span className="w-2 h-2 rounded-full mr-2 sm:mr-3 bg-promax-orange flex-shrink-0 mt-1"></span>
-                                        <span className="break-words flex-1">{t('homepage.engineeringFeature3')}</span>
+                                        <span className="break-words flex-1" style={{ hyphens: 'none' }}>{t('homepage.engineeringFeature3')}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -108,24 +108,24 @@ const Homepage = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 break-words">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 break-words px-2 leading-tight" style={{ hyphens: 'none' }}>
                                     {t('homepage.operativeTitle')}
                                 </h3>
-                                <p className="text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 opacity-90 leading-relaxed break-words px-2">
+                                <p className="text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-4 max-w-md" style={{ hyphens: 'none' }}>
                                     {t('homepage.operativeDesc')}
                                 </p>
                                 <ul className="text-left space-y-1.5 sm:space-y-2 text-xs sm:text-sm w-full max-w-xs">
                                     <li className="flex items-start">
                                         <span className="w-2 h-2 rounded-full mr-2 sm:mr-3 bg-white flex-shrink-0 mt-1"></span>
-                                        <span className="break-words flex-1">{t('homepage.operativeFeature1')}</span>
+                                        <span className="break-words flex-1" style={{ hyphens: 'none' }}>{t('homepage.operativeFeature1')}</span>
                                     </li>
                                     <li className="flex items-start">
                                         <span className="w-2 h-2 rounded-full mr-2 sm:mr-3 bg-white flex-shrink-0 mt-1"></span>
-                                        <span className="break-words flex-1">{t('homepage.operativeFeature2')}</span>
+                                        <span className="break-words flex-1" style={{ hyphens: 'none' }}>{t('homepage.operativeFeature2')}</span>
                                     </li>
                                     <li className="flex items-start">
                                         <span className="w-2 h-2 rounded-full mr-2 sm:mr-3 bg-white flex-shrink-0 mt-1"></span>
-                                        <span className="break-words flex-1">{t('homepage.operativeFeature3')}</span>
+                                        <span className="break-words flex-1" style={{ hyphens: 'none' }}>{t('homepage.operativeFeature3')}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -138,11 +138,11 @@ const Homepage = () => {
             <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center mb-10 sm:mb-12 md:mb-16">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-promax-blue break-words hyphens-auto">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-promax-blue break-words" style={{ hyphens: 'none' }}>
                             {t('homepage.industriesTitle')}
                         </h2>
                         <div className="w-16 sm:w-20 md:w-24 h-1 mx-auto mb-4 sm:mb-5 md:mb-6 bg-promax-orange"></div>
-                        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto break-words px-2">
+                        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto break-words px-2" style={{ hyphens: 'none' }}>
                             <span ref={yearRef} className="font-bold text-promax-blue"></span> {t('homepage.industriesSubtitle')}
                         </p>
                     </div>
@@ -155,7 +155,7 @@ const Homepage = () => {
                                     <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto mb-2 sm:mb-3 md:mb-4 bg-white shadow-lg rounded-lg flex items-center justify-center">
                                         <Icon className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-promax-blue" />
                                     </div>
-                                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-promax-blue break-words hyphens-auto px-1">
+                                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-promax-blue break-words px-1" style={{ hyphens: 'none' }}>
                                         {industry.name}
                                     </h3>
                                 </div>
@@ -168,7 +168,7 @@ const Homepage = () => {
             {/* CTA Section */}
             <section className="py-16 sm:py-20 md:py-24 lg:py-32 relative bg-promax-blue">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-5 md:mb-6 break-words hyphens-auto px-2">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-5 md:mb-6 break-words px-2" style={{ hyphens: 'none' }}>
                         {t('homepage.ctaTitle')}
                     </h2>
                     <button
