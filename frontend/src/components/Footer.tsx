@@ -52,9 +52,9 @@ const Footer = () => {
     };
 
     const contactInfo = [
-        { icon: MapPin, text: 'Parkring 18/F, 8074 Raaba-Grambach' },
-        { icon: Phone, text: '+43 (0) 316 / 241 393' },
-        { icon: Mail, text: 'office@promax.at' }
+        { icon: MapPin, text: 'Parkring 18/F, 8074 Raaba-Grambach', link: null },
+        { icon: Phone, text: '+43 (0) 316 / 241 393', link: null },
+        { icon: Mail, text: 'office@promax.at', link: 'mailto:office@promax.at' }
     ];
 
     const legalLinks = [
@@ -132,7 +132,23 @@ const Footer = () => {
                                     className={`${isVisible ? styles.animateFadeIn : ''}`}
                                 >
                                     <item.icon size={16} color="#d97539" />
-                                    <span>{item.text}</span>
+                                    {item.link ? (
+                                        <span
+                                            onClick={() => window.location.assign(item.link!)}
+                                            style={{
+                                                color: '#e5e5e5',
+                                                textDecoration: 'none',
+                                                transition: 'color 0.3s ease',
+                                                cursor: 'pointer'
+                                            }}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
+                {item.text}
+            </span>
+                                    ) : (
+                                        <span>{item.text}</span>
+                                    )}
                                 </div>
                             ))}
                         </div>
