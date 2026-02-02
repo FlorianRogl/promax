@@ -210,7 +210,7 @@ const Unternehmen = () => {
                     </div>
                 </section>
 
-                {/* Team Section */}
+                {/* Team Section - MAXIMALE BILDSCHÄRFE */}
                 <section id="team-section" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-8 sm:mb-12 md:mb-16">
@@ -238,11 +238,11 @@ const Unternehmen = () => {
                                             alt="Ing. Andreas Rogl"
                                             className="w-full h-full object-cover object-top"
                                             style={{
-                                                /* Verhindert das "Weichspülen" beim Verkleinern in Chrome/Safari */
                                                 imageRendering: '-webkit-optimize-contrast',
-                                                /* Stellt sicher, dass das Bild nach der Animation scharf bleibt */
                                                 backfaceVisibility: 'hidden',
-                                                transform: 'translateZ(0)'
+                                                transform: 'translateZ(0)',
+                                                WebkitFontSmoothing: 'antialiased',
+                                                filter: 'contrast(1.02) saturate(1.05)'
                                             }}
                                             loading="eager"
                                             decoding="sync"
@@ -284,7 +284,9 @@ const Unternehmen = () => {
                                             style={{
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 backfaceVisibility: 'hidden',
-                                                transform: 'translateZ(0)'
+                                                transform: 'translateZ(0)',
+                                                WebkitFontSmoothing: 'antialiased',
+                                                filter: 'contrast(1.02) saturate(1.05)'
                                             }}
                                             loading="eager"
                                             decoding="sync"
