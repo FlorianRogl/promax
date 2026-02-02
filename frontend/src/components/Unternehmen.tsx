@@ -229,14 +229,23 @@ const Unternehmen = () => {
                                 className={`bg-white rounded-lg p-4 sm:p-6 md:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
                                     visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 }`}
-                                style={{animationDelay: `0ms`}}
+                                style={{ animationDelay: `0ms` }}
                             >
                                 <div className="text-center">
-                                    <div className="w-28 h-36 sm:w-36 sm:h-44 md:w-48 md:h-60 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    <div className="w-40 h-52 sm:w-48 sm:h-60 md:w-56 md:h-72 lg:w-64 lg:h-80 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg overflow-hidden bg-gray-100">
                                         <img
                                             src={rogl}
                                             alt="Ing. Andreas Rogl"
                                             className="w-full h-full object-cover object-top"
+                                            style={{
+                                                /* Verhindert das "Weichspülen" beim Verkleinern in Chrome/Safari */
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                /* Stellt sicher, dass das Bild nach der Animation scharf bleibt */
+                                                backfaceVisibility: 'hidden',
+                                                transform: 'translateZ(0)'
+                                            }}
+                                            loading="eager"
+                                            decoding="sync"
                                         />
                                     </div>
                                     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2 break-words">Ing. Andreas Rogl</h3>
@@ -245,22 +254,14 @@ const Unternehmen = () => {
                                     <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 md:mb-6 break-all">andreas.rogl@promax.at</p>
 
                                     <div className="flex justify-center space-x-3 sm:space-x-4">
-                                        <a
-                                            href="mailto:andreas.rogl@promax.at"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
-                                        >
+                                        <a href="mailto:andreas.rogl@promax.at" className="text-gray-400 hover:text-[#1e3767] transition-colors">
                                             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                                             </svg>
                                         </a>
-                                        <a
-                                            href="https://at.linkedin.com/in/andreas-rogl-936860141"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
-                                        >
+                                        <a href="https://at.linkedin.com/in/andreas-rogl-936860141" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#1e3767] transition-colors">
                                             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                             </svg>
                                         </a>
                                     </div>
@@ -272,14 +273,21 @@ const Unternehmen = () => {
                                 className={`bg-white rounded-lg p-4 sm:p-6 md:p-8 border border-transparent hover:border-[#1e3767] hover:shadow-2xl transition-all duration-300 ${
                                     visibleSections.has('team-section') ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 }`}
-                                style={{animationDelay: `200ms`}}
+                                style={{ animationDelay: `200ms` }}
                             >
                                 <div className="text-center">
-                                    <div className="w-28 h-36 sm:w-36 sm:h-44 md:w-48 md:h-60 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg overflow-hidden bg-gray-100">
+                                    <div className="w-40 h-52 sm:w-48 sm:h-60 md:w-56 md:h-72 lg:w-64 lg:h-80 mx-auto mb-3 sm:mb-4 md:mb-6 rounded-lg overflow-hidden bg-gray-100">
                                         <img
                                             src={christian}
                                             alt="DI Christian Walter"
                                             className="w-full h-full object-cover object-top"
+                                            style={{
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                backfaceVisibility: 'hidden',
+                                                transform: 'translateZ(0)'
+                                            }}
+                                            loading="eager"
+                                            decoding="sync"
                                         />
                                     </div>
                                     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2 break-words">DI Christian Walter</h3>
@@ -288,12 +296,9 @@ const Unternehmen = () => {
                                     <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 md:mb-6 break-all">christian.walter@promax.at</p>
 
                                     <div className="flex justify-center space-x-3 sm:space-x-4">
-                                        <a
-                                            href="mailto:christian.walter@promax.at"
-                                            className="text-gray-400 hover:text-[#1e3767] transition-colors"
-                                        >
+                                        <a href="mailto:christian.walter@promax.at" className="text-gray-400 hover:text-[#1e3767] transition-colors">
                                             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                                             </svg>
                                         </a>
                                     </div>
@@ -302,6 +307,7 @@ const Unternehmen = () => {
                         </div>
                     </div>
                 </section>
+
 
                 {/* Unternehmenskultur Section */}
                 <section id="unternehmenskultur-section" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
