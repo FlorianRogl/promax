@@ -21,6 +21,16 @@ export interface CookieContextType {
     saveSettings: (consent: CookieConsent) => void;
 }
 
+// ─── Window Extensions ────────────────────────────────────────────────────────
+
+interface WindowWithAnalytics extends Window {
+    clarity?: unknown;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+}
+
+declare const window: WindowWithAnalytics;
+
 // ─── Defaults ─────────────────────────────────────────────────────────────────
 
 const DEFAULT_CONSENT: CookieConsent = {
@@ -95,8 +105,8 @@ function removeClarity(): void {
     const clarityScript = document.querySelector('script[src="https://www.clarity.ms/clarity.js"]');
     clarityScript?.remove();
     document.getElementById('clarity-inline')?.remove();
-    if ((window as any).clarity) {
-        delete (window as any).clarity;
+    if (window.clarity) {
+        delete window.clarity;
     }
 }
 
@@ -131,11 +141,11 @@ function removeGoogleAnalytics(): void {
     document.getElementById('ga-inline')?.remove();
     // dataLayer/gtag nur löschen wenn AdWords auch nicht läuft (shared globals)
     if (!document.getElementById('adwords-script')) {
-        if ((window as any).dataLayer) {
-            (window as any).dataLayer = [];
+        if (window.dataLayer) {
+            window.dataLayer = [];
         }
-        if ((window as any).gtag) {
-            delete (window as any).gtag;
+        if (window.gtag) {
+            delete window.gtag;
         }
     }
 }
@@ -171,11 +181,11 @@ function removeAdWords(): void {
     document.getElementById('adwords-inline')?.remove();
     // dataLayer/gtag nur löschen wenn GA auch nicht läuft (shared globals)
     if (!document.getElementById('ga-script')) {
-        if ((window as any).dataLayer) {
-            (window as any).dataLayer = [];
+        if (window.dataLayer) {
+            window.dataLayer = [];
         }
-        if ((window as any).gtag) {
-            delete (window as any).gtag;
+        if (window.gtag) {
+            delete window.gtag;
         }
     }
 }
@@ -300,8 +310,8 @@ export const useCookieConsent = (): CookieContextType => {
 //   trackConversion('AW-XXXXXXXXX/deine-conversion-label');
 
 export function trackConversion(conversionLabel: string, value?: number): void {
-    if (typeof (window as any).gtag !== 'function') return;
-    (window as any).gtag('event', 'conversion', {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', 'conversion', {
         'send_to': conversionLabel,
         ...(value !== undefined && { value }),
     });

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Clock, Users, ArrowRight, ChevronLeft, ChevronRight, Sparkles, Mail, X } from 'lucide-react';
-import planungImage from '../../assets/klugeKöpfe.png';
-import { jobService } from '../../services/jobService.ts';
-import type { FormattedJob } from '../../types/job.types.ts';
-import karrsiereHero from '../../assets/karriereHero.jpg';
+import planungImage from '../assets/klugeKöpfe.png';
+import { jobService } from '../services/jobService.ts';
+import type { FormattedJob } from '../types/job.types.ts';
+import karrsiereHero from '../assets/karriereHero.jpg';
 
 
 const getDepartmentColor = (department: string): string => {
