@@ -1,214 +1,208 @@
-import React from 'react';
-import { useCookieConsent } from './CookieContext';
-import CookieSettings from './CookieSettings';
-import { Cookie } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import navLogo from '../assets/Final_V1-a.png';
 
-const CookieBanner: React.FC = () => {
-    const { showBanner, acceptAll, rejectAll, setShowSettings } = useCookieConsent();
+const Navbar = () => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
+    const { t, i18n } = useTranslation();
+    const [currentLang, setCurrentLang] = useState(i18n.language);
 
-    if (!showBanner) {
-        // Auch wenn der Banner nicht sichtbar ist, muss das Settings-Modal noch rendern können
-        return <CookieSettings />;
-    }
+    const navItems = [
+        { name: t('nav.company'), path: '/Unternehmen' },
+        { name: t('nav.services'), path: '/Leistungen' },
+        { name: t('nav.technologies'), path: '/Technologien' },
+        { name: t('nav.career'), path: '/Karriere' },
+        { name: t('nav.contact'), path: '/Kontakt' }
+    ];
+
+    const changeLanguage = (lng: 'de' | 'en') => {
+        i18n.changeLanguage(lng);
+        setCurrentLang(lng);
+        localStorage.setItem('language', lng);
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+    }, [location]);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMobileMenuOpen]);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false);
+    };
 
     return (
         <>
-            {/* ─── Banner ─────────────────────────────────────────────────── */}
-            <div
-                role="dialog"
-                aria-label="Cookie-Zustimmung"
-                style={{
-                    position: 'fixed',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: 1000,
-                    background: '#ffffff',
-                    boxShadow: '0 -4px 32px rgba(0, 0, 0, 0.12)',
-                    borderTop: '1px solid #e5e7eb',
-                    animation: 'cookieBannerSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
-                }}
+            {/* Navbar */}
+            <nav
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                    isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+                }`}
             >
-                <div
-                    style={{
-                        maxWidth: '1200px',
-                        margin: '0 auto',
-                        padding: '20px 24px',
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '20px',
-                        flexWrap: 'wrap',
-                    }}
-                >
-                    {/* Icon + Text */}
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', flex: '1 1 auto', minWidth: '260px' }}>
-                        <div
-                            style={{
-                                width: '44px',
-                                height: '44px',
-                                background: '#1e3767',
-                                borderRadius: '12px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                flexShrink: 0,
-                            }}
-                        >
-                            <Cookie size={22} color="#ffffff" />
+                <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+                    {/* h-26 gibt es nicht, nächste gültige: h-24 (96px) oder custom mit [104px] */}
+                    <div className="flex items-center justify-between h-24 md:h-[104px] lg:h-24 xl:h-28 2xl:h-32">
+
+                        {/* Logo - Links */}
+                        <Link to="/" className="flex-shrink-0 z-50">
+                            {/* h-18, h-22 gibt es nicht - verwende custom values [72px], [88px] */}
+                            <img
+                                src={navLogo}
+                                alt="Logo"
+                                className="h-[72px] md:h-20 lg:h-[72px] xl:h-20 2xl:h-[88px] w-auto object-contain transition-all duration-300"
+                            />
+                        </Link>
+
+                        {/* Desktop Navigation - Zentral */}
+                        <div className="hidden lg:flex items-center justify-center flex-1 mx-8 xl:mx-12 2xl:mx-16">
+                            <ul className="flex items-center space-x-12 xl:space-x-14 2xl:space-x-[72px]">
+                                {navItems.map((item) => (
+                                    <li key={item.path}>
+                                        <Link
+                                            to={item.path}
+                                            className={`relative font-medium transition-colors duration-300 px-5 py-2.5 rounded-lg text-base lg:text-lg xl:text-xl 2xl:text-2xl ${
+                                                location.pathname === item.path
+                                                    ? 'text-orange-600 bg-orange-50'
+                                                    : 'text-gray-700'
+                                            }`}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
-                        <div style={{ flex: 1 }}>
-                            <h3
-                                style={{
-                                    margin: '0 0 6px',
-                                    fontSize: '16px',
-                                    fontWeight: 600,
-                                    color: '#1e3767',
-                                    fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                                }}
-                            >
-                                Wir verwenden Cookies
-                            </h3>
-                            <p
-                                style={{
-                                    margin: 0,
-                                    fontSize: '13px',
-                                    color: '#4b5563',
-                                    lineHeight: '1.6',
-                                    fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                                    maxWidth: '580px',
-                                }}
-                            >
-                                Wir setzen Cookies ein, um Ihre Nutzererfahrung zu verbessern und unsere Website zu analysieren.
-                                Dazu werden{' '}
-                                <strong style={{ color: '#374151' }}>Analyse-Cookies</strong> (Google Analytics, Microsoft Clarity, Vercel Analytics)
-                                und{' '}
-                                <strong style={{ color: '#374151' }}>Marketing-Cookies</strong> (Google AdWords) verwendet.
-                                Sie können Ihre Einstellungen jederzeit anpassen. Weitere Informationen finden Sie in unserer{' '}
-                                <a
-                                    href="/Rechtliches#datenschutz"
-                                    style={{
-                                        color: '#d97539',
-                                        textDecoration: 'none',
-                                        fontWeight: 500,
-                                    }}
-                                    onMouseOver={(e) => (e.target as HTMLAnchorElement).style.textDecoration = 'underline'}
-                                    onMouseOut={(e) => (e.target as HTMLAnchorElement).style.textDecoration = 'none'}
+                        {/* Right Side - Language + Mobile Menu */}
+                        <div className="flex items-center space-x-4 md:space-x-6">
+                            {/* Language Switcher - Immer sichtbar */}
+                            <div className="flex items-center space-x-1.5 md:space-x-2 text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-medium">
+                                <button
+                                    onClick={() => changeLanguage('de')}
+                                    className={`transition-colors px-1.5 md:px-2 ${
+                                        currentLang === 'de'
+                                            ? 'text-blue-600 font-bold'
+                                            : 'text-gray-500 hover:text-gray-700'
+                                    }`}
+                                    aria-label="Deutsch"
                                 >
-                                    Datenschutzerklärung
-                                </a>.
-                            </p>
+                                    DE
+                                </button>
+                                <span className="text-gray-400">|</span>
+                                <button
+                                    onClick={() => changeLanguage('en')}
+                                    className={`transition-colors px-1.5 md:px-2 ${
+                                        currentLang === 'en'
+                                            ? 'text-blue-600 font-bold'
+                                            : 'text-gray-500 hover:text-gray-700'
+                                    }`}
+                                    aria-label="English"
+                                >
+                                    EN
+                                </button>
+                            </div>
+
+                            {/* Mobile Menu Button */}
+                            <button
+                                onClick={toggleMobileMenu}
+                                className="lg:hidden relative z-50 p-2 text-gray-700 hover:text-blue-600 transition-colors"
+                                aria-label="Toggle menu"
+                            >
+                                <svg
+                                    className="w-8 h-8 md:w-9 md:h-9"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    {isMobileMenuOpen ? (
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    ) : (
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M4 6h16M4 12h16M4 18h16"
+                                        />
+                                    )}
+                                </svg>
+                            </button>
                         </div>
                     </div>
+                </div>
+            </nav>
 
-                    {/* Buttons */}
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px',
-                            flexWrap: 'wrap',
-                            flexShrink: 0,
-                        }}
-                    >
-                        {/* Ablehnen – DSGVO: gleich prominent wie Akzeptieren */}
-                        <button
-                            onClick={rejectAll}
-                            style={{
-                                padding: '10px 20px',
-                                borderRadius: '8px',
-                                border: '1.5px solid #1e3767',
-                                background: 'transparent',
-                                color: '#1e3767',
-                                fontSize: '14px',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                                whiteSpace: 'nowrap',
-                                transition: 'background 0.2s, color 0.2s',
-                            }}
-                            onMouseOver={(e) => {
-                                (e.currentTarget).style.background = '#1e3767';
-                                (e.currentTarget).style.color = '#ffffff';
-                            }}
-                            onMouseOut={(e) => {
-                                (e.currentTarget).style.background = 'transparent';
-                                (e.currentTarget).style.color = '#1e3767';
-                            }}
-                        >
-                            Ablehnen
-                        </button>
+            {/* Mobile Menu Overlay */}
+            {isMobileMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                    onClick={closeMobileMenu}
+                />
+            )}
 
-                        {/* Einstellungen */}
-                        <button
-                            onClick={() => setShowSettings(true)}
-                            style={{
-                                padding: '10px 20px',
-                                borderRadius: '8px',
-                                border: '1.5px solid #d1d5db',
-                                background: '#f9fafb',
-                                color: '#374151',
-                                fontSize: '14px',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                                whiteSpace: 'nowrap',
-                                transition: 'background 0.2s, border-color 0.2s',
-                            }}
-                            onMouseOver={(e) => {
-                                (e.currentTarget).style.background = '#f3f4f6';
-                                (e.currentTarget).style.borderColor = '#9ca3af';
-                            }}
-                            onMouseOut={(e) => {
-                                (e.currentTarget).style.background = '#f9fafb';
-                                (e.currentTarget).style.borderColor = '#d1d5db';
-                            }}
-                        >
-                            Einstellungen
-                        </button>
-
-                        {/* Alle akzeptieren */}
-                        <button
-                            onClick={acceptAll}
-                            style={{
-                                padding: '10px 20px',
-                                borderRadius: '8px',
-                                border: '1.5px solid #d97539',
-                                background: '#d97539',
-                                color: '#ffffff',
-                                fontSize: '14px',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                                whiteSpace: 'nowrap',
-                                transition: 'background 0.2s',
-                            }}
-                            onMouseOver={(e) => (e.currentTarget).style.background = '#c56830'}
-                            onMouseOut={(e) => (e.currentTarget).style.background = '#d97539'}
-                        >
-                            Alle akzeptieren
-                        </button>
-                    </div>
+            {/* Mobile Menu Panel */}
+            <div
+                className={`fixed top-0 right-0 h-full w-[300px] sm:w-[340px] bg-white z-40 transform transition-transform duration-300 ease-in-out lg:hidden ${
+                    isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                }`}
+            >
+                <div className="flex flex-col h-full pt-28 pb-6 px-6">
+                    {/* Mobile Navigation Links */}
+                    <ul className="flex flex-col space-y-2">
+                        {navItems.map((item, index) => (
+                            <li key={item.path}>
+                                <Link
+                                    to={item.path}
+                                    onClick={closeMobileMenu}
+                                    className={`block py-4 px-5 rounded-lg text-xl sm:text-2xl font-medium transition-all ${
+                                        location.pathname === item.path
+                                            ? 'bg-orange-50 text-orange-600'
+                                            : 'text-gray-700 hover:bg-gray-50'
+                                    }`}
+                                    style={{
+                                        animationDelay: `${index * 50}ms`
+                                    }}
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
 
-            {/* Settings Modal */}
-            <CookieSettings />
-
-            <style>{`
-                @keyframes cookieBannerSlideUp {
-                    from {
-                        transform: translateY(100%);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateY(0);
-                        opacity: 1;
-                    }
-                }
-            `}</style>
+            {/* Spacer für fixed navbar */}
+            <div className="h-24 md:h-[104px] lg:h-24 xl:h-28 2xl:h-32" />
         </>
     );
 };
 
-export default CookieBanner;
+export default Navbar;
