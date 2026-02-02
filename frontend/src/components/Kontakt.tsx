@@ -1,18 +1,107 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import kontaktHero from '../../assets/kontaktHero.jpg';
+import { useCookieConsent } from '../coockies/CookieContext';
+import kontaktHero from '../assets/kontaktHero.jpg';
+import { MapPin } from 'lucide-react';
+
+// ─── Google Maps Consent-Placeholder ──────────────────────────────────────────
+// Zeigt sich wenn der User noch keine Analyse-Cookies akzeptiert hat.
+// Google Maps sendet Daten an Google → braucht Consent.
+
+interface MapsPlaceholderProps {
+    title: string;
+    address: string;
+    onAccept: () => void;
+}
+
+const MapsPlaceholder: React.FC<MapsPlaceholderProps> = ({ title, address, onAccept }) => (
+    <div
+        style={{
+            width: '100%',
+            height: '300px',
+            background: '#f3f4f6',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '16px',
+            padding: '24px',
+            textAlign: 'center',
+        }}
+    >
+        <div
+            style={{
+                width: '52px',
+                height: '52px',
+                background: '#1e3767',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
+        >
+            <MapPin size={24} color="#ffffff" />
+        </div>
+        <div>
+            <p style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 600, color: '#1e3767' }}>
+                {title}
+            </p>
+            <p style={{ margin: '0 0 4px', fontSize: '13px', color: '#6b7280' }}>
+                {address}
+            </p>
+            <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#9ca3af', maxWidth: '320px', lineHeight: '1.5' }}>
+                Google Maps sendet Daten an Google. Bitte akzeptieren Sie Analyse-Cookies, um die Karte zu laden.
+            </p>
+        </div>
+        <button
+            onClick={onAccept}
+            style={{
+                padding: '8px 20px',
+                borderRadius: '6px',
+                border: 'none',
+                background: '#d97539',
+                color: '#ffffff',
+                fontSize: '13px',
+                fontWeight: 600,
+                cursor: 'pointer',
+            }}
+        >
+            Karte laden
+        </button>
+    </div>
+);
+
+// ─── Hauptkomponente ──────────────────────────────────────────────────────────
 
 const Kontakt = () => {
     const { t } = useTranslation();
+    const { consent, saveSettings } = useCookieConsent();
     const [isVisible, setIsVisible] = useState(false);
+
+    // Lokaler State: der User kann per "Karte laden" nur Analyse akzeptieren
+    // ohne dass der gesamte Banner nochmal kommt
+    const [mapsConsented, setMapsConsented] = useState(consent.analytics);
 
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
+    // Wenn consent.analytics sich ändert (z.B. über den Cookie-Banner) → aktualisieren
+    useEffect(() => {
+        setMapsConsented(consent.analytics);
+    }, [consent.analytics]);
+
+    // Wenn der User "Karte laden" klickt → Analyse-Consent geben
+    const handleMapsAccept = () => {
+        saveSettings({
+            ...consent,
+            analytics: true,
+        });
+        setMapsConsented(true);
+    };
+
     return (
         <>
-
             <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif" }}>
                 {/* Hero Section with Parallax */}
                 <section
@@ -144,16 +233,24 @@ const Kontakt = () => {
                                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{t('contact.headquartersTitle')}</h3>
                                             <p className="text-white text-opacity-90 text-sm">Parkring 18/F, 8074 Raaba-Grambach</p>
                                         </div>
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.7289447742!2d15.4461!3d47.0379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476e35925b8c0c71%3A0x5b8c0c71b8c0c71b!2sParkring%2018%2C%208074%20Raaba-Grambach%2C%20Austria!5e0!3m2!1sde!2sat!4v1"
-                                            width="100%"
-                                            height="300"
-                                            style={{border: 0}}
-                                            loading="lazy"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            title="PROMAX Standort Graz"
-                                            className="w-full"
-                                        />
+                                        {mapsConsented ? (
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.7289447742!2d15.4461!3d47.0379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476e35925b8c0c71%3A0x5b8c0c71b8c0c71b!2sParkring%2018%2C%208074%20Raaba-Grambach%2C%20Austria!5e0!3m2!1sde!2sat!4v1"
+                                                width="100%"
+                                                height="300"
+                                                style={{border: 0}}
+                                                loading="lazy"
+                                                referrerPolicy="no-referrer-when-downgrade"
+                                                title="PROMAX Standort Graz"
+                                                className="w-full"
+                                            />
+                                        ) : (
+                                            <MapsPlaceholder
+                                                title="Hauptsitz Graz"
+                                                address="Parkring 18/F, 8074 Raaba-Grambach"
+                                                onAccept={handleMapsAccept}
+                                            />
+                                        )}
                                     </div>
 
                                     {/* Wien Karte */}
@@ -162,16 +259,24 @@ const Kontakt = () => {
                                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{t('contact.branchViennaTitle')}</h3>
                                             <p className="text-white text-opacity-90 text-sm">Löwengasse 3/5, 1030 Wien</p>
                                         </div>
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.8234567891!2d16.3897!3d48.1951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d078c3c9e4d4d%3A0x1e3f1e3f1e3f1e3f!2sL%C3%B6wengasse%203%2C%201030%20Wien%2C%20Austria!5e0!3m2!1sde!2sat!4v1"
-                                            width="100%"
-                                            height="300"
-                                            style={{border: 0}}
-                                            loading="lazy"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            title="PROMAX Standort Wien"
-                                            className="w-full"
-                                        />
+                                        {mapsConsented ? (
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.8234567891!2d16.3897!3d48.1951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d078c3c9e4d4d%3A0x1e3f1e3f1e3f1e3f!2sL%C3%B6wengasse%203%2C%201030%20Wien%2C%20Austria!5e0!3m2!1sde!2sat!4v1"
+                                                width="100%"
+                                                height="300"
+                                                style={{border: 0}}
+                                                loading="lazy"
+                                                referrerPolicy="no-referrer-when-downgrade"
+                                                title="PROMAX Standort Wien"
+                                                className="w-full"
+                                            />
+                                        ) : (
+                                            <MapsPlaceholder
+                                                title="Niederlassung Wien"
+                                                address="Löwengasse 3/5, 1030 Wien"
+                                                onAccept={handleMapsAccept}
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +309,6 @@ const Kontakt = () => {
                 </section>
             </div>
 
-            {/* Add required styles */}
             <style>{`
             @keyframes fadeOut {
     0%, 50% {

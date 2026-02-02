@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import tech1 from '../../assets/tech1_gekauft.jpg';
-import tech3 from '../../assets/3dLaser_gekauft.jpg';
-import tech4 from '../../assets/vrBrilleEcht.jpg';
-import titelbild from '../../assets/neuesBildTechnologie.jpg';
+import tech1 from '../assets/tech1_gekauft.jpg';
+import tech3 from '../assets/3dLaser_gekauft.jpg';
+import tech4 from '../assets/vrBrilleEcht.jpg';
+import titelbild from '../assets/neuesBildTechnologie.jpg';
 
 const Technologies = () => {
     const { t } = useTranslation();
