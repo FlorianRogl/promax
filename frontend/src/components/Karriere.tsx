@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Download, Sparkles, Mail, FileText } from 'lucide-react';
-import planungImage from '../../assets/klugeKöpfe.png';
-import karriereHeroImage from '../../assets/KarreiereEchtesFrontBild.jpg';
+import planungImage from '../assets/klugeKöpfe.png';
+import karriereHeroImage from '../assets/KarreiereEchtesFrontBild.jpg';
 
 // PDF Job Inserate - diese Dateien müssen in src/assets/jobs/ liegen
-import engineerPdf from '../../assets/jobs/PROMAX_Inseratvorlage_Engineer_2025-08.pdf';
-import juniorEngineerFeb from '../../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-02.pdf';
-import juniorEngineerMay from '../../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-05.pdf';
+import engineerPdf from '../assets/jobs/PROMAX_Inseratvorlage_Engineer_2025-08.pdf';
+import juniorEngineerFeb from '../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-02.pdf';
+import juniorEngineerMay from '../assets/jobs/PROMAX_Inseratvorlage_JuniorEngineer_2025-05.pdf';
 
 interface JobPdf {
     id: string;
