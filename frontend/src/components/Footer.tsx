@@ -6,8 +6,10 @@ import {
     MapPin,
     Phone,
     Mail,
-    ArrowUp
+    ArrowUp,
+    Cookie
 } from 'lucide-react';
+import { useCookieConsent } from '../coockies/CookieContext';
 
 // Import der Logo-Bilder
 import qualityAustriaLogo from '../assets/iso.png';
@@ -17,6 +19,7 @@ import agbPdf from '/documents/PROMAX_AGB Ingenieurbüros 2021 November.pdf';
 
 const Footer = () => {
     const { t } = useTranslation();
+    const { setShowSettings } = useCookieConsent();
     const [isVisible, setIsVisible] = useState(false);
     const [showScrollTop, setShowScrollTop] = useState(false);
     const footerRef = useRef<HTMLElement>(null);
@@ -203,6 +206,40 @@ const Footer = () => {
                                 )
                             ))}
                         </div>
+
+                        {/* Cookie-Einstellungen Button */}
+                        <button
+                            onClick={() => setShowSettings(true)}
+                            style={{
+                                marginTop: '16px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                color: '#e5e5e5',
+                                backgroundColor: 'transparent',
+                                border: '1px solid #d97539',
+                                padding: '8px 16px',
+                                borderRadius: '6px',
+                                fontSize: '14px',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                fontWeight: '500'
+                            }}
+                            onMouseEnter={(e) => {
+                                const target = e.target as HTMLButtonElement;
+                                target.style.backgroundColor = '#d97539';
+                                target.style.color = 'white';
+                            }}
+                            onMouseLeave={(e) => {
+                                const target = e.target as HTMLButtonElement;
+                                target.style.backgroundColor = 'transparent';
+                                target.style.color = '#e5e5e5';
+                            }}
+                            className={`${isVisible ? styles.animateFadeIn : ''}`}
+                        >
+                            <Cookie size={16} />
+                            Cookie-Einstellungen
+                        </button>
                     </div>
 
                     {/* Certification Logos */}
