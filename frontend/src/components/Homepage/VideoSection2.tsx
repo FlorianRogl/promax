@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import video from '../../assets/video_mit_wasserzeichen.mp4';
+import video from '../../assets/PromaxVideo.mov';
 
 const VideoSection2 = () => {
     const { t } = useTranslation();
