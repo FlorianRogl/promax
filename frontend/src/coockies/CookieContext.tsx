@@ -132,7 +132,7 @@ function loadGoogleAnalytics(): void {
     const script = document.createElement('script');
     script.id = 'ga-script';
     script.async = true;
-    script.src = `https://www.google.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;  // ← HIER: googletagmanager statt google
     document.head.appendChild(script);
 }
 
