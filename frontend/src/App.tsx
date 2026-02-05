@@ -61,21 +61,7 @@ function App() {
         <HelmetProvider>
             <CookieProvider>
                 <>
-                    <style>{`
-                        html {
-                            zoom: 0.85;
-                            -moz-transform: scale(0.85);
-                            -moz-transform-origin: 0 0;
-                        }
-                        
-                        @supports not (zoom: 0.85) {
-                            body {
-                                transform: scale(0.85);
-                                transform-origin: 0 0;
-                                width: 117.65%;
-                            }
-                        }
-                    `}</style>
+
                     <AppContent />
                 </>
             </CookieProvider>

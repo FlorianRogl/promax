@@ -64,25 +64,25 @@ const Navbar = () => {
                 }`}
             >
                 <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-                    <div className="flex items-center justify-between h-20 sm:h-24 md:h-26 lg:h-24 xl:h-28 2xl:h-32">
+                    <div className="flex items-center justify-between h-20 sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-28">
 
                         {/* Logo - Links */}
                         <Link to="/" className="flex-shrink-0 z-50">
                             <img
                                 src={navLogo}
                                 alt="Logo"
-                                className="h-16 sm:h-20 md:h-22 lg:h-22 xl:h-24 2xl:h-28 w-auto object-contain transition-all duration-300"
+                                className="h-16 sm:h-16 md:h-16 lg:h-16 xl:h-20 2xl:h-24 w-auto object-contain transition-all duration-300"
                             />
                         </Link>
 
                         {/* Desktop Navigation - Zentral */}
                         <div className="hidden lg:flex items-center justify-center flex-1 mx-8 xl:mx-12 2xl:mx-16">
-                            <ul className="flex items-center space-x-8 xl:space-x-12 2xl:space-x-16">
+                            <ul className="flex items-center space-x-6 xl:space-x-8 2xl:space-x-12">
                                 {navItems.map((item) => (
                                     <li key={item.path}>
                                         <Link
                                             to={item.path}
-                                            className={`relative font-medium transition-colors duration-300 px-4 py-2 rounded-lg text-base lg:text-lg xl:text-xl 2xl:text-2xl whitespace-nowrap ${
+                                            className={`relative font-medium transition-colors duration-300 px-3 py-2 rounded-lg text-base lg:text-base xl:text-lg 2xl:text-xl whitespace-nowrap ${
                                                 location.pathname === item.path
                                                     ? 'text-orange-600 bg-orange-50'
                                                     : 'text-gray-700 hover:text-orange-600'
@@ -98,7 +98,7 @@ const Navbar = () => {
                         {/* Right Side - Language + Mobile Menu */}
                         <div className="flex items-center space-x-3 sm:space-x-4 md:space-x-6">
                             {/* Language Switcher */}
-                            <div className="flex items-center space-x-1 sm:space-x-1.5 text-sm sm:text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-medium">
+                            <div className="flex items-center space-x-1 sm:space-x-1.5 text-sm sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-lg font-medium">
                                 <button
                                     onClick={() => changeLanguage('de')}
                                     className={`transition-colors px-1.5 sm:px-2 py-1 ${
@@ -172,7 +172,7 @@ const Navbar = () => {
                     isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >
-                <div className="flex flex-col h-full pt-24 sm:pt-28 pb-6 px-5 sm:px-6">
+                <div className="flex flex-col h-full pt-24 sm:pt-24 pb-6 px-5 sm:px-6">
                     {/* Mobile Navigation Links */}
                     <ul className="flex flex-col space-y-1.5">
                         {navItems.map((item, index) => (
@@ -198,7 +198,7 @@ const Navbar = () => {
             </div>
 
             {/* Spacer für fixed navbar */}
-            <div className="h-20 sm:h-24 md:h-26 lg:h-24 xl:h-28 2xl:h-32" />
+            <div className="h-20 sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-28" />
         </>
     );
 };
