@@ -129,7 +129,7 @@ const Rechtliches = () => {
                             </div>
                             <div>
                                 <h3 className="text-lg font-semibold text-slate-800 mb-3">Urheberrecht</h3>
-                                <p className="text-slate-600 text-sm leading-relaxed">© 2024 PROMAX Project Management GesmbH. Alle Rechte vorbehalten. Die Inhalte und Werke auf dieser Website unterliegen dem österreichischen Urheberrecht.</p>
+                                <p className="text-slate-600 text-sm leading-relaxed">© 2026 PROMAX Project Management GesmbH. Alle Rechte vorbehalten. Die Inhalte und Werke auf dieser Website unterliegen dem österreichischen Urheberrecht.</p>
                             </div>
                         </div>
                         <div className="mt-8">
@@ -315,7 +315,7 @@ const Rechtliches = () => {
                 </section>
 
                 <div className="text-center mt-12 pt-8 border-t border-slate-200 text-slate-500 text-sm">
-                    <p>2025|PROMAX Project Management GesmbH</p>
+                    <p>2026|PROMAX Project Management GesmbH</p>
                 </div>
             </div>
         </div>

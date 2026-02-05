@@ -30,6 +30,7 @@ const Homepage = () => {
             <VideoSection2 />
 
             {/* Services Section */}
+            {/* Services Section */}
             <section className="py-12 sm:py-16 md:py-20 bg-gray-50 relative">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-10 sm:mb-12 md:mb-16">
@@ -43,7 +44,7 @@ const Homepage = () => {
                         {/* Ingenieurplanung Card */}
                         <div
                             onClick={() => navigate('/Leistungen#ingenieurplanung')}
-                            className="relative h-64 sm:h-72 md:h-80 overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                            className="relative h-[340px] sm:h-[360px] md:h-[380px] overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                         >
                             {/* Background Image */}
                             <img
@@ -56,16 +57,16 @@ const Homepage = () => {
                             <div className="absolute inset-0 bg-promax-blue opacity-80"></div>
 
                             {/* Content */}
-                            <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4 sm:p-6 md:p-8 z-10">
-                                <div className="mb-3 sm:mb-4">
-                                    <svg className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="absolute inset-0 flex flex-col justify-start items-center text-center text-white p-4 sm:p-6 md:p-8 z-10 pt-8 sm:pt-10 md:pt-12">
+                                <div className="mb-2 sm:mb-3">
+                                    <svg className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 break-words px-2 leading-tight" style={{ hyphens: 'none' }}>
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 break-words px-2 leading-tight" style={{ hyphens: 'none' }}>
                                     {t('homepage.engineeringTitle')}
                                 </h3>
-                                <p className="text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-2" style={{ hyphens: 'none' }}>
+                                <p className="text-sm sm:text-base md:text-lg mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-2 h-[75px] sm:h-[80px] md:h-[85px] flex items-center justify-center" style={{ hyphens: 'none' }}>
                                     {t('homepage.engineeringDesc')}
                                 </p>
                                 <ul className="text-left space-y-1.5 sm:space-y-2 text-xs sm:text-sm w-full max-w-xs">
@@ -88,7 +89,7 @@ const Homepage = () => {
                         {/* Operative Projektunterstützung Card */}
                         <div
                             onClick={() => navigate('/Leistungen#operative-projektstuetzung')}
-                            className="relative h-64 sm:h-72 md:h-80 overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                            className="relative h-[340px] sm:h-[360px] md:h-[380px] overflow-hidden rounded-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                         >
                             {/* Background Image */}
                             <img
@@ -101,17 +102,17 @@ const Homepage = () => {
                             <div className="absolute inset-0 bg-promax-orange opacity-80"></div>
 
                             {/* Content */}
-                            <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4 sm:p-6 md:p-8 z-10">
-                                <div className="mb-3 sm:mb-4">
-                                    <svg className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="absolute inset-0 flex flex-col justify-start items-center text-center text-white p-4 sm:p-6 md:p-8 z-10 pt-8 sm:pt-10 md:pt-12">
+                                <div className="mb-2 sm:mb-3">
+                                    <svg className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 break-words px-2 leading-tight" style={{ hyphens: 'none' }}>
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 break-words px-2 leading-tight" style={{ hyphens: 'none' }}>
                                     {t('homepage.operativeTitle')}
                                 </h3>
-                                <p className="text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-4 max-w-md" style={{ hyphens: 'none' }}>
+                                <p className="text-sm sm:text-base md:text-lg mb-3 sm:mb-4 opacity-90 leading-relaxed break-words px-4 max-w-md h-[75px] sm:h-[80px] md:h-[85px] flex items-center justify-center" style={{ hyphens: 'none' }}>
                                     {t('homepage.operativeDesc')}
                                 </p>
                                 <ul className="text-left space-y-1.5 sm:space-y-2 text-xs sm:text-sm w-full max-w-xs">

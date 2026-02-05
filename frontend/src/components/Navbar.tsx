@@ -64,14 +64,14 @@ const Navbar = () => {
                 }`}
             >
                 <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-                    <div className="flex items-center justify-between h-16 sm:h-20 md:h-22 lg:h-24 xl:h-28 2xl:h-32">
+                    <div className="flex items-center justify-between h-20 sm:h-24 md:h-26 lg:h-24 xl:h-28 2xl:h-32">
 
                         {/* Logo - Links */}
                         <Link to="/" className="flex-shrink-0 z-50">
                             <img
                                 src={navLogo}
                                 alt="Logo"
-                                className="h-12 sm:h-16 md:h-18 lg:h-18 xl:h-20 2xl:h-22 w-auto object-contain transition-all duration-300"
+                                className="h-16 sm:h-20 md:h-22 lg:h-22 xl:h-24 2xl:h-28 w-auto object-contain transition-all duration-300"
                             />
                         </Link>
 
@@ -172,7 +172,7 @@ const Navbar = () => {
                     isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >
-                <div className="flex flex-col h-full pt-20 sm:pt-24 pb-6 px-5 sm:px-6">
+                <div className="flex flex-col h-full pt-24 sm:pt-28 pb-6 px-5 sm:px-6">
                     {/* Mobile Navigation Links */}
                     <ul className="flex flex-col space-y-1.5">
                         {navItems.map((item, index) => (
@@ -198,7 +198,7 @@ const Navbar = () => {
             </div>
 
             {/* Spacer für fixed navbar */}
-            <div className="h-16 sm:h-20 md:h-22 lg:h-24 xl:h-28 2xl:h-32" />
+            <div className="h-20 sm:h-24 md:h-26 lg:h-24 xl:h-28 2xl:h-32" />
         </>
     );
 };
