@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Download, Sparkles, Mail, FileText } from 'lucide-react';
-import planungImage from '../assets/klugeKöpfe.png';
+import planungImage from '../assets_komp/klugeKöpfe.webp';
 
 // PDF Job Inserate - diese Dateien müssen in src/assets/jobs/ liegen
 import engineerPdf from '../assets/jobs/PROMAX_Inseratvorlage_Engineer_2025-08.pdf';
