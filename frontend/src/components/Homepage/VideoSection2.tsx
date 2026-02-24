@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import video from '../../assets/PromaxVideo.mov';
+import video from '../../assets_komp/PromaxVideo_komprimiert.mp4';
 
 const VideoSection2 = () => {
     const { t } = useTranslation();

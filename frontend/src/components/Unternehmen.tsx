@@ -1,13 +1,13 @@
 import {useState, useEffect, JSX} from 'react';
 import { useTranslation } from 'react-i18next';
 import '../index.css'
-import rogl from '../assets/RoglAndreas.jpg';
-import christian from '../assets/Christian.jpg';
-import iso from '../assets/iso.png';
-import iq from '../assets/IQNet certification mark 2022.jpg';
+import rogl from '../assets_komp/RoglAndreas.webp';
+import christian from '../assets_komp/Christian.webp';
+import iso from '../assets_komp/iso.webp';
+import iq from '../assets_komp/IQNet_certification_mark_2022.webp';
 import CheckIcon from "./CheckIcon.tsx";
-import unternehmen1 from "../assets/unternehmen1.jpg";
-import unternehmenHero from '../assets/unternehmenPic.jpg';
+import unternehmen1 from "../assets_komp/unternehmen1.webp";
+import unternehmenHero from '../assets_komp/unternehmenPic.webp';
 
 interface Resource {
     title: string;

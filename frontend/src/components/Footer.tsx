@@ -12,9 +12,9 @@ import {
 import { useCookieConsent } from '../coockies/CookieContext';
 
 // Import der Logo-Bilder
-import qualityAustriaLogo from '../assets/iso.png';
-import ingenieurburosLogo from '../assets/ingbuero_mindestgroesse_25mm1.jpg';
-import iqnetLogo from '../assets/IQNet certification mark 2022.jpg';
+import qualityAustriaLogo from '../assets_komp/iso.webp';
+import ingenieurburosLogo from '../assets_komp/ingbuero_mindestgroesse_25mm1.webp';
+import iqnetLogo from '../assets_komp/IQNet_certification_mark_2022.webp';
 import agbPdf from '/documents/PROMAX_AGB Ingenieurbüros 2021 November.pdf';
 
 const Footer = () => {

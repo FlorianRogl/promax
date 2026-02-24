@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCookieConsent } from '../coockies/CookieContext';
-import kontaktHero from '../assets/kontaktHero.jpg';
+import kontaktHero from '../assets_komp/kontaktHero.webp';
 import { MapPin } from 'lucide-react';
 
 // ─── Google Maps Consent-Placeholder ──────────────────────────────────────────
