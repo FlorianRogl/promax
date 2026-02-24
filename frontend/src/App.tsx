@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar.tsx";
 import Technologies from "./components/Technologies.tsx";
 import CookieBanner from "./coockies/CookieBanner.tsx";
 import { CookieProvider, useCookieConsent } from "./coockies/CookieContext.tsx";
+import { SEOWrapper } from "./seo/SeoWrapper.tsx";
 import './i18n';
 
 // ─── Vercel Analytics wird nur geladen wenn Analyse-Consent gegeben ─────────
@@ -34,17 +35,19 @@ function AppContent() {
         <div>
             <Navbar/>
             <ScrollToTop/>
-            <Routes>
-                <Route path="/" element={<Homepage/>} />
-                <Route path="/Unternehmen" element={<Unternehmen/>} />
-                <Route path="/Leistungen" element={<Leistungen/>} />
-                <Route path="/Technologien" element={<Technologies/>} />
-                <Route path="/Karriere" element={<Karriere/>} />
-                <Route path="/Kontakt" element={<Kontakt/>} />
-                <Route path="/Projektberichte" element={<Projektberichte/>} />
-                <Route path="/Rechtliches" element={<Rechtliches/>}/>
-                <Route path="*" element={<Error404/>} />
-            </Routes>
+            <SEOWrapper>
+                <Routes>
+                    <Route path="/" element={<Homepage/>} />
+                    <Route path="/Unternehmen" element={<Unternehmen/>} />
+                    <Route path="/Leistungen" element={<Leistungen/>} />
+                    <Route path="/Technologien" element={<Technologies/>} />
+                    <Route path="/Karriere" element={<Karriere/>} />
+                    <Route path="/Kontakt" element={<Kontakt/>} />
+                    <Route path="/Projektberichte" element={<Projektberichte/>} />
+                    <Route path="/Rechtliches" element={<Rechtliches/>}/>
+                    <Route path="*" element={<Error404/>} />
+                </Routes>
+            </SEOWrapper>
             <Footer/>
 
             {/* Vercel Analytics – nur wenn analytics consent gegeben */}

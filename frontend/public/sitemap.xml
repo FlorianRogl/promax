@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
     <!-- Homepage -->
     <url>
         <loc>https://www.promax.at/</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="de" href="https://www.promax.at/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.promax.at/"/>
     </url>
 
     <!-- Unternehmen -->
     <url>
         <loc>https://www.promax.at/Unternehmen</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -21,6 +23,7 @@
     <!-- Leistungen -->
     <url>
         <loc>https://www.promax.at/Leistungen</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -28,6 +31,7 @@
     <!-- Technologien -->
     <url>
         <loc>https://www.promax.at/Technologien</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -35,6 +39,7 @@
     <!-- Karriere -->
     <url>
         <loc>https://www.promax.at/Karriere</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -42,15 +47,17 @@
     <!-- Kontakt -->
     <url>
         <loc>https://www.promax.at/Kontakt</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
 
-    <!-- FitImJob -->
+    <!-- Rechtliches -->
     <url>
-        <loc>https://www.promax.at/FitImJob</loc>
+        <loc>https://www.promax.at/Rechtliches</loc>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.2</priority>
     </url>
 
 </urlset>
