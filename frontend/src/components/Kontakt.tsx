@@ -163,7 +163,7 @@ const Kontakt = () => {
                                         <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">{t('contact.phoneVienna')}</p>
                                         <a href="tel:+431234567890"
                                            className="text-lg text-[#1e3767] hover:text-[#d97539] transition-colors block font-medium">
-                                            +43 1 234 567 890
+                                            +43 01 710 7748
                                         </a>
                                     </div>
 
