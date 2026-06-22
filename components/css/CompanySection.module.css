@@ -1,0 +1,385 @@
+/* CompanySection.module.css */
+.heroSection {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.backgroundGradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(226, 126, 34, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.textContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.textVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Professional Badge */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: rgba(226, 126, 34, 0.1);
+    border: 1px solid rgba(226, 126, 34, 0.3);
+    border-radius: 6px;
+    color: #E67E22;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: fit-content;
+}
+
+/* Professional Hero Title */
+.heroTitle {
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.titleMain {
+    display: block;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    color: #1E3A5F;
+    margin-bottom: 0.5rem;
+}
+
+.titleSub {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: #E67E22;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+/* Professional Text Content */
+.heroDescription {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: #475569;
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+.heroDescription strong {
+    color: #E67E22;
+    font-weight: 700;
+}
+
+.heroSubtext {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.7s forwards;
+}
+
+/* Professional CTA Buttons */
+.ctaButtons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.9s forwards;
+}
+
+.primaryBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 16px 32px;
+    background: #E67E22;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(230, 126, 34, 0.3);
+}
+
+.primaryBtn:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(230, 126, 34, 0.4);
+}
+
+.primaryBtn svg {
+    transition: transform 0.3s ease;
+}
+
+.primaryBtn:hover svg {
+    transform: translateX(4px);
+}
+
+.secondaryBtn {
+    padding: 16px 32px;
+    border: 2px solid rgba(30, 58, 95, 0.2);
+    color: #1E3A5F;
+    font-weight: 600;
+    font-size: 1rem;
+    background: transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.secondaryBtn:hover {
+    border-color: #E67E22;
+    color: #E67E22;
+    background: rgba(230, 126, 34, 0.05);
+}
+
+/* Professional Stats */
+/* Professional Stats */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(30, 58, 95, 0.1);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.9s forwards;
+}
+
+.statItem {
+    text-align: center;
+}
+
+.statNumber {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #E67E22;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Professional Image Container */
+.imageContainer {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease 0.4s;
+}
+
+.imageVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.imageWrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
+
+.imageWrapper:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.heroImage {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.imageWrapper:hover .heroImage {
+    transform: scale(1.05);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to top,
+            rgba(30, 58, 95, 0.1) 0%,
+            transparent 50%,
+            rgba(230, 126, 34, 0.05) 100%
+    );
+    pointer-events: none;
+}
+
+/* Professional Info Card */
+.infoCard {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid rgba(226, 126, 34, 0.1);
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper:hover .infoCard {
+    transform: translateY(0);
+}
+
+.cardContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardContent h3 {
+    color: #1E3A5F;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.cardContent p {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.cardIcon {
+    width: 48px;
+    height: 48px;
+    background: #E67E22;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* Professional Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .heroImage {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 60px 1rem;
+    }
+
+    .ctaButtons {
+        flex-direction: column;
+    }
+
+    .statsGrid {
+        gap: 1.5rem;
+    }
+
+    .heroImage {
+        height: 400px;
+    }
+
+    .infoCard {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .heroImage {
+        height: 300px;
+    }
+
+    .ctaButtons {
+        gap: 0.75rem;
+    }
+
+    .primaryBtn,
+    .secondaryBtn {
+        padding: 14px 24px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .textContent,
+    .imageContainer,
+    .titleSub,
+    .heroDescription,
+    .heroSubtext,
+    .ctaButtons,
+    .statsGrid {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .imageWrapper,
+    .heroImage,
+    .infoCard {
+        transition: none !important;
+    }
+}

@@ -1,0 +1,40 @@
+/* Füge diese Styles zu deiner globalen CSS-Datei hinzu (z.B. index.css oder App.module.css) */
+
+/* CSS Reset für Box-Model und Overflow */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Verhindere horizontalen Overflow auf der gesamten App */
+#root {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fix für iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Optional: Debug-Hilfe (entfernen in Produktion) */
+/* * {
+    outline: 1px solid red;
+} */

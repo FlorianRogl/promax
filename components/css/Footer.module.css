@@ -1,0 +1,443 @@
+/* Footer.module.css */
+
+/* Base Footer Styles */
+.footer {
+    background: #0f1f3f;
+    color: #e5e7eb;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.footerVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Gradient Line Animation */
+.footerGradientLine {
+    height: 4px;
+    background: linear-gradient(90deg, #E67E22, #f39c12, #E67E22);
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(20px);
+    }
+    50% {
+        transform: scale(1.1) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes bounceInBtn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(180deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Animation Classes */
+.animateUp {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+.animateFadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animateBounce {
+    animation: bounceIn 0.6s ease-out forwards;
+}
+
+.animateBounceIn {
+    animation: bounceInBtn 0.5s ease-out;
+}
+
+/* Layout */
+.footerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+}
+
+.footerSection {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Company Section */
+.companySection {
+    padding-right: 2rem;
+}
+
+.companyLogo {
+    margin-bottom: 1.5rem;
+}
+
+.logoText {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+.companyTagline {
+    color: #E67E22;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0 0 1.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.companyDescription {
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: #d1d5db;
+    font-size: 0.95rem;
+}
+
+/* Contact Info */
+.contactTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    border-bottom: 2px solid #E67E22;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #d1d5db;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.contactItem:hover {
+    color: #E67E22;
+    transform: translateX(5px);
+}
+
+.contactItem svg {
+    color: #E67E22;
+    flex-shrink: 0;
+}
+
+/* Links Sections */
+.linksSection {
+    /* Additional styles for links sections if needed */
+}
+
+.sectionTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1.5rem 0;
+    position: relative;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #E67E22;
+    transition: width 0.3s ease;
+}
+
+.linksSection:hover .sectionTitle::after {
+    width: 50px;
+}
+
+.linksList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.linkItem {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.footerLink {
+    color: #d1d5db;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.footerLink:hover {
+    color: #E67E22;
+    transform: translateX(8px);
+    text-decoration: none;
+}
+
+/* Footer Bottom */
+.footerBottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.footerBottomContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Social Media */
+.socialSection {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.socialTitle {
+    color: #d1d5db;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #d1d5db;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.socialLink:hover {
+    background: #E67E22;
+    color: #ffffff;
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+/* Copyright */
+.copyright {
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+.copyright p {
+    margin: 0;
+}
+
+/* Quality Badges */
+.qualityBadges {
+    display: flex;
+    gap: 1rem;
+}
+
+.badge {
+    background: rgba(230, 126, 34, 0.1);
+    color: #E67E22;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(230, 126, 34, 0.3);
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    background: rgba(230, 126, 34, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Scroll to Top Button */
+.scrollTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: #E67E22;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(230, 126, 34, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scrollTopBtn:hover {
+    background: #d35400;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(230, 126, 34, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .footerContainer {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footerContainer {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 3rem 1rem 2rem;
+    }
+
+    .companySection {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .contactTitle {
+        text-align: center;
+        width: 100%;
+    }
+
+    .footerBottomContainer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    .socialSection {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .qualityBadges {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logoText {
+        font-size: 1.8rem;
+    }
+
+    .companyTagline {
+        font-size: 0.8rem;
+    }
+
+    .scrollTopBtn {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+    }
+
+    .footerContainer {
+        padding: 2rem 1rem 1rem;
+        gap: 2rem;
+    }
+
+    .socialLinks {
+        gap: 0.8rem;
+    }
+
+    .socialLink {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .footerGradientLine {
+        animation: none;
+        background: #E67E22;
+    }
+}
