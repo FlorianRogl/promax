@@ -430,12 +430,6 @@
 
 /* Accessibility - Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
     .footerGradientLine {
         animation: none;
         background: #E67E22;

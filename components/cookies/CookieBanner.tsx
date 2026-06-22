@@ -4,6 +4,7 @@ import React from 'react';
 import { useCookieConsent } from './CookieContext';
 import CookieSettings from './CookieSettings';
 import { Cookie } from 'lucide-react';
+import Link from 'next/link';
 
 const CookieBanner: React.FC = () => {
     const { showBanner, acceptAll, rejectAll, setShowSettings } = useCookieConsent();
@@ -210,9 +211,9 @@ const CookieBanner: React.FC = () => {
                                 <strong style={{ color: '#374151' }}>Marketing-Cookies</strong>{' '}
                                 (Google AdWords) verwendet. Sie können Ihre Einstellungen jederzeit anpassen.
                                 Weitere Informationen finden Sie in unserer{' '}
-                                <a href="/Rechtliches#datenschutz" className="cookie-banner__link">
+                                <Link href="/rechtliches#datenschutz" className="cookie-banner__link">
                                     Datenschutzerklärung
-                                </a>.
+                                </Link>.
                             </p>
                         </div>
                     </div>
