@@ -9,5 +9,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
   return {
     locale,
     messages: (await import(`../messages/${locale}.json`)).default,
+    onError(error) {
+      // Ignore missing-message errors (the OLD app tolerated these); rethrow others.
+      if (error.code === 'MISSING_MESSAGE') return;
+      console.error(error);
+    },
+    getMessageFallback({ key }) {
+      // Mimic react-i18next default: render the key path when a message is missing.
+      return key;
+    },
   };
 });
