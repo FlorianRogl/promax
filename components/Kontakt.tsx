@@ -166,9 +166,9 @@ const Kontakt = () => {
                                     {/* Telefon Graz */}
                                     <div className="group">
                                         <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">{t('contact.phoneGraz')}</p>
-                                        <a href="tel:+433162414393"
+                                        <a href="tel:+43316241393"
                                            className="text-lg text-[#1e3767] hover:text-[#d97539] transition-colors block font-medium">
-                                            +43 316 241 4393
+                                            +43 316 241 393
                                         </a>
                                     </div>
 
