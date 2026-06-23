@@ -14,9 +14,9 @@ import CookieBanner from '@/components/cookies/CookieBanner';
 import ConditionalAnalytics from '@/components/ConditionalAnalytics';
 import { StructuredData } from '@/components/StructuredData';
 import {
-  WEBSITE_STRUCTURED_DATA,
-  ORGANIZATION_STRUCTURED_DATA,
+  getGlobalStructuredData,
   SITE_NAVIGATION_STRUCTURED_DATA,
+  LOCALBUSINESS_STRUCTURED_DATA,
 } from '@/lib/seo-config';
 
 export function generateStaticParams() {
@@ -34,6 +34,7 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const messages = await getMessages();
+  const globalStructuredData = getGlobalStructuredData(locale);
   return (
     <html lang={locale}>
       <body>
@@ -47,10 +48,14 @@ export default async function LocaleLayout({
                 <Footer />
                 <CookieBanner />
                 <ConditionalAnalytics />
-                <StructuredData data={WEBSITE_STRUCTURED_DATA} />
-                <StructuredData data={ORGANIZATION_STRUCTURED_DATA} />
+                {globalStructuredData.map((d, i) => (
+                  <StructuredData key={`global-${i}`} data={d} />
+                ))}
                 {SITE_NAVIGATION_STRUCTURED_DATA.map((d, i) => (
                   <StructuredData key={i} data={d} />
+                ))}
+                {LOCALBUSINESS_STRUCTURED_DATA.map((d, i) => (
+                  <StructuredData key={`lb-${i}`} data={d} />
                 ))}
               </CookieProvider>
             </NextIntlClientProvider>
