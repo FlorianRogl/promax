@@ -14,12 +14,13 @@ const getMainNavHeight = (): number => {
 };
 
 const Rechtliches = () => {
-    const [mainNavHeight, setMainNavHeight] = useState<number>(() => getMainNavHeight());
+    const [mainNavHeight, setMainNavHeight] = useState<number>(75);
 
     useEffect(() => {
         const handleResize = () => {
             setMainNavHeight(getMainNavHeight());
         };
+        handleResize(); // Set correct value on mount
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
