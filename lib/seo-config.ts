@@ -336,12 +336,84 @@ export const seoConfig: SEOConfig = {
     }
 };
 
+// ─── English SEO configuration ────────────────────────────────────────────────
+export const seoConfigEn: SEOConfig = {
+    '/': {
+        title: 'PROMAX Project Management – Industrial Plant Construction & Engineering in Graz',
+        description: 'Your partner for project management in industrial plant construction. Over 25 years of experience in engineering, 3D planning and project execution. ISO 9001:2015 certified. Locations in Graz and Vienna.',
+        keywords: 'Industrial Plant Construction, Project Management, Engineering, Graz, Austria, ISO 9001, Plant Planning, Process Engineering, 3D Modeling',
+        canonical: `${BASE_URL}/en`,
+        ogImage: `${BASE_URL}/og/og-home.jpg`,
+        ogType: 'website',
+        structuredData: seoConfig['/'].structuredData,
+    },
+    '/unternehmen': {
+        title: 'Company – About PROMAX Project Management | 25+ Years of Experience',
+        description: 'Since 1999 your reliable partner for project management in industrial plant construction. 100+ experts, ISO 9001:2015 certified, 250+ successfully completed projects across Europe.',
+        keywords: 'PROMAX Company, Company History, ISO Certification, Industrial Plant Construction Graz, Engineering Team, Andreas Rogl',
+        canonical: `${BASE_URL}/en/unternehmen`,
+        ogImage: `${BASE_URL}/og/og-unternehmen.jpg`,
+        structuredData: seoConfig['/unternehmen'].structuredData,
+    },
+    '/leistungen': {
+        title: 'Services – Engineering, Planning & Project Management | PROMAX',
+        description: 'Engineering planning, 3D modeling & calculation, laser scan technology and operational project support for industrial plant construction. PROMAX – your engineering partner.',
+        keywords: 'Engineering Services, 3D Planning, AutoCAD Plant 3D, Piping Planning, Project Management, Engineering Planning, Plant Conception',
+        canonical: `${BASE_URL}/en/leistungen`,
+        ogImage: `${BASE_URL}/og/og-leistungen.jpg`,
+        structuredData: seoConfig['/leistungen'].structuredData,
+    },
+    '/technologien': {
+        title: 'Technologies – 3D CAD, Laser Scanning & VR/AR | PROMAX',
+        description: 'State-of-the-art engineering software: AutoCAD Plant 3D, PDMS, E3D, Intergraph Smart 3D. Plus 3D laser scanning and virtual & augmented reality for precise industrial planning.',
+        keywords: 'AutoCAD Plant 3D, PDMS, E3D, 3D Laser Scanning, ROHR2, Inventor, Virtual Reality, Augmented Reality, Faro Scene',
+        canonical: `${BASE_URL}/en/technologien`,
+        ogImage: `${BASE_URL}/og/og-technologien.jpg`,
+        structuredData: seoConfig['/technologien'].structuredData,
+    },
+    '/karriere': {
+        title: 'Career at PROMAX – Jobs in Industrial Plant Construction Graz & Vienna',
+        description: 'Apply now at PROMAX! Open positions for 3D CAD designers, engineers and project managers in Raaba-Grambach, Vienna and Bruck an der Leitha.',
+        keywords: 'Jobs Graz, Career Industrial Plant Construction, Engineer Jobs, CAD Designer, Project Manager, Engineering Jobs Austria, PROMAX Vacancies',
+        canonical: `${BASE_URL}/en/karriere`,
+        ogImage: `${BASE_URL}/og/og-karriere.jpg`,
+        structuredData: seoConfig['/karriere'].structuredData,
+    },
+    '/kontakt': {
+        title: 'Contact – PROMAX Project Management Graz & Vienna',
+        description: 'Get in touch with PROMAX. Headquarters: Parkring 18/F, 8074 Raaba-Grambach. Vienna branch: Löwengasse 3/5, 1030 Vienna. Tel: +43 316 241 393',
+        keywords: 'PROMAX Contact, Address Graz, Vienna Location, Project Inquiry, Engineering Inquiry, office@promax.at',
+        canonical: `${BASE_URL}/en/kontakt`,
+        ogImage: `${BASE_URL}/og/og-kontakt.jpg`,
+        structuredData: seoConfig['/kontakt'].structuredData,
+    },
+    '/rechtliches': {
+        title: 'Legal Notice & Privacy Policy – PROMAX Project Management',
+        description: 'Legal notice, privacy policy and general terms and conditions of PROMAX Project Management GesmbH, Parkring 18/F, 8074 Raaba-Grambach.',
+        canonical: `${BASE_URL}/en/rechtliches`,
+        noindex: true,
+        structuredData: seoConfig['/rechtliches'].structuredData,
+    },
+    '/projektberichte': {
+        title: 'Project Reports – References & Projects | PROMAX',
+        description: 'Selected reference projects and project reports from PROMAX Project Management GesmbH in industrial plant construction.',
+        canonical: `${BASE_URL}/en/projektberichte`,
+        ogImage: `${BASE_URL}/og/og-home.jpg`,
+        structuredData: seoConfig['/projektberichte'].structuredData,
+    },
+};
+
 // Helper: SEO-Daten für Route abrufen
-export const getSEOForRoute = (path: string): SEOPageConfig => {
-    return seoConfig[path] || {
-        title: 'PROMAX Project Management – Industrieanlagenbau & Engineering',
-        description: 'Projektmanagement im Industrieanlagenbau. Über 25 Jahre Erfahrung, ISO 9001:2015 zertifiziert.',
-        canonical: `${BASE_URL}${path}`
+export const getSEOForRoute = (path: string, locale: string = 'de'): SEOPageConfig => {
+    const config = locale === 'en' ? seoConfigEn : seoConfig;
+    return config[path] || {
+        title: locale === 'en'
+            ? 'PROMAX Project Management – Industrial Plant Construction & Engineering'
+            : 'PROMAX Project Management – Industrieanlagenbau & Engineering',
+        description: locale === 'en'
+            ? 'Project management in industrial plant construction. Over 25 years of experience, ISO 9001:2015 certified.'
+            : 'Projektmanagement im Industrieanlagenbau. Über 25 Jahre Erfahrung, ISO 9001:2015 zertifiziert.',
+        canonical: `${BASE_URL}/${locale}${path}`
     };
 };
 

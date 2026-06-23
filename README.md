@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PROMAX Project Management – Next.js 15 Website
 
-## Getting Started
+Dieses Projekt ist eine Next.js 15 App Router Anwendung (TypeScript, React 18, Tailwind CSS), migriert vom alten Vite/React SPA unter `../PromaxHost`.
 
-First, run the development server:
+## Deployment auf Vercel
+
+### Framework-Erkennung
+Vercel erkennt das Projekt automatisch als **Next.js**-Projekt (Framework Preset: Next.js). Keine `vercel.json` mit Rewrites notwendig – SPA-Catch-all-Rewrites würden das Next.js-Routing brechen und müssen **nicht** vorhanden sein.
+
+### Produktionsdomain
+Die Domains `www.promax.at` und `promax.at` dürfen **erst nach visuellem Abnahme-Check** auf die neue Vercel-Deployment-URL umgezogen werden.
+
+Die kanonische `BASE_URL` in `lib/seo-config.ts` ist `https://www.promax.at` und muss mit der eingesetzten Produktionsdomain übereinstimmen. Vor dem Go-Live ggf. anpassen.
+
+### i18n / Routen
+- Routen: `/de/...` und `/en/...`
+- `/` (Root) leitet per Middleware auf `/de` weiter
+- Alte kapitalisierte URLs (`/Leistungen`, `/Unternehmen` etc.) werden per 301 auf `/de/...` weitergeleitet
+
+### Seiten (8 Routen, je DE + EN)
+| Route | DE | EN |
+|-------|----|----|
+| `/[locale]` | Startseite | Home |
+| `/[locale]/unternehmen` | Unternehmen | Company |
+| `/[locale]/leistungen` | Leistungen | Services |
+| `/[locale]/technologien` | Technologien | Technologies |
+| `/[locale]/karriere` | Karriere | Career |
+| `/[locale]/kontakt` | Kontakt | Contact |
+| `/[locale]/projektberichte` | Projektberichte | Project Reports |
+| `/[locale]/rechtliches` | Impressum & Datenschutz | Legal Notice & Privacy |
+
+### Drittanbieter-Integrationen
+- **Sanity CMS** – Projekt-ID `8er2mgl5` (in `lib/sanity.ts` konfiguriert)
+- **Microsoft Clarity** – ID `vapan0juwg` (in `components/ClarityInit.tsx`)
+- Analytics und Clarity werden **erst nach Cookie-Consent** geladen
+
+### OG Images
+OG-Bilder liegen unter `public/og/` und basieren aktuell auf vorhandenen Markenfotos (Placeholder-Qualität). Sie können später durch dedizierte 1200×630 px Bilder ersetzt werden.
+
+## Lokale Entwicklung
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # Entwicklungsserver (http://localhost:3000)
+npm run build    # Produktions-Build
+npm run start    # Produktions-Server lokal vorschauen
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Hinweise für Go-Live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Visuellen Vergleich mit `../PromaxHost` (altes SPA) durchführen
+2. `BASE_URL` in `lib/seo-config.ts` auf `https://www.promax.at` prüfen (bereits gesetzt)
+3. DNS/Domain auf Vercel-Deployment-URL umstellen
+4. Sitemap unter `https://www.promax.at/sitemap.xml` und robots.txt prüfen
+5. Google Search Console mit neuer Property einrichten

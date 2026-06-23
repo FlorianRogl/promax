@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getSEOForRoute, generateTitle, BASE_URL } from './seo-config';
 
 export function buildMetadata(routeKey: string, locale: string): Metadata {
-  const seo = getSEOForRoute(routeKey);
+  const seo = getSEOForRoute(routeKey, locale);
   const path = routeKey === '/' ? '' : routeKey;
   const canonical = `${BASE_URL}/${locale}${path}`;
   return {
