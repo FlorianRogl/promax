@@ -20,6 +20,9 @@ export function buildMetadata(routeKey: string, locale: string): Metadata {
     robots: seo.noindex
       ? { index: false, follow: false }
       : { index: true, follow: true },
+    verification: {
+      google: 'bK85IfVXd0152XfJuoImUga2LRl0OxgKc9D9oZrErYI',
+    },
     openGraph: {
       title: generateTitle(seo.title),
       description: seo.description,
