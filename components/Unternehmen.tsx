@@ -212,7 +212,7 @@ const Unternehmen = () => {
                                 <div className="absolute -inset-4 bg-gradient-to-r from-[#1e3767] to-[#d97539] rounded-lg opacity-10 blur-lg"></div>
                                 <img
                                     src={unternehmen1.src}
-                                    alt="PROMAX Office"
+                                    alt="PROMAX Bürogebäude in Raaba-Grambach"
                                     className="relative rounded-lg shadow-2xl w-full h-[300px] lg:h-[380px] xl:h-[420px] object-cover"
                                 />
                             </div>

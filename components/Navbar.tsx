@@ -71,7 +71,7 @@ const Navbar = () => {
                         <Link href="/" className="flex-shrink-0 z-50">
                             <img
                                 src={navLogo.src}
-                                alt="Logo"
+                                alt="PROMAX Project Management"
                                 className="h-16 sm:h-16 md:h-16 lg:h-16 xl:h-20 2xl:h-24 w-auto object-contain transition-all duration-300"
                             />
                         </Link>

@@ -51,7 +51,7 @@ const Homepage = () => {
                             {/* Background Image */}
                             <img
                                 src="https://images.pexels.com/photos/3184315/pexels-photo-3184315.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"
-                                alt="Engineering team working"
+                                alt="Ingenieurteam bei der Anlagenplanung"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                             />
 
@@ -96,7 +96,7 @@ const Homepage = () => {
                             {/* Background Image */}
                             <img
                                 src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"
-                                alt="Business team meeting"
+                                alt="Projektteam von PROMAX bei einer Besprechung"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                             />
 
