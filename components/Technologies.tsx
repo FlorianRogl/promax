@@ -210,7 +210,7 @@ const Technologies = () => {
                                         </div>
                                         <div className="flex items-start break-words">
                                             <span className="text-[#d97539] mr-2 flex-shrink-0">•</span>
-                                            <span>Software-Erweiterungen</span>
+                                            <span>{t('technologies.planningProgramSoftwareExtensions')}</span>
                                         </div>
                                     </div>
                                 </div>

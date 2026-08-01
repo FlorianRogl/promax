@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { useCookieConsent } from './CookieContext';
 import CookieSettings from './CookieSettings';
 import { Cookie } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 const CookieBanner: React.FC = () => {
+    const t = useTranslations('cookies');
     const { showBanner, acceptAll, rejectAll, setShowSettings } = useCookieConsent();
 
     if (!showBanner) {
@@ -192,7 +194,7 @@ const CookieBanner: React.FC = () => {
                 }
             `}</style>
 
-            <div role="dialog" aria-label="Cookie-Zustimmung" className="cookie-banner">
+            <div role="dialog" aria-label={t('dialogLabel')} className="cookie-banner">
                 <div className="cookie-banner__inner">
 
                     {/* Icon + Text */}
@@ -202,17 +204,15 @@ const CookieBanner: React.FC = () => {
                         </div>
 
                         <div className="cookie-banner__text">
-                            <h3 className="cookie-banner__title">Wir verwenden Cookies</h3>
+                            <h3 className="cookie-banner__title">{t('bannerTitle')}</h3>
                             <p className="cookie-banner__description">
-                                Wir setzen Cookies ein, um Ihre Nutzererfahrung zu verbessern und unsere Website zu analysieren.
-                                Dazu werden{' '}
-                                <strong style={{ color: '#374151' }}>Analyse-Cookies</strong>{' '}
-                                (Google Analytics, Microsoft Clarity, Vercel Analytics) und{' '}
-                                <strong style={{ color: '#374151' }}>Marketing-Cookies</strong>{' '}
-                                (Google AdWords) verwendet. Sie können Ihre Einstellungen jederzeit anpassen.
-                                Weitere Informationen finden Sie in unserer{' '}
+                                {t('bannerTextBeforeAnalytics')}
+                                <strong style={{ color: '#374151' }}>{t('analyticsLabel')}</strong>
+                                {t('bannerTextBetween')}
+                                <strong style={{ color: '#374151' }}>{t('marketingLabel')}</strong>
+                                {t('bannerTextAfterMarketing')}
                                 <Link href="/rechtliches#datenschutz" className="cookie-banner__link">
-                                    Datenschutzerklärung
+                                    {t('bannerPrivacyLink')}
                                 </Link>.
                             </p>
                         </div>
@@ -221,13 +221,13 @@ const CookieBanner: React.FC = () => {
                     {/* Buttons */}
                     <div className="cookie-banner__actions">
                         <button onClick={rejectAll} className="cookie-btn cookie-btn--reject">
-                            Ablehnen
+                            {t('reject')}
                         </button>
                         <button onClick={() => setShowSettings(true)} className="cookie-btn cookie-btn--settings">
-                            Einstellungen
+                            {t('settings')}
                         </button>
                         <button onClick={acceptAll} className="cookie-btn cookie-btn--accept">
-                            Alle akzeptieren
+                            {t('acceptAll')}
                         </button>
                     </div>
                 </div>

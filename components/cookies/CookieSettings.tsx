@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useCookieConsent, CookieConsent } from './CookieContext';
 import { X, Shield, Lock } from 'lucide-react';
 
@@ -12,45 +13,21 @@ interface CategoryInfo {
     locked?: boolean;
 }
 
-const categories: CategoryInfo[] = [
-    {
-        key: 'necessary',
-        title: 'Notwendige Cookies',
-        description:
-            'Diese Cookies sind erforderlich, damit die Website funktioniert. Sie können nicht deaktiviert werden, da sie für grundlegende Funktionen wie Navigation, Sitzungsverwaltung und Sicherheit unerlässlich sind.',
-        tools: ['Session-Cookies', 'CSRF-Schutz', 'Spracheinstellungen'],
-        locked: true,
-    },
-    {
-        key: 'analytics',
-        title: 'Analyse-Cookies',
-        description:
-            'Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen. Die gesammlung Daten werden verwendet, um die Website zu verbessern und die Nutzererfahrung zu optimieren. Die Daten werden anonymisiert verarbeitet.',
-        tools: ['Google Analytics (GA4)', 'Microsoft Clarity', 'Vercel Analytics'],
-    },
-    {
-        key: 'marketing',
-        title: 'Marketing-Cookies',
-        description:
-            'Diese Cookies werden verwendet, um Werbeanzeigen zu messen und zu optimieren. Sie helfen uns, die Effektivität unserer Werbekampagnen zu verstehen und ermöglichen die Messung von Konversionen über Google Ads.',
-        tools: ['Google AdWords Conversion Tracking'],
-    },
-];
-
 // ─── Toggle Switch ────────────────────────────────────────────────────────────
 
 interface ToggleProps {
     enabled: boolean;
     locked?: boolean;
+    label: string;
     onChange: (value: boolean) => void;
 }
 
-const Toggle: React.FC<ToggleProps> = ({ enabled, locked, onChange }) => (
+const Toggle: React.FC<ToggleProps> = ({ enabled, locked, label, onChange }) => (
     <button
         type="button"
         disabled={locked}
         onClick={() => !locked && onChange(!enabled)}
-        aria-label={enabled ? 'Deaktivieren' : 'Aktivieren'}
+        aria-label={label}
         style={{
             position: 'relative',
             width: '52px',
@@ -87,8 +64,31 @@ const Toggle: React.FC<ToggleProps> = ({ enabled, locked, onChange }) => (
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const CookieSettings: React.FC = () => {
+    const t = useTranslations('cookies');
     const { consent, showSettings, setShowSettings, saveSettings } = useCookieConsent();
     const [localConsent, setLocalConsent] = useState<CookieConsent>(consent);
+
+    const categories: CategoryInfo[] = [
+        {
+            key: 'necessary',
+            title: t('necessaryTitle'),
+            description: t('necessaryDescription'),
+            tools: [t('necessaryTool1'), t('necessaryTool2'), t('necessaryTool3')],
+            locked: true,
+        },
+        {
+            key: 'analytics',
+            title: t('analyticsTitle'),
+            description: t('analyticsDescription'),
+            tools: ['Google Analytics (GA4)', 'Microsoft Clarity', 'Vercel Analytics'],
+        },
+        {
+            key: 'marketing',
+            title: t('marketingTitle'),
+            description: t('marketingDescription'),
+            tools: ['Google AdWords Conversion Tracking'],
+        },
+    ];
 
     // Sync local state wenn das Modal geöffnet wird
     React.useEffect(() => {
@@ -170,10 +170,10 @@ const CookieSettings: React.FC = () => {
                         </div>
                         <div>
                             <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 600, color: '#1e3767' }}>
-                                Cookie-Einstellungen
+                                {t('settings')}
                             </h2>
                             <p style={{ margin: 0, fontSize: '13px', color: '#6b7280' }}>
-                                Passen Sie Ihre Präferenzen an
+                                {t('settingsSubtitle')}
                             </p>
                         </div>
                     </div>
@@ -189,7 +189,7 @@ const CookieSettings: React.FC = () => {
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}
-                        aria-label="Schließen"
+                        aria-label={t('close')}
                     >
                         <X size={20} color="#6b7280" />
                     </button>
@@ -231,6 +231,7 @@ const CookieSettings: React.FC = () => {
                                 <Toggle
                                     enabled={localConsent[cat.key]}
                                     locked={cat.locked}
+                                    label={`${localConsent[cat.key] ? t('disable') : t('enable')}: ${cat.title}`}
                                     onChange={(val) => {
                                         if (!cat.locked) handleToggle(cat.key as 'analytics' | 'marketing', val);
                                     }}
@@ -281,7 +282,7 @@ const CookieSettings: React.FC = () => {
                             cursor: 'pointer',
                         }}
                     >
-                        Abbrechen
+                        {t('cancel')}
                     </button>
                     <button
                         onClick={handleSave}
@@ -296,7 +297,7 @@ const CookieSettings: React.FC = () => {
                             cursor: 'pointer',
                         }}
                     >
-                        Speichern
+                        {t('save')}
                     </button>
                 </div>
             </div>

@@ -239,7 +239,7 @@ const Footer = () => {
                             className={`${isVisible ? styles.animateFadeIn : ''}`}
                         >
                             <Cookie size={16} />
-                            Cookie-Einstellungen
+                            {t('cookies.settings')}
                         </button>
                     </div>
 

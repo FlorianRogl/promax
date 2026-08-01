@@ -223,7 +223,7 @@ export const seoConfig: SEOConfig = {
 
     '/unternehmen': {
         title: 'Unternehmen – Über PROMAX Project Management | 25+ Jahre Erfahrung',
-        description: 'Seit 1999 Ihr verlässlicher Partner für Projektmanagement im Industrieanlagenbau. 100+ Experten, ISO 9001:2015 zertifiziert, 250+ erfolgreich abgeschlossene Projekte in Europa.',
+        description: 'Seit 1999 Ihr verlässlicher Partner für Projektmanagement im Industrieanlagenbau. 35 Experten, ISO 9001:2015 zertifiziert, 1000+ erfolgreich abgeschlossene Projekte in Europa.',
         keywords: 'PROMAX Unternehmen, Unternehmensgeschichte, ISO Zertifizierung, Industrieanlagenbau Graz, Engineering Team, Andreas Rogl',
         canonical: `${BASE_URL}/unternehmen`,
         ogImage: `${BASE_URL}/og/og-unternehmen.jpg`,
@@ -429,7 +429,7 @@ export const seoConfigEn: SEOConfig = {
     },
     '/unternehmen': {
         title: 'Company – About PROMAX Project Management | 25+ Years of Experience',
-        description: 'Since 1999 your reliable partner for project management in industrial plant construction. 100+ experts, ISO 9001:2015 certified, 250+ successfully completed projects across Europe.',
+        description: 'Since 1999 your reliable partner for project management in industrial plant construction. 35 experts, ISO 9001:2015 certified, 1000+ successfully completed projects across Europe.',
         keywords: 'PROMAX Company, Company History, ISO Certification, Industrial Plant Construction Graz, Engineering Team, Andreas Rogl',
         canonical: `${BASE_URL}/en/unternehmen`,
         ogImage: `${BASE_URL}/og/og-unternehmen.jpg`,

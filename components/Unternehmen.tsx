@@ -432,7 +432,7 @@ const Unternehmen = () => {
 
                                     <div className="text-center space-y-1 sm:space-y-2 pt-2 sm:pt-4">
                                         <p className="text-xs sm:text-sm font-medium text-slate-700">ISO 9001:2015</p>
-                                        <p className="text-xs text-slate-500">Qualitätsmanagementsystem</p>
+                                        <p className="text-xs text-slate-500">{t('company.certIsoLabel')}</p>
                                     </div>
                                 </div>
                             </div>
