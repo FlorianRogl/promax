@@ -75,8 +75,10 @@ export const ORGANIZATION_STRUCTURED_DATA = {
             areaServed: 'AT'
         }
     ],
+    // sameAs beschreibt Profile DIESER Organisation. Vorher stand hier das
+    // persönliche LinkedIn-Profil von Andreas Rogl – eine andere Entität.
     sameAs: [
-        'https://at.linkedin.com/in/andreas-rogl-936860141'
+        'https://www.linkedin.com/company/promax-project-management'
     ],
     hasMap: `https://maps.google.com/?q=Parkring+18,+8074+Raaba-Grambach`
 };
