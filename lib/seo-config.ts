@@ -53,8 +53,8 @@ export const ORGANIZATION_STRUCTURED_DATA = {
     logo: {
         '@type': 'ImageObject',
         url: `${BASE_URL}/og/logo.png`,
-        width: 300,
-        height: 100
+        width: 1000,
+        height: 323
     },
     description: 'Projektmanagement im Industrieanlagenbau. Umfassende Ingenieurplanung, 3D-Modellierung, Laserscanning und operative Projektunterstützung.',
     foundingDate: '1999',
@@ -71,7 +71,7 @@ export const ORGANIZATION_STRUCTURED_DATA = {
             telephone: '+43-316-241393',
             contactType: 'customer service',
             email: 'office@promax.at',
-            availableLanguage: 'de',
+            availableLanguage: ['de', 'en'],
             areaServed: 'AT'
         }
     ],
@@ -150,48 +150,49 @@ export const LOCALBUSINESS_STRUCTURED_DATA: object[] = [
 // FIX: Korrektes Schema für Google Sitelinks – Array von SiteNavigationElement.
 // @type: SiteNavigationElement ist der offizielle Schema.org-Standard.
 // Wird als Array übergeben damit jedes Element ein eigenes JSON-LD-Block wird.
-export const SITE_NAVIGATION_STRUCTURED_DATA = [
+type NavEntry = { slug: string; de: { name: string; description: string }; en: { name: string; description: string } };
+
+const NAV_ENTRIES: NavEntry[] = [
     {
-        '@context': 'https://schema.org',
-        '@type': 'SiteNavigationElement',
-        '@id': `${BASE_URL}/#nav-unternehmen`,
-        name: 'Unternehmen',
-        description: 'Über PROMAX: Geschichte, Team, Zertifizierungen und Unternehmenskultur.',
-        url: `${BASE_URL}/unternehmen`
+        slug: 'unternehmen',
+        de: { name: 'Unternehmen', description: 'Über PROMAX: Geschichte, Team, Zertifizierungen und Unternehmenskultur.' },
+        en: { name: 'Company', description: 'About PROMAX: history, team, certifications and corporate culture.' }
     },
     {
-        '@context': 'https://schema.org',
-        '@type': 'SiteNavigationElement',
-        '@id': `${BASE_URL}/#nav-leistungen`,
-        name: 'Leistungen',
-        description: 'Ingenieurplanung, 3D-Modellierung, Projektbetreuung und Bauüberwachung.',
-        url: `${BASE_URL}/leistungen`
+        slug: 'leistungen',
+        de: { name: 'Leistungen', description: 'Ingenieurplanung, 3D-Modellierung, Projektbetreuung und Bauüberwachung.' },
+        en: { name: 'Services', description: 'Engineering planning, 3D modelling, project support and construction supervision.' }
     },
     {
-        '@context': 'https://schema.org',
-        '@type': 'SiteNavigationElement',
-        '@id': `${BASE_URL}/#nav-technologien`,
-        name: 'Technologien',
-        description: 'AutoCAD Plant 3D, Laserscanning, Virtual & Augmented Reality.',
-        url: `${BASE_URL}/technologien`
+        slug: 'technologien',
+        de: { name: 'Technologien', description: 'AutoCAD Plant 3D, Laserscanning, Virtual & Augmented Reality.' },
+        en: { name: 'Technologies', description: 'AutoCAD Plant 3D, laser scanning, virtual & augmented reality.' }
     },
     {
-        '@context': 'https://schema.org',
-        '@type': 'SiteNavigationElement',
-        '@id': `${BASE_URL}/#nav-karriere`,
-        name: 'Karriere',
-        description: 'Offene Stellen: CAD-Konstrukteure, Ingenieure und Projektmanager gesucht.',
-        url: `${BASE_URL}/karriere`
+        slug: 'karriere',
+        de: { name: 'Karriere', description: 'Offene Stellen: CAD-Konstrukteure, Ingenieure und Projektmanager gesucht.' },
+        en: { name: 'Career', description: 'Open positions: CAD designers, engineers and project managers wanted.' }
     },
     {
-        '@context': 'https://schema.org',
-        '@type': 'SiteNavigationElement',
-        '@id': `${BASE_URL}/#nav-kontakt`,
-        name: 'Kontakt',
-        description: 'Parkring 18/F, 8074 Raaba-Grambach | office@promax.at | +43 316 241 393',
-        url: `${BASE_URL}/kontakt`
+        slug: 'kontakt',
+        de: { name: 'Kontakt', description: 'Parkring 18/F, 8074 Raaba-Grambach | office@promax.at | +43 316 241 393' },
+        en: { name: 'Contact', description: 'Parkring 18/F, 8074 Raaba-Grambach | office@promax.at | +43 316 241 393' }
     }
 ];
+
+// Locale-abhängig: sonst tragen die EN-Seiten deutsche Menünamen und URLs
+// ohne /en-Präfix (die dann per 308 umleiten).
+export function getSiteNavigationStructuredData(locale: string): object[] {
+    const lang = locale === 'en' ? 'en' : 'de';
+    return NAV_ENTRIES.map((entry) => ({
+        '@context': 'https://schema.org',
+        '@type': 'SiteNavigationElement',
+        '@id': `${BASE_URL}/${lang}#nav-${entry.slug}`,
+        name: entry[lang].name,
+        description: entry[lang].description,
+        url: `${BASE_URL}/${lang}/${entry.slug}`
+    }));
+}
 
 // ─── Seitenspezifische SEO-Konfiguration ──────────────────────────────────────
 export const seoConfig: SEOConfig = {
@@ -222,8 +223,8 @@ export const seoConfig: SEOConfig = {
     },
 
     '/unternehmen': {
-        title: 'Unternehmen – Über PROMAX Project Management | 25+ Jahre Erfahrung',
-        description: 'Seit 1999 Ihr verlässlicher Partner für Projektmanagement im Industrieanlagenbau. 35 Experten, ISO 9001:2015 zertifiziert, 1000+ erfolgreich abgeschlossene Projekte in Europa.',
+        title: 'Unternehmen – PROMAX Project Management | 25+ Jahre',
+        description: 'Seit 1999 Ihr Partner für Projektmanagement im Industrieanlagenbau: 35 Experten, ISO 9001:2015 zertifiziert, 1000+ Projekte in Europa.',
         keywords: 'PROMAX Unternehmen, Unternehmensgeschichte, ISO Zertifizierung, Industrieanlagenbau Graz, Engineering Team, Andreas Rogl',
         canonical: `${BASE_URL}/unternehmen`,
         ogImage: `${BASE_URL}/og/og-unternehmen.jpg`,
@@ -245,8 +246,8 @@ export const seoConfig: SEOConfig = {
     },
 
     '/leistungen': {
-        title: 'Leistungen – Engineering, Planung & Projektmanagement | PROMAX',
-        description: 'Ingenieurplanung, 3D-Modellierung & Berechnung, LaserScan-Technologie und operative Projektunterstützung für den Industrieanlagenbau. PROMAX – Ihr Engineering-Partner.',
+        title: 'Leistungen – Engineering & Planung | PROMAX',
+        description: 'Ingenieurplanung, 3D-Modellierung, LaserScan-Technologie und operative Projektunterstützung für den Industrieanlagenbau.',
         keywords: 'Engineering Services, 3D Planung, AutoCAD Plant 3D, Rohrleitungsplanung, Projektmanagement, Ingenieurplanung, Anlagenkonzeption',
         canonical: `${BASE_URL}/leistungen`,
         ogImage: `${BASE_URL}/og/og-leistungen.jpg`,
@@ -298,7 +299,7 @@ export const seoConfig: SEOConfig = {
 
     '/technologien': {
         title: 'Technologien – 3D-CAD, Laserscanning & VR/AR | PROMAX',
-        description: 'Modernste Engineering-Software: AutoCAD Plant 3D, PDMS, E3D, Intergraph Smart 3D. Dazu 3D-Laserscanning und Virtual & Augmented Reality für präzise Industrieplanung.',
+        description: 'Engineering-Software: AutoCAD Plant 3D, PDMS, E3D, Smart 3D. Dazu 3D-Laserscanning und Virtual & Augmented Reality für die Industrieplanung.',
         keywords: 'AutoCAD Plant 3D, PDMS, E3D, 3D Laserscanning, ROHR2, Inventor, Virtual Reality, Augmented Reality, Faro Scene',
         canonical: `${BASE_URL}/technologien`,
         ogImage: `${BASE_URL}/og/og-technologien.jpg`,
@@ -320,7 +321,7 @@ export const seoConfig: SEOConfig = {
     },
 
     '/karriere': {
-        title: 'Karriere bei PROMAX – Jobs im Industrieanlagenbau Graz & Wien',
+        title: 'Karriere bei PROMAX – Jobs im Anlagenbau Graz & Wien',
         description: 'Jetzt bewerben bei PROMAX! Offene Stellen für 3D CAD-Konstrukteure, Ingenieure und Projektmanager in Raaba-Grambach, Wien und Bruck an der Leitha.',
         keywords: 'Jobs Graz, Karriere Industrieanlagenbau, Ingenieur Jobs, CAD Konstrukteur, Projektmanager, Engineering Jobs Österreich, PROMAX Stellenangebote',
         canonical: `${BASE_URL}/karriere`,
@@ -378,27 +379,6 @@ export const seoConfig: SEOConfig = {
         }
     },
 
-    '/projektberichte': {
-        title: 'Projektberichte – Referenzen & Projekte | PROMAX',
-        description: 'Ausgewählte Referenzprojekte und Projektberichte der PROMAX Project Management GesmbH aus dem Industrieanlagenbau.',
-        canonical: `${BASE_URL}/projektberichte`,
-        ogImage: `${BASE_URL}/og/og-home.jpg`,
-        structuredData: {
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            '@id': `${BASE_URL}/projektberichte#webpage`,
-            url: `${BASE_URL}/projektberichte`,
-            name: 'Projektberichte – Referenzen & Projekte | PROMAX',
-            description: 'Ausgewählte Referenzprojekte und Projektberichte der PROMAX Project Management GesmbH aus dem Industrieanlagenbau.',
-            breadcrumb: {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Start', item: BASE_URL },
-                    { '@type': 'ListItem', position: 2, name: 'Projektberichte', item: `${BASE_URL}/projektberichte` }
-                ]
-            }
-        }
-    }
 };
 
 // ─── English SEO configuration ────────────────────────────────────────────────
@@ -428,8 +408,8 @@ export const seoConfigEn: SEOConfig = {
         }
     },
     '/unternehmen': {
-        title: 'Company – About PROMAX Project Management | 25+ Years of Experience',
-        description: 'Since 1999 your reliable partner for project management in industrial plant construction. 35 experts, ISO 9001:2015 certified, 1000+ successfully completed projects across Europe.',
+        title: 'Company – PROMAX Project Management | 25+ Years',
+        description: 'Your partner for industrial plant project management since 1999: 35 experts, ISO 9001:2015 certified, 1000+ projects across Europe.',
         keywords: 'PROMAX Company, Company History, ISO Certification, Industrial Plant Construction Graz, Engineering Team, Andreas Rogl',
         canonical: `${BASE_URL}/en/unternehmen`,
         ogImage: `${BASE_URL}/og/og-unternehmen.jpg`,
@@ -450,8 +430,8 @@ export const seoConfigEn: SEOConfig = {
         }
     },
     '/leistungen': {
-        title: 'Services – Engineering, Planning & Project Management | PROMAX',
-        description: 'Engineering planning, 3D modeling & calculation, laser scan technology and operational project support for industrial plant construction. PROMAX – your engineering partner.',
+        title: 'Services – Engineering & Planning | PROMAX',
+        description: 'Engineering planning, 3D modeling, laser scan technology and operational project support for industrial plant construction.',
         keywords: 'Engineering Services, 3D Planning, AutoCAD Plant 3D, Piping Planning, Project Management, Engineering Planning, Plant Conception',
         canonical: `${BASE_URL}/en/leistungen`,
         ogImage: `${BASE_URL}/og/og-leistungen.jpg`,
@@ -502,7 +482,7 @@ export const seoConfigEn: SEOConfig = {
     },
     '/technologien': {
         title: 'Technologies – 3D CAD, Laser Scanning & VR/AR | PROMAX',
-        description: 'State-of-the-art engineering software: AutoCAD Plant 3D, PDMS, E3D, Intergraph Smart 3D. Plus 3D laser scanning and virtual & augmented reality for precise industrial planning.',
+        description: 'Engineering software: AutoCAD Plant 3D, PDMS, E3D, Smart 3D. Plus 3D laser scanning and virtual & augmented reality for industrial planning.',
         keywords: 'AutoCAD Plant 3D, PDMS, E3D, 3D Laser Scanning, ROHR2, Inventor, Virtual Reality, Augmented Reality, Faro Scene',
         canonical: `${BASE_URL}/en/technologien`,
         ogImage: `${BASE_URL}/og/og-technologien.jpg`,
@@ -523,7 +503,7 @@ export const seoConfigEn: SEOConfig = {
         }
     },
     '/karriere': {
-        title: 'Career at PROMAX – Jobs in Industrial Plant Construction Graz & Vienna',
+        title: 'Career at PROMAX – Engineering Jobs Graz & Vienna',
         description: 'Apply now at PROMAX! Open positions for 3D CAD designers, engineers and project managers in Raaba-Grambach, Vienna and Bruck an der Leitha.',
         keywords: 'Jobs Graz, Career Industrial Plant Construction, Engineer Jobs, CAD Designer, Project Manager, Engineering Jobs Austria, PROMAX Vacancies',
         canonical: `${BASE_URL}/en/karriere`,
@@ -578,33 +558,53 @@ export const seoConfigEn: SEOConfig = {
             url: `${BASE_URL}/en/rechtliches`
         }
     },
-    '/projektberichte': {
-        title: 'Project Reports – References & Projects | PROMAX',
-        description: 'Selected reference projects and project reports from PROMAX Project Management GesmbH in industrial plant construction.',
-        canonical: `${BASE_URL}/en/projektberichte`,
-        ogImage: `${BASE_URL}/og/og-home.jpg`,
-        structuredData: {
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            '@id': `${BASE_URL}/projektberichte#webpage`,
-            url: `${BASE_URL}/projektberichte`,
-            name: 'Project Reports – References & Projects | PROMAX',
-            description: 'Selected reference projects and project reports from PROMAX Project Management GesmbH in industrial plant construction.',
-            breadcrumb: {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Start', item: BASE_URL },
-                    { '@type': 'ListItem', position: 2, name: 'Project Reports', item: `${BASE_URL}/en/projektberichte` }
-                ]
-            }
-        }
-    },
+};
+
+// ─── Locale-Präfix in JSON-LD-URLs ────────────────────────────────────────────
+// Die structuredData-Blöcke oben sind ohne /de bzw. /en notiert. Ohne Korrektur
+// zeigen url/@id auf URLs, die es gar nicht gibt (sie leiten mit 308 um) und
+// widersprechen damit dem Canonical-Tag der Seite. Zusätzlich hätten DE- und
+// EN-Seite dieselbe @id – zwei Seiten, eine Entitäts-ID.
+
+// Global im Layout ausgegebene Entitäten: sprachunabhängig, dürfen NICHT
+// umgeschrieben werden, sonst laufen die isPartOf/about-Referenzen ins Leere.
+const GLOBAL_ENTITY_IDS = new Set([`${BASE_URL}/#website`, `${BASE_URL}/#organization`]);
+
+// Statische Assets liegen nicht unter einem Locale-Präfix.
+const STATIC_PREFIXES = ['/og/', '/jobs/', '/documents/', '/_next/'];
+
+const localizeUrl = (value: string, locale: string): string => {
+    if (GLOBAL_ENTITY_IDS.has(value)) return value;
+    if (!value.startsWith(BASE_URL)) return value;
+
+    const rest = value.slice(BASE_URL.length);
+    if (/^\/(de|en)(\/|#|$)/.test(rest)) return value; // bereits lokalisiert
+    if (STATIC_PREFIXES.some((p) => rest.startsWith(p))) return value;
+
+    return `${BASE_URL}/${locale}${rest}`;
+};
+
+const localizeStructuredData = (data: unknown, locale: string): unknown => {
+    if (typeof data === 'string') return localizeUrl(data, locale);
+    if (Array.isArray(data)) return data.map((d) => localizeStructuredData(d, locale));
+    if (data && typeof data === 'object') {
+        return Object.fromEntries(
+            Object.entries(data).map(([k, v]) => [k, localizeStructuredData(v, locale)])
+        );
+    }
+    return data;
 };
 
 // Helper: SEO-Daten für Route abrufen
 export const getSEOForRoute = (path: string, locale: string = 'de'): SEOPageConfig => {
     const config = locale === 'en' ? seoConfigEn : seoConfig;
-    return config[path] || {
+    const entry = config[path];
+    if (entry) {
+        return entry.structuredData
+            ? { ...entry, structuredData: localizeStructuredData(entry.structuredData, locale) as object }
+            : entry;
+    }
+    return {
         title: locale === 'en'
             ? 'PROMAX Project Management – Industrial Plant Construction & Engineering'
             : 'PROMAX Project Management – Industrieanlagenbau & Engineering',

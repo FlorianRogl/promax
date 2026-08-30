@@ -17,8 +17,10 @@ export function buildMetadata(routeKey: string, locale: string): Metadata {
         'x-default': `${BASE_URL}/de${path}`,
       },
     },
+    // follow bleibt auch bei noindex aktiv: die Seite soll nicht in den Index,
+    // ihre ausgehenden Links sollen aber weiterhin gewertet werden.
     robots: seo.noindex
-      ? { index: false, follow: false }
+      ? { index: false, follow: true }
       : { index: true, follow: true },
     verification: {
       google: 'bK85IfVXd0152XfJuoImUga2LRl0OxgKc9D9oZrErYI',

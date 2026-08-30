@@ -15,7 +15,7 @@ import ConditionalAnalytics from '@/components/ConditionalAnalytics';
 import { StructuredData } from '@/components/StructuredData';
 import {
   getGlobalStructuredData,
-  SITE_NAVIGATION_STRUCTURED_DATA,
+  getSiteNavigationStructuredData,
   LOCALBUSINESS_STRUCTURED_DATA,
 } from '@/lib/seo-config';
 
@@ -35,8 +35,9 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
   const globalStructuredData = getGlobalStructuredData(locale);
+  const siteNavigationStructuredData = getSiteNavigationStructuredData(locale);
   return (
-    <html lang={locale}>
+    <html lang={locale === 'de' ? 'de-AT' : 'en'}>
       <body>
         <StyledComponentsRegistry>
           <EmotionRegistry>
@@ -51,8 +52,8 @@ export default async function LocaleLayout({
                 {globalStructuredData.map((d, i) => (
                   <StructuredData key={`global-${i}`} data={d} />
                 ))}
-                {SITE_NAVIGATION_STRUCTURED_DATA.map((d, i) => (
-                  <StructuredData key={i} data={d} />
+                {siteNavigationStructuredData.map((d, i) => (
+                  <StructuredData key={`nav-${i}`} data={d} />
                 ))}
                 {LOCALBUSINESS_STRUCTURED_DATA.map((d, i) => (
                   <StructuredData key={`lb-${i}`} data={d} />

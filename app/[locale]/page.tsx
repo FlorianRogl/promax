@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const seo = getSEOForRoute('/');
+  const seo = getSEOForRoute('/', locale);
   return (
     <>
       {seo.structuredData && <StructuredData data={seo.structuredData} />}

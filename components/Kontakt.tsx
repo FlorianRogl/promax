@@ -210,7 +210,7 @@ const Kontakt = () => {
                                             PROMAX Project Management GesmbH<br/>
                                             Parkring 18/F<br/>
                                             8074 Raaba-Grambach<br/>
-                                            Österreich
+                                            {t('contact.countryLabel')}
                                         </address>
                                     </div>
 
@@ -223,8 +223,8 @@ const Kontakt = () => {
                                         <address className="not-italic text-gray-600 text-sm leading-relaxed">
                                             PROMAX Project Management GesmbH<br/>
                                             Löwengasse 3/5<br/>
-                                            1030 Wien<br/>
-                                            Österreich
+                                            {t('contact.viennaCity')}<br/>
+                                            {t('contact.countryLabel')}
                                         </address>
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@ const Kontakt = () => {
                                             />
                                         ) : (
                                             <MapsPlaceholder
-                                                title="Hauptsitz Graz"
+                                                title={t('contact.headquartersTitle')}
                                                 address="Parkring 18/F, 8074 Raaba-Grambach"
                                                 onAccept={handleMapsAccept}
                                             />
@@ -271,7 +271,7 @@ const Kontakt = () => {
                                     <div className="bg-white shadow-xl border border-gray-100 overflow-hidden rounded-lg">
                                         <div className="p-4 sm:p-6 bg-[#d97539]">
                                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{t('contact.branchViennaTitle')}</h3>
-                                            <p className="text-white text-opacity-90 text-sm">Löwengasse 3/5, 1030 Wien</p>
+                                            <p className="text-white text-opacity-90 text-sm">Löwengasse 3/5, {t('contact.viennaCity')}</p>
                                         </div>
                                         {mapsConsented ? (
                                             <iframe
@@ -286,8 +286,8 @@ const Kontakt = () => {
                                             />
                                         ) : (
                                             <MapsPlaceholder
-                                                title="Niederlassung Wien"
-                                                address="Löwengasse 3/5, 1030 Wien"
+                                                title={t('contact.branchViennaTitle')}
+                                                address={`Löwengasse 3/5, ${t('contact.viennaCity')}`}
                                                 onAccept={handleMapsAccept}
                                             />
                                         )}

@@ -170,7 +170,9 @@
     "ctaTitle": "Ready for your next",
     "ctaTitleHighlight": "Project?",
     "ctaText": "Let's bring your vision to reality together.",
-    "ctaButton": "Contact Us Now"
+    "ctaButton": "Contact Us Now",
+    "countryLabel": "Austria",
+    "viennaCity": "1030 Vienna"
   },
   "career": {
     "heroTitle": "Career at PROMAX",

@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       ['/Technologien', '/de/technologien'],
       ['/Karriere', '/de/karriere'],
       ['/Kontakt', '/de/kontakt'],
-      ['/Projektberichte', '/de/projektberichte'],
+      ['/Projektberichte', '/de/unternehmen'],
       ['/Rechtliches', '/de/rechtliches'],
     ];
 
@@ -58,7 +58,7 @@ const nextConfig: NextConfig = {
       _00630: '/de/leistungen',     // Energie & Umwelt
       _00631: '/de/leistungen',     // Pharma
       _00632: '/de/leistungen',     // Papier & Zellstoff
-      _00633: '/de/projektberichte',// Weitere Referenzen
+      _00633: '/de/unternehmen',    // Weitere Referenzen
       _00635: '/de/technologien',   // PDMS-Planung
       _00637: '/de/karriere',       // Who should be interested in
       _00640: '/de/leistungen',     // GMP-Beratung
@@ -69,7 +69,7 @@ const nextConfig: NextConfig = {
       _00688: '/de/kontakt',        // Anfahrt
       // ── Englisch ─────────────────────────────────────────────
       _00645: '/en/leistungen',     // industrial plant / Project Management
-      _00650: '/en/projektberichte',// Projektberichte
+      _00650: '/en/unternehmen',    // Projektberichte
       _00651: '/en/leistungen',     // Säureschutzauskleidung
       _00655: '/en/leistungen',     // Projektierung
       _00656: '/en/leistungen',     // Projektmanagement
@@ -81,7 +81,7 @@ const nextConfig: NextConfig = {
       _00674: '/en/leistungen',     // Chemie
       _00675: '/en/leistungen',     // Energie & Umwelt
       _00677: '/en/leistungen',     // Papier & Zellstoff
-      _00678: '/en/projektberichte',// Weitere Referenzen
+      _00678: '/en/unternehmen',    // Weitere Referenzen
       _00679: '/en/kontakt',        // Kontakt
       _00680: '/en/karriere',       // Jobs u. Karriere
       _00684: '/en/rechtliches',    // Impressum
@@ -95,6 +95,10 @@ const nextConfig: NextConfig = {
         destination,
         permanent: true,
       })),
+      // Projektberichte-Seite entfernt (rein clientseitig gerendert, ohne Query-Parameter
+      // nur ein Spinner, nirgends verlinkt). URLs waren indexiert -> 301 statt 404.
+      { source: '/de/projektberichte', destination: '/de/unternehmen', permanent: true },
+      { source: '/en/projektberichte', destination: '/en/unternehmen', permanent: true },
       // Alte Einstiegs-URLs
       { source: '/index.php', has: [{ type: 'query' as const, key: 'LANG', value: 'eng' }], destination: '/en', permanent: true },
       { source: '/index.php', destination: '/de', permanent: true },
